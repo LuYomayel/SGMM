@@ -1370,16 +1370,16 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 		print '<tr><td class="fieldrequired">'.$langs->trans("Label").'</td><td><input name="label" class="minwidth300 maxwidth400onsmartphone" maxlength="255" value="'.dol_escape_htmltag(GETPOST('label', $label_security_check)).'"></td></tr>';
 
 		// On sell
-		print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Sell").')</td><td>';
-		$statutarray = array('1' => $langs->trans("OnSell"), '0' => $langs->trans("NotOnSell"));
-		print $form->selectarray('statut', $statutarray, GETPOST('statut'));
-		print '</td></tr>';
+		// print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Sell").')</td><td>';
+		// $statutarray = array('1' => $langs->trans("OnSell"), '0' => $langs->trans("NotOnSell"));
+		// print $form->selectarray('statut', $statutarray, GETPOST('statut'));
+		// print '</td></tr>';
 
 		// To buy
-		print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Buy").')</td><td>';
-		$statutarray = array('1' => $langs->trans("ProductStatusOnBuy"), '0' => $langs->trans("ProductStatusNotOnBuy"));
-		print $form->selectarray('statut_buy', $statutarray, GETPOST('statut_buy'));
-		print '</td></tr>';
+		// print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Buy").')</td><td>';
+		// $statutarray = array('1' => $langs->trans("ProductStatusOnBuy"), '0' => $langs->trans("ProductStatusNotOnBuy"));
+		// print $form->selectarray('statut_buy', $statutarray, GETPOST('statut_buy'));
+		// print '</td></tr>';
 
 		// Batch number management
 		if (isModEnabled('productbatch')) {
