@@ -17,7 +17,9 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
+      - name: Add SSH key to known hosts
+        run: |
+          ssh-keyscan -H 164.92.101.253 >> ~/.ssh/known_hosts
       - name: Deploy to VM
         run: |
           ssh root@164.92.101.253 "cd /var/www/html/dolibarr && git pull origin main && composer install"
