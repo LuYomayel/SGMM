@@ -23,6 +23,7 @@ jobs:
       - name: Add SSH key to known hosts
         run: |
           ssh-keyscan -H 164.92.101.253 >> ~/.ssh/known_hosts
+
       - name: Deploy to VM
         run: |
-          ssh root@164.92.101.253 "cd /var/www/html/dolibarr && git pull origin main && composer install"
+          ssh root@164.92.101.253 "cd /var/www/html/dolibarr && git pull origin main && sudo systemctl restart apache2 && sudo systemctl status apache2"
