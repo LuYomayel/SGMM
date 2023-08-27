@@ -2115,31 +2115,31 @@ while ($i < $imaxinloop) {
 		}
 
 		// Status (to sell)
-		if (!empty($arrayfields['p.tosell']['checked'])) {
-			print '<td class="center nowrap">';
-			if (!empty($conf->use_javascript_ajax) && $user->hasRight("produit", "creer") && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
-				print ajax_object_onoff($product_static, 'status', 'tosell', 'ProductStatusOnSell', 'ProductStatusNotOnSell');
-			} else {
-				print $product_static->LibStatut($product_static->status, 5, 0);
-			}
-			print '</td>';
-			if (!$i) {
-				$totalarray['nbfield']++;
-			}
-		}
-		// Status (to buy)
-		if (!empty($arrayfields['p.tobuy']['checked'])) {
-			print '<td class="center nowrap">';
-			if (!empty($conf->use_javascript_ajax) && $user->hasRight("produit", "creer") && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
-				print ajax_object_onoff($product_static, 'status_buy', 'tobuy', 'ProductStatusOnBuy', 'ProductStatusNotOnBuy');
-			} else {
-				print $product_static->LibStatut($product_static->status_buy, 5, 1);
-			}
-			print '</td>';
-			if (!$i) {
-				$totalarray['nbfield']++;
-			}
-		}
+		// if (!empty($arrayfields['p.tosell']['checked'])) {
+		// 	print '<td class="center nowrap">';
+		// 	if (!empty($conf->use_javascript_ajax) && $user->hasRight("produit", "creer") && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
+		// 		print ajax_object_onoff($product_static, 'status', 'tosell', 'ProductStatusOnSell', 'ProductStatusNotOnSell');
+		// 	} else {
+		// 		print $product_static->LibStatut($product_static->status, 5, 0);
+		// 	}
+		// 	print '</td>';
+		// 	if (!$i) {
+		// 		$totalarray['nbfield']++;
+		// 	}
+		// }
+		// // Status (to buy)
+		// if (!empty($arrayfields['p.tobuy']['checked'])) {
+		// 	print '<td class="center nowrap">';
+		// 	if (!empty($conf->use_javascript_ajax) && $user->hasRight("produit", "creer") && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
+		// 		print ajax_object_onoff($product_static, 'status_buy', 'tobuy', 'ProductStatusOnBuy', 'ProductStatusNotOnBuy');
+		// 	} else {
+		// 		print $product_static->LibStatut($product_static->status_buy, 5, 1);
+		// 	}
+		// 	print '</td>';
+		// 	if (!$i) {
+		// 		$totalarray['nbfield']++;
+		// 	}
+		// }
 
 		// Action column
 		if (!getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) {
