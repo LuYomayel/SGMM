@@ -593,18 +593,19 @@ if (empty($reshook)) {
 			$object->seuil_stock_alerte 	 = GETPOST('seuil_stock_alerte') ?GETPOST('seuil_stock_alerte') : 0;
 			$object->desiredstock          = GETPOST('desiredstock') ?GETPOST('desiredstock') : 0;
 			$object->canvas             	 = GETPOST('canvas');
-			$object->net_measure           = GETPOST('net_measure');
-			$object->net_measure_units     = GETPOST('net_measure_units'); // This is not the fk_unit but the power of unit
-			$object->weight             	 = GETPOST('weight');
-			$object->weight_units       	 = GETPOST('weight_units'); // This is not the fk_unit but the power of unit
-			$object->length             	 = GETPOST('size');
-			$object->length_units       	 = GETPOST('size_units'); // This is not the fk_unit but the power of unit
-			$object->width = GETPOST('sizewidth');
-			$object->height             	 = GETPOST('sizeheight');
-			$object->surface            	 = GETPOST('surface');
-			$object->surface_units      	 = GETPOST('surface_units'); // This is not the fk_unit but the power of unit
-			$object->volume             	 = GETPOST('volume');
-			$object->volume_units       	 = GETPOST('volume_units'); // This is not the fk_unit but the power of unit
+
+			// $object->net_measure           = GETPOST('net_measure');
+			// $object->net_measure_units     = GETPOST('net_measure_units'); // This is not the fk_unit but the power of unit
+			// $object->weight             	 = GETPOST('weight');
+			// $object->weight_units       	 = GETPOST('weight_units'); // This is not the fk_unit but the power of unit
+			// $object->length             	 = GETPOST('size');
+			// $object->length_units       	 = GETPOST('size_units'); // This is not the fk_unit but the power of unit
+			// $object->width = GETPOST('sizewidth');
+			// $object->height             	 = GETPOST('sizeheight');
+			// $object->surface            	 = GETPOST('surface');
+			// $object->surface_units      	 = GETPOST('surface_units'); // This is not the fk_unit but the power of unit
+			// $object->volume             	 = GETPOST('volume');
+			// $object->volume_units       	 = GETPOST('volume_units'); // This is not the fk_unit but the power of unit
 			$finished = GETPOST('finished', 'int');
 			if ($finished >= 0) {
 				$object->finished = $finished;
@@ -765,19 +766,19 @@ if (empty($reshook)) {
 				$object->duration_unit          = GETPOST('duration_unit', 'alpha');
 
 				$object->canvas                 = GETPOST('canvas');
-				$object->net_measure            = GETPOST('net_measure');
-				$object->net_measure_units      = GETPOST('net_measure_units'); // This is not the fk_unit but the power of unit
-				$object->weight                 = GETPOST('weight');
-				$object->weight_units           = GETPOST('weight_units'); // This is not the fk_unit but the power of unit
-				$object->length                 = GETPOST('size');
-				$object->length_units           = GETPOST('size_units'); // This is not the fk_unit but the power of unit
-				$object->width = GETPOST('sizewidth');
-				$object->height = GETPOST('sizeheight');
+				// $object->net_measure            = GETPOST('net_measure');
+				// $object->net_measure_units      = GETPOST('net_measure_units'); // This is not the fk_unit but the power of unit
+				// $object->weight                 = GETPOST('weight');
+				// $object->weight_units           = GETPOST('weight_units'); // This is not the fk_unit but the power of unit
+				// $object->length                 = GETPOST('size');
+				// $object->length_units           = GETPOST('size_units'); // This is not the fk_unit but the power of unit
+				// $object->width = GETPOST('sizewidth');
+				// $object->height = GETPOST('sizeheight');
 
-				$object->surface                = GETPOST('surface');
-				$object->surface_units          = GETPOST('surface_units'); // This is not the fk_unit but the power of unit
-				$object->volume                 = GETPOST('volume');
-				$object->volume_units           = GETPOST('volume_units'); // This is not the fk_unit but the power of unit
+				// $object->surface                = GETPOST('surface');
+				// $object->surface_units          = GETPOST('surface_units'); // This is not the fk_unit but the power of unit
+				// $object->volume                 = GETPOST('volume');
+				// $object->volume_units           = GETPOST('volume_units'); // This is not the fk_unit but the power of unit
 
 				$finished = GETPOST('finished', 'int');
 				if ($finished >= 0) {
@@ -1538,58 +1539,59 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 			print '</td></tr>';
 		}
 
-		if ($type != 1) {	// Nature, Weight and volume only applies to products and not to services
-			if (empty($conf->global->PRODUCT_DISABLE_NATURE)) {
-				// Nature
-				print '<tr><td>'.$form->textwithpicto($langs->trans("NatureOfProductShort"), $langs->trans("NatureOfProductDesc")).'</td><td>';
-				print $formproduct->selectProductNature('finished', $object->finished);
-				print '</td></tr>';
-			}
-		}
+		// Nature, Weight and volume only applies to products and not to services
+		// if ($type != 1) {
+		// 	if (empty($conf->global->PRODUCT_DISABLE_NATURE)) {
+		// 		// Nature
+		// 		print '<tr><td>'.$form->textwithpicto($langs->trans("NatureOfProductShort"), $langs->trans("NatureOfProductDesc")).'</td><td>';
+		// 		print $formproduct->selectProductNature('finished', $object->finished);
+		// 		print '</td></tr>';
+		// 	}
+		// }
 
-		if ($type != 1) {
-			if (empty($conf->global->PRODUCT_DISABLE_WEIGHT)) {
-				// Brut Weight
-				print '<tr><td>'.$langs->trans("Weight").'</td><td>';
-				print img_picto('', 'fa-balance-scale', 'class="pictofixedwidth"');
-				print '<input name="weight" size="4" value="'.GETPOST('weight').'">';
-				print $formproduct->selectMeasuringUnits("weight_units", "weight", GETPOSTISSET('weight_units') ?GETPOST('weight_units', 'alpha') : (empty($conf->global->MAIN_WEIGHT_DEFAULT_UNIT) ? 0 : $conf->global->MAIN_WEIGHT_DEFAULT_UNIT), 0, 2);
-				print '</td></tr>';
-			}
+		// if ($type != 1) {
+		// 	if (empty($conf->global->PRODUCT_DISABLE_WEIGHT)) {
+		// 		// Brut Weight
+		// 		print '<tr><td>'.$langs->trans("Weight").'</td><td>';
+		// 		print img_picto('', 'fa-balance-scale', 'class="pictofixedwidth"');
+		// 		print '<input name="weight" size="4" value="'.GETPOST('weight').'">';
+		// 		print $formproduct->selectMeasuringUnits("weight_units", "weight", GETPOSTISSET('weight_units') ?GETPOST('weight_units', 'alpha') : (empty($conf->global->MAIN_WEIGHT_DEFAULT_UNIT) ? 0 : $conf->global->MAIN_WEIGHT_DEFAULT_UNIT), 0, 2);
+		// 		print '</td></tr>';
+		// 	}
 
-			// Brut Length
-			if (empty($conf->global->PRODUCT_DISABLE_SIZE)) {
-				print '<tr><td>'.$langs->trans("Length").' x '.$langs->trans("Width").' x '.$langs->trans("Height").'</td><td>';
-				print img_picto('', 'fa-ruler', 'class="pictofixedwidth"');
-				print '<input name="size" class="width50" value="'.GETPOST('size').'"> x ';
-				print '<input name="sizewidth" class="width50" value="'.GETPOST('sizewidth').'"> x ';
-				print '<input name="sizeheight" class="width50" value="'.GETPOST('sizeheight').'">';
-				print $formproduct->selectMeasuringUnits("size_units", "size", GETPOSTISSET('size_units') ?GETPOST('size_units', 'alpha') : '0', 0, 2);
-				print '</td></tr>';
-			}
-			if (empty($conf->global->PRODUCT_DISABLE_SURFACE)) {
-				// Brut Surface
-				print '<tr><td>'.$langs->trans("Surface").'</td><td>';
-				print '<input name="surface" size="4" value="'.GETPOST('surface').'">';
-				print $formproduct->selectMeasuringUnits("surface_units", "surface", GETPOSTISSET('surface_units') ?GETPOST('surface_units', 'alpha') : '0', 0, 2);
-				print '</td></tr>';
-			}
-			if (empty($conf->global->PRODUCT_DISABLE_VOLUME)) {
-				// Brut Volume
-				print '<tr><td>'.$langs->trans("Volume").'</td><td>';
-				print '<input name="volume" size="4" value="'.GETPOST('volume').'">';
-				print $formproduct->selectMeasuringUnits("volume_units", "volume", GETPOSTISSET('volume_units') ?GETPOST('volume_units', 'alpha') : '0', 0, 2);
-				print '</td></tr>';
-			}
+		// 	// Brut Length
+		// 	if (empty($conf->global->PRODUCT_DISABLE_SIZE)) {
+		// 		print '<tr><td>'.$langs->trans("Length").' x '.$langs->trans("Width").' x '.$langs->trans("Height").'</td><td>';
+		// 		print img_picto('', 'fa-ruler', 'class="pictofixedwidth"');
+		// 		print '<input name="size" class="width50" value="'.GETPOST('size').'"> x ';
+		// 		print '<input name="sizewidth" class="width50" value="'.GETPOST('sizewidth').'"> x ';
+		// 		print '<input name="sizeheight" class="width50" value="'.GETPOST('sizeheight').'">';
+		// 		print $formproduct->selectMeasuringUnits("size_units", "size", GETPOSTISSET('size_units') ?GETPOST('size_units', 'alpha') : '0', 0, 2);
+		// 		print '</td></tr>';
+		// 	}
+		// 	if (empty($conf->global->PRODUCT_DISABLE_SURFACE)) {
+		// 		// Brut Surface
+		// 		print '<tr><td>'.$langs->trans("Surface").'</td><td>';
+		// 		print '<input name="surface" size="4" value="'.GETPOST('surface').'">';
+		// 		print $formproduct->selectMeasuringUnits("surface_units", "surface", GETPOSTISSET('surface_units') ?GETPOST('surface_units', 'alpha') : '0', 0, 2);
+		// 		print '</td></tr>';
+		// 	}
+		// 	if (empty($conf->global->PRODUCT_DISABLE_VOLUME)) {
+		// 		// Brut Volume
+		// 		print '<tr><td>'.$langs->trans("Volume").'</td><td>';
+		// 		print '<input name="volume" size="4" value="'.GETPOST('volume').'">';
+		// 		print $formproduct->selectMeasuringUnits("volume_units", "volume", GETPOSTISSET('volume_units') ?GETPOST('volume_units', 'alpha') : '0', 0, 2);
+		// 		print '</td></tr>';
+		// 	}
 
-			if (!empty($conf->global->PRODUCT_ADD_NET_MEASURE)) {
-				// Net Measure
-				print '<tr><td>'.$langs->trans("NetMeasure").'</td><td>';
-				print '<input name="net_measure" size="4" value="'.GETPOST('net_measure').'">';
-				print $formproduct->selectMeasuringUnits("net_measure_units", '', GETPOSTISSET('net_measure_units') ?GETPOST('net_measure_units', 'alpha') : (empty($conf->global->MAIN_WEIGHT_DEFAULT_UNIT) ? 0 : $conf->global->MAIN_WEIGHT_DEFAULT_UNIT), 0, 0);
-				print '</td></tr>';
-			}
-		}
+		// 	if (!empty($conf->global->PRODUCT_ADD_NET_MEASURE)) {
+		// 		// Net Measure
+		// 		print '<tr><td>'.$langs->trans("NetMeasure").'</td><td>';
+		// 		print '<input name="net_measure" size="4" value="'.GETPOST('net_measure').'">';
+		// 		print $formproduct->selectMeasuringUnits("net_measure_units", '', GETPOSTISSET('net_measure_units') ?GETPOST('net_measure_units', 'alpha') : (empty($conf->global->MAIN_WEIGHT_DEFAULT_UNIT) ? 0 : $conf->global->MAIN_WEIGHT_DEFAULT_UNIT), 0, 0);
+		// 		print '</td></tr>';
+		// 	}
+		// }
 
 		// Units
 		if (!empty($conf->global->PRODUCT_USE_UNITS)) {
