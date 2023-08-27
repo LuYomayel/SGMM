@@ -1077,11 +1077,11 @@ if (!empty($arrayfields['p.fk_default_workstation']['checked'])) {
 }
 
 // Sell price
+/*
 if (!empty($arrayfields['p.sellprice']['checked'])) {
 	print '<td class="liste_titre right">';
 	print '</td>';
 }
-
 // Multiprice
 if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
 	foreach ($arraypricelevel as $key => $value) {
@@ -1091,6 +1091,7 @@ if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
 		}
 	}
 }
+*/
 
 // Minimum buying Price
 if (!empty($arrayfields['p.minbuyprice']['checked'])) {
@@ -1325,20 +1326,20 @@ if (!empty($arrayfields['p.fk_default_workstation']['checked'])) {
 	print_liste_field_titre($arrayfields['p.fk_default_workstation']['label'], $_SERVER['PHP_SELF'], 'ws.ref', '', $param, '', $sortfield, $sortorder);
 	$totalarray['nbfield']++;
 }
-if (!empty($arrayfields['p.sellprice']['checked'])) {
-	print_liste_field_titre($arrayfields['p.sellprice']['label'], $_SERVER["PHP_SELF"], "", "", $param, '', $sortfield, $sortorder, 'right ');
-	$totalarray['nbfield']++;
-}
+// if (!empty($arrayfields['p.sellprice']['checked'])) {
+// 	print_liste_field_titre($arrayfields['p.sellprice']['label'], $_SERVER["PHP_SELF"], "", "", $param, '', $sortfield, $sortorder, 'right ');
+// 	$totalarray['nbfield']++;
+// }
 
 // Multiprices
-if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
-	foreach ($arraypricelevel as $key => $value) {
-		if (!empty($arrayfields['p.sellprice'.$key]['checked'])) {
-			print_liste_field_titre($arrayfields['p.sellprice'.$key]['label'], $_SERVER["PHP_SELF"], "", "", $param, '', $sortfield, $sortorder, 'right ');
-			$totalarray['nbfield']++;
-		}
-	}
-}
+// if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
+// 	foreach ($arraypricelevel as $key => $value) {
+// 		if (!empty($arrayfields['p.sellprice'.$key]['checked'])) {
+// 			print_liste_field_titre($arrayfields['p.sellprice'.$key]['label'], $_SERVER["PHP_SELF"], "", "", $param, '', $sortfield, $sortorder, 'right ');
+// 			$totalarray['nbfield']++;
+// 		}
+// 	}
+// }
 
 if (!empty($arrayfields['p.minbuyprice']['checked'])) {
 	print_liste_field_titre($arrayfields['p.minbuyprice']['label'], $_SERVER["PHP_SELF"], "", "", $param, '', $sortfield, $sortorder, 'right ');
@@ -1426,14 +1427,14 @@ if (!empty($arrayfields['p.tms']['checked'])) {
 	print_liste_field_titre($arrayfields['p.tms']['label'], $_SERVER["PHP_SELF"], "p.tms", "", $param, '', $sortfield, $sortorder, 'center nowrap ');
 	$totalarray['nbfield']++;
 }
-if (!empty($arrayfields['p.tosell']['checked'])) {
-	print_liste_field_titre($arrayfields['p.tosell']['label'], $_SERVER["PHP_SELF"], "p.tosell", "", $param, '', $sortfield, $sortorder, 'center ');
-	$totalarray['nbfield']++;
-}
-if (!empty($arrayfields['p.tobuy']['checked'])) {
-	print_liste_field_titre($arrayfields['p.tobuy']['label'], $_SERVER["PHP_SELF"], "p.tobuy", "", $param, '', $sortfield, $sortorder, 'center ');
-	$totalarray['nbfield']++;
-}
+// if (!empty($arrayfields['p.tosell']['checked'])) {
+// 	print_liste_field_titre($arrayfields['p.tosell']['label'], $_SERVER["PHP_SELF"], "p.tosell", "", $param, '', $sortfield, $sortorder, 'center ');
+// 	$totalarray['nbfield']++;
+// }
+// if (!empty($arrayfields['p.tobuy']['checked'])) {
+// 	print_liste_field_titre($arrayfields['p.tobuy']['label'], $_SERVER["PHP_SELF"], "p.tobuy", "", $param, '', $sortfield, $sortorder, 'center ');
+// 	$totalarray['nbfield']++;
+// }
 // Action column
 if (!getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) {
 	print_liste_field_titre($selectedfields, $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, 'center maxwidthsearch ');
@@ -1833,20 +1834,20 @@ while ($i < $imaxinloop) {
 		}
 
 		// Sell price
-		if (!empty($arrayfields['p.sellprice']['checked'])) {
-			print '<td class="right nowraponall">';
-			if ($product_static->status && $usercancreadprice) {
-				if ($obj->price_base_type == 'TTC') {
-					print '<span class="amount">'.price($obj->price_ttc).' '.$langs->trans("TTC").'</span>';
-				} else {
-					print '<span class="amount">'.price($obj->price).' '.$langs->trans("HT").'</span>';
-				}
-			}
-			print '</td>';
-			if (!$i) {
-				$totalarray['nbfield']++;
-			}
-		}
+		// if (!empty($arrayfields['p.sellprice']['checked'])) {
+		// 	print '<td class="right nowraponall">';
+		// 	if ($product_static->status && $usercancreadprice) {
+		// 		if ($obj->price_base_type == 'TTC') {
+		// 			print '<span class="amount">'.price($obj->price_ttc).' '.$langs->trans("TTC").'</span>';
+		// 		} else {
+		// 			print '<span class="amount">'.price($obj->price).' '.$langs->trans("HT").'</span>';
+		// 		}
+		// 	}
+		// 	print '</td>';
+		// 	if (!$i) {
+		// 		$totalarray['nbfield']++;
+		// 	}
+		// }
 
 
 		// Multiprices
@@ -1887,44 +1888,44 @@ while ($i < $imaxinloop) {
 				}
 			}
 
-			foreach ($arraypricelevel as $key => $value) {
-				if (!empty($arrayfields['p.sellprice'.$key]['checked'])) {
-					print '<td class="right nowraponall">';
-					if (!empty($productpricescache[$obj->rowid])) {
-						if ($productpricescache[$obj->rowid][$key]['price_base_type'] == 'TTC') {
-							print '<span class="amount">'.price($productpricescache[$obj->rowid][$key]['price_ttc']).' '.$langs->trans("TTC").'</span>';
-						} else {
-							print '<span class="amount">'.price($productpricescache[$obj->rowid][$key]['price']).' '.$langs->trans("HT").'</span>';
-						}
-					}
-					print '</td>';
-					if (!$i) {
-						$totalarray['nbfield']++;
-					}
-				}
-			}
+			// foreach ($arraypricelevel as $key => $value) {
+			// 	if (!empty($arrayfields['p.sellprice'.$key]['checked'])) {
+			// 		print '<td class="right nowraponall">';
+			// 		if (!empty($productpricescache[$obj->rowid])) {
+			// 			if ($productpricescache[$obj->rowid][$key]['price_base_type'] == 'TTC') {
+			// 				print '<span class="amount">'.price($productpricescache[$obj->rowid][$key]['price_ttc']).' '.$langs->trans("TTC").'</span>';
+			// 			} else {
+			// 				print '<span class="amount">'.price($productpricescache[$obj->rowid][$key]['price']).' '.$langs->trans("HT").'</span>';
+			// 			}
+			// 		}
+			// 		print '</td>';
+			// 		if (!$i) {
+			// 			$totalarray['nbfield']++;
+			// 		}
+			// 	}
+			// }
 		}
 
 		// Better buy price
-		if (!empty($arrayfields['p.minbuyprice']['checked'])) {
-			print  '<td class="right nowraponall">';
-			if ($product_static->status_buy && $obj->bestpurchaseprice != '' && $usercancreadprice) {
-				if ($product_fourn->find_min_price_product_fournisseur($obj->rowid) > 0) {
-					if ($product_fourn->product_fourn_price_id > 0) {
-						if ((isModEnabled("fournisseur") && !empty($user->rights->fournisseur->lire) && empty($conf->global->MAIN_USE_NEW_SUPPLIERMOD)) || (isModEnabled("supplier_order") && !empty($user->rights->supplier_order->lire)) || (isModEnabled("supplier_invoice") && !empty($user->rights->supplier_invoice->lire))) {
-							$htmltext = $product_fourn->display_price_product_fournisseur(1, 1, 0, 1);
-							print '<span class="amount">'.$form->textwithpicto(price($product_fourn->fourn_unitprice * (1 - $product_fourn->fourn_remise_percent / 100) - $product_fourn->fourn_remise).' '.$langs->trans("HT"), $htmltext).'</span>';
-						} else {
-							print '<span class="amount">'.price($product_fourn->fourn_unitprice).' '.$langs->trans("HT").'</span>';
-						}
-					}
-				}
-			}
-			print '</td>';
-			if (!$i) {
-				$totalarray['nbfield']++;
-			}
-		}
+		// if (!empty($arrayfields['p.minbuyprice']['checked'])) {
+		// 	print  '<td class="right nowraponall">';
+		// 	if ($product_static->status_buy && $obj->bestpurchaseprice != '' && $usercancreadprice) {
+		// 		if ($product_fourn->find_min_price_product_fournisseur($obj->rowid) > 0) {
+		// 			if ($product_fourn->product_fourn_price_id > 0) {
+		// 				if ((isModEnabled("fournisseur") && !empty($user->rights->fournisseur->lire) && empty($conf->global->MAIN_USE_NEW_SUPPLIERMOD)) || (isModEnabled("supplier_order") && !empty($user->rights->supplier_order->lire)) || (isModEnabled("supplier_invoice") && !empty($user->rights->supplier_invoice->lire))) {
+		// 					$htmltext = $product_fourn->display_price_product_fournisseur(1, 1, 0, 1);
+		// 					print '<span class="amount">'.$form->textwithpicto(price($product_fourn->fourn_unitprice * (1 - $product_fourn->fourn_remise_percent / 100) - $product_fourn->fourn_remise).' '.$langs->trans("HT"), $htmltext).'</span>';
+		// 				} else {
+		// 					print '<span class="amount">'.price($product_fourn->fourn_unitprice).' '.$langs->trans("HT").'</span>';
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	print '</td>';
+		// 	if (!$i) {
+		// 		$totalarray['nbfield']++;
+		// 	}
+		// }
 
 		// Number of buy prices
 		if (!empty($arrayfields['p.numbuyprice']['checked'])) {
