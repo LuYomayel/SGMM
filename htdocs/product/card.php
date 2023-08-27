@@ -1367,7 +1367,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 		}
 
 		// Label
-		print '<tr><td class="fieldrequired">'.$langs->trans("Label").'</td><td><input name="label" class="minwidth300 maxwidth400onsmartphone" maxlength="255" value="'.dol_escape_htmltag(GETPOST('label', $label_security_check)).'">XD HOLA GIL!</td></tr>';
+		print '<tr><td class="fieldrequired">'.$langs->trans("Label").'</td><td><input name="label" class="minwidth300 maxwidth400onsmartphone" maxlength="255" value="'.dol_escape_htmltag(GETPOST('label', $label_security_check)).'">XD HOLA GILadsada!</td></tr>';
 
 		// On sell
 		// print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Sell").')</td><td>';
