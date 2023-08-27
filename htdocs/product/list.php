@@ -1167,25 +1167,25 @@ if (!empty($arrayfields['p.fk_state']['checked'])) {
 	print '</td>';
 }
 // Accountancy code sell
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell" value="'.dol_escape_htmltag($search_accountancy_code_sell).'"></td>';
-}
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell_intra']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell_intra" value="'.dol_escape_htmltag($search_accountancy_code_sell_intra).'"></td>';
-}
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell_export']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell_export" value="'.dol_escape_htmltag($search_accountancy_code_sell_export).'"></td>';
-}
-// Accountancy code buy
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy" value="'.dol_escape_htmltag($search_accountancy_code_buy).'"></td>';
-}
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy_intra']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy_intra" value="'.dol_escape_htmltag($search_accountancy_code_buy_intra).'"></td>';
-}
-if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy_export']['checked'])) {
-	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy_export" value="'.dol_escape_htmltag($search_accountancy_code_buy_export).'"></td>';
-}
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell" value="'.dol_escape_htmltag($search_accountancy_code_sell).'"></td>';
+// }
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell_intra']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell_intra" value="'.dol_escape_htmltag($search_accountancy_code_sell_intra).'"></td>';
+// }
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_sell_export']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_sell_export" value="'.dol_escape_htmltag($search_accountancy_code_sell_export).'"></td>';
+// }
+// // Accountancy code buy
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy" value="'.dol_escape_htmltag($search_accountancy_code_buy).'"></td>';
+// }
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy_intra']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy_intra" value="'.dol_escape_htmltag($search_accountancy_code_buy_intra).'"></td>';
+// }
+// if (!empty($arrayfields[$alias_product_perentity . '.accountancy_code_buy_export']['checked'])) {
+// 	print '<td class="liste_titre"><input class="flat maxwidth75" type="text" name="search_accountancy_code_buy_export" value="'.dol_escape_htmltag($search_accountancy_code_buy_export).'"></td>';
+// }
 // Extra fields
 include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_input.tpl.php';
 // Fields from hook

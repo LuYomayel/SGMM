@@ -2682,16 +2682,16 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 					print "</td></tr>\n";
 				}
 
-				if (!empty($conf->global->PRODUCT_ADD_NET_MEASURE)) {
-					// Net Measure
-					print '<tr><td class="titlefield">'.$langs->trans("NetMeasure").'</td><td>';
-					if ($object->net_measure != '') {
-						print $object->net_measure." ".measuringUnitString($object->net_measure_units);
-					} else {
-						print '&nbsp;';
-					}
-					print '</td></tr>';
-				}
+				// if (!empty($conf->global->PRODUCT_ADD_NET_MEASURE)) {
+				// 	// Net Measure
+				// 	print '<tr><td class="titlefield">'.$langs->trans("NetMeasure").'</td><td>';
+				// 	if ($object->net_measure != '') {
+				// 		print $object->net_measure." ".measuringUnitString($object->net_measure_units);
+				// 	} else {
+				// 		print '&nbsp;';
+				// 	}
+				// 	print '</td></tr>';
+				// }
 			}
 
 			// Unit
