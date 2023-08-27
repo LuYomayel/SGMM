@@ -355,18 +355,18 @@ class Product extends CommonObject
 	public $url;
 
 	//! Metric of products
-	public $weight;
-	public $weight_units;	// scale -3, 0, 3, 6
-	public $length;
-	public $length_units;	// scale -3, 0, 3, 6
-	public $width;
-	public $width_units;	// scale -3, 0, 3, 6
-	public $height;
-	public $height_units;	// scale -3, 0, 3, 6
-	public $surface;
-	public $surface_units;	// scale -3, 0, 3, 6
-	public $volume;
-	public $volume_units;	// scale -3, 0, 3, 6
+	// public $weight;
+	// public $weight_units;	// scale -3, 0, 3, 6
+	// public $length;
+	// public $length_units;	// scale -3, 0, 3, 6
+	// public $width;
+	// public $width_units;	// scale -3, 0, 3, 6
+	// public $height;
+	// public $height_units;	// scale -3, 0, 3, 6
+	// public $surface;
+	// public $surface_units;	// scale -3, 0, 3, 6
+	// public $volume;
+	// public $volume_units;	// scale -3, 0, 3, 6
 
 	public $net_measure;
 	public $net_measure_units;	// scale -3, 0, 3, 6
@@ -953,15 +953,15 @@ class Product extends CommonObject
 			$result = -2;
 		}
 
-		$arrayofnonnegativevalue = array('weight'=>'Weight', 'width'=>'Width', 'height'=>'Height', 'length'=>'Length', 'surface'=>'Surface', 'volume'=>'Volume');
-		foreach ($arrayofnonnegativevalue as $key => $value) {
-			if (property_exists($this, $key) && !empty($this->$key) && ($this->$key < 0)) {
-				$langs->loadLangs(array("main", "other"));
-				$this->error = $langs->trans("FieldCannotBeNegative", $langs->transnoentitiesnoconv($value));
-				$this->errors[] = $this->error;
-				$result = -4;
-			}
-		}
+		// $arrayofnonnegativevalue = array('weight'=>'Weight', 'width'=>'Width', 'height'=>'Height', 'length'=>'Length', 'surface'=>'Surface', 'volume'=>'Volume');
+		// foreach ($arrayofnonnegativevalue as $key => $value) {
+		// 	if (property_exists($this, $key) && !empty($this->$key) && ($this->$key < 0)) {
+		// 		$langs->loadLangs(array("main", "other"));
+		// 		$this->error = $langs->trans("FieldCannotBeNegative", $langs->transnoentitiesnoconv($value));
+		// 		$this->errors[] = $this->error;
+		// 		$result = -4;
+		// 	}
+		// }
 
 		$rescode = $this->check_barcode($this->barcode, $this->barcode_type_code);
 		if ($rescode) {
@@ -1050,18 +1050,19 @@ class Product extends CommonObject
 		$this->note_public = (isset($this->note_public) ? trim($this->note_public) : null);
 		$this->net_measure = price2num($this->net_measure);
 		$this->net_measure_units = trim($this->net_measure_units);
-		$this->weight = price2num($this->weight);
-		$this->weight_units = trim($this->weight_units);
-		$this->length = price2num($this->length);
-		$this->length_units = trim($this->length_units);
-		$this->width = price2num($this->width);
-		$this->width_units = trim($this->width_units);
-		$this->height = price2num($this->height);
-		$this->height_units = trim($this->height_units);
-		$this->surface = price2num($this->surface);
-		$this->surface_units = trim($this->surface_units);
-		$this->volume = price2num($this->volume);
-		$this->volume_units = trim($this->volume_units);
+
+		// $this->weight = price2num($this->weight);
+		// $this->weight_units = trim($this->weight_units);
+		// $this->length = price2num($this->length);
+		// $this->length_units = trim($this->length_units);
+		// $this->width = price2num($this->width);
+		// $this->width_units = trim($this->width_units);
+		// $this->height = price2num($this->height);
+		// $this->height_units = trim($this->height_units);
+		// $this->surface = price2num($this->surface);
+		// $this->surface_units = trim($this->surface_units);
+		// $this->volume = price2num($this->volume);
+		// $this->volume_units = trim($this->volume_units);
 
 		// set unit not defined
 		if (is_numeric($this->length_units)) {
@@ -1220,18 +1221,18 @@ class Product extends CommonObject
 			$sql .= ", fk_default_bom = ".((!isset($this->fk_default_bom) || $this->fk_default_bom < 0 || $this->fk_default_bom == '') ? "null" : (int) $this->fk_default_bom);
 			$sql .= ", net_measure = ".($this->net_measure != '' ? "'".$this->db->escape($this->net_measure)."'" : 'null');
 			$sql .= ", net_measure_units = ".($this->net_measure_units != '' ? "'".$this->db->escape($this->net_measure_units)."'" : 'null');
-			$sql .= ", weight = ".($this->weight != '' ? "'".$this->db->escape($this->weight)."'" : 'null');
-			$sql .= ", weight_units = ".($this->weight_units != '' ? "'".$this->db->escape($this->weight_units)."'" : 'null');
-			$sql .= ", length = ".($this->length != '' ? "'".$this->db->escape($this->length)."'" : 'null');
-			$sql .= ", length_units = ".($this->length_units != '' ? "'".$this->db->escape($this->length_units)."'" : 'null');
-			$sql .= ", width= ".($this->width != '' ? "'".$this->db->escape($this->width)."'" : 'null');
-			$sql .= ", width_units = ".($this->width_units != '' ? "'".$this->db->escape($this->width_units)."'" : 'null');
-			$sql .= ", height = ".($this->height != '' ? "'".$this->db->escape($this->height)."'" : 'null');
-			$sql .= ", height_units = ".($this->height_units != '' ? "'".$this->db->escape($this->height_units)."'" : 'null');
-			$sql .= ", surface = ".($this->surface != '' ? "'".$this->db->escape($this->surface)."'" : 'null');
-			$sql .= ", surface_units = ".($this->surface_units != '' ? "'".$this->db->escape($this->surface_units)."'" : 'null');
-			$sql .= ", volume = ".($this->volume != '' ? "'".$this->db->escape($this->volume)."'" : 'null');
-			$sql .= ", volume_units = ".($this->volume_units != '' ? "'".$this->db->escape($this->volume_units)."'" : 'null');
+			// // $sql .= ", weight = ".($this->weight != '' ? "'".$this->db->escape($this->weight)."'" : 'null');
+			// // $sql .= ", weight_units = ".($this->weight_units != '' ? "'".$this->db->escape($this->weight_units)."'" : 'null');
+			// $sql .= ", length = ".($this->length != '' ? "'".$this->db->escape($this->length)."'" : 'null');
+			// $sql .= ", length_units = ".($this->length_units != '' ? "'".$this->db->escape($this->length_units)."'" : 'null');
+			// $sql .= ", width= ".($this->width != '' ? "'".$this->db->escape($this->width)."'" : 'null');
+			// $sql .= ", width_units = ".($this->width_units != '' ? "'".$this->db->escape($this->width_units)."'" : 'null');
+			// $sql .= ", height = ".($this->height != '' ? "'".$this->db->escape($this->height)."'" : 'null');
+			// $sql .= ", height_units = ".($this->height_units != '' ? "'".$this->db->escape($this->height_units)."'" : 'null');
+			// $sql .= ", surface = ".($this->surface != '' ? "'".$this->db->escape($this->surface)."'" : 'null');
+			// $sql .= ", surface_units = ".($this->surface_units != '' ? "'".$this->db->escape($this->surface_units)."'" : 'null');
+			// $sql .= ", volume = ".($this->volume != '' ? "'".$this->db->escape($this->volume)."'" : 'null');
+			// $sql .= ", volume_units = ".($this->volume_units != '' ? "'".$this->db->escape($this->volume_units)."'" : 'null');
 			$sql .= ", fk_default_warehouse = ".($this->fk_default_warehouse > 0 ? ((int) $this->fk_default_warehouse) : 'null');
 			$sql .= ", fk_default_workstation = ".($this->fk_default_workstation > 0 ? ((int) $this->fk_default_workstation) : 'null');
 			$sql .= ", seuil_stock_alerte = ".((isset($this->seuil_stock_alerte) && is_numeric($this->seuil_stock_alerte)) ? (float) $this->seuil_stock_alerte : 'null');
@@ -2407,8 +2408,8 @@ class Product extends CommonObject
 		$sql = "SELECT p.rowid, p.ref, p.ref_ext, p.label, p.description, p.url, p.note_public, p.note as note_private, p.customcode, p.fk_country, p.fk_state, p.lifetime, p.qc_frequency, p.price, p.price_ttc,";
 		$sql .= " p.price_min, p.price_min_ttc, p.price_base_type, p.cost_price, p.default_vat_code, p.tva_tx, p.recuperableonly as tva_npr, p.localtax1_tx, p.localtax2_tx, p.localtax1_type, p.localtax2_type, p.tosell,";
 		$sql .= " p.tobuy, p.fk_product_type, p.duration, p.fk_default_warehouse, p.fk_default_workstation, p.seuil_stock_alerte, p.canvas, p.net_measure, p.net_measure_units, p.weight, p.weight_units,";
-		$sql .= " p.length, p.length_units, p.width, p.width_units, p.height, p.height_units,";
-		$sql .= " p.surface, p.surface_units, p.volume, p.volume_units, p.barcode, p.fk_barcode_type, p.finished, p.fk_default_bom, p.mandatory_period,";
+		// $sql .= " p.length, p.length_units, p.width, p.width_units, p.height, p.height_units, p.surface, p.surface_units, p.volume, p.volume_units,";
+		$sql .= " p.barcode, p.fk_barcode_type, p.finished, p.fk_default_bom, p.mandatory_period,";
 		if (empty($conf->global->MAIN_PRODUCT_PERENTITY_SHARED)) {
 			$sql .= " p.accountancy_code_buy, p.accountancy_code_buy_intra, p.accountancy_code_buy_export, p.accountancy_code_sell, p.accountancy_code_sell_intra, p.accountancy_code_sell_export,";
 		} else {
@@ -2468,8 +2469,8 @@ class Product extends CommonObject
 		if ($separatedStock) {
 			$sql .= " GROUP BY p.rowid, p.ref, p.ref_ext, p.label, p.description, p.url, p.note_public, p.note, p.customcode, p.fk_country, p.fk_state, p.lifetime, p.qc_frequency, p.price, p.price_ttc,";
 			$sql .= " p.price_min, p.price_min_ttc, p.price_base_type, p.cost_price, p.default_vat_code, p.tva_tx, p.recuperableonly, p.localtax1_tx, p.localtax2_tx, p.localtax1_type, p.localtax2_type, p.tosell,";
-			$sql .= " p.tobuy, p.fk_product_type, p.duration, p.fk_default_warehouse, p.fk_default_workstation, p.seuil_stock_alerte, p.canvas, p.net_measure, p.net_measure_units, p.weight, p.weight_units,";
-			$sql .= " p.length, p.length_units, p.width, p.width_units, p.height, p.height_units,";
+			$sql .= " p.tobuy, p.fk_product_type, p.duration, p.fk_default_warehouse, p.fk_default_workstation, p.seuil_stock_alerte, p.canvas, p.net_measure, p.net_measure_units,";
+			// $sql .= " p.weight, p.weight_units, p.length, p.length_units, p.width, p.width_units, p.height, p.height_units,";
 			$sql .= " p.surface, p.surface_units, p.volume, p.volume_units, p.barcode, p.fk_barcode_type, p.finished,";
 			if (empty($conf->global->MAIN_PRODUCT_PERENTITY_SHARED)) {
 				$sql .= " p.accountancy_code_buy, p.accountancy_code_buy_intra, p.accountancy_code_buy_export, p.accountancy_code_sell, p.accountancy_code_sell_intra, p.accountancy_code_sell_export,";
@@ -2543,19 +2544,21 @@ class Product extends CommonObject
 				$this->canvas = $obj->canvas;
 				$this->net_measure = $obj->net_measure;
 				$this->net_measure_units = $obj->net_measure_units;
-				$this->weight = $obj->weight;
-				$this->weight_units = $obj->weight_units;
-				$this->length = $obj->length;
-				$this->length_units = $obj->length_units;
-				$this->width = $obj->width;
-				$this->width_units = $obj->width_units;
-				$this->height = $obj->height;
-				$this->height_units = $obj->height_units;
 
-				$this->surface = $obj->surface;
-				$this->surface_units = $obj->surface_units;
-				$this->volume = $obj->volume;
-				$this->volume_units = $obj->volume_units;
+				// $this->weight = $obj->weight;
+				// $this->weight_units = $obj->weight_units;
+				// $this->length = $obj->length;
+				// $this->length_units = $obj->length_units;
+				// $this->width = $obj->width;
+				// $this->width_units = $obj->width_units;
+				// $this->height = $obj->height;
+				// $this->height_units = $obj->height_units;
+
+				// $this->surface = $obj->surface;
+				// $this->surface_units = $obj->surface_units;
+				// $this->volume = $obj->volume;
+				// $this->volume_units = $obj->volume_units;
+
 				$this->barcode = $obj->barcode;
 				$this->barcode_type = $obj->fk_barcode_type;
 
@@ -5099,35 +5102,35 @@ class Product extends CommonObject
 			$datas['barcode']= '<br><b>'.$langs->trans('BarCode').':</b> '.$this->barcode;
 		}
 
-		if ($this->type == Product::TYPE_PRODUCT) {
-			if ($this->weight) {
-				$datas['weight']= "<br><b>".$langs->trans("Weight").'</b>: '.$this->weight.' '.measuringUnitString(0, "weight", $this->weight_units);
-			}
-			$labelsize = "";
-			if ($this->length) {
-				$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Length").'</b>: '.$this->length.' '.measuringUnitString(0, 'size', $this->length_units);
-			}
-			if ($this->width) {
-				$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Width").'</b>: '.$this->width.' '.measuringUnitString(0, 'size', $this->width_units);
-			}
-			if ($this->height) {
-				$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Height").'</b>: '.$this->height.' '.measuringUnitString(0, 'size', $this->height_units);
-			}
-			if ($labelsize) {
-				$datas['size']= "<br>".$labelsize;
-			}
+		// if ($this->type == Product::TYPE_PRODUCT) {
+		// 	if ($this->weight) {
+		// 		$datas['weight']= "<br><b>".$langs->trans("Weight").'</b>: '.$this->weight.' '.measuringUnitString(0, "weight", $this->weight_units);
+		// 	}
+		// 	$labelsize = "";
+		// 	if ($this->length) {
+		// 		$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Length").'</b>: '.$this->length.' '.measuringUnitString(0, 'size', $this->length_units);
+		// 	}
+		// 	if ($this->width) {
+		// 		$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Width").'</b>: '.$this->width.' '.measuringUnitString(0, 'size', $this->width_units);
+		// 	}
+		// 	if ($this->height) {
+		// 		$labelsize .= ($labelsize ? " - " : "")."<b>".$langs->trans("Height").'</b>: '.$this->height.' '.measuringUnitString(0, 'size', $this->height_units);
+		// 	}
+		// 	if ($labelsize) {
+		// 		$datas['size']= "<br>".$labelsize;
+		// 	}
 
-			$labelsurfacevolume = "";
-			if ($this->surface) {
-				$labelsurfacevolume .= ($labelsurfacevolume ? " - " : "")."<b>".$langs->trans("Surface").'</b>: '.$this->surface.' '.measuringUnitString(0, 'surface', $this->surface_units);
-			}
-			if ($this->volume) {
-				$labelsurfacevolume .= ($labelsurfacevolume ? " - " : "")."<b>".$langs->trans("Volume").'</b>: '.$this->volume.' '.measuringUnitString(0, 'volume', $this->volume_units);
-			}
-			if ($labelsurfacevolume) {
-				$datas['surface']= "<br>" . $labelsurfacevolume;
-			}
-		}
+		// 	$labelsurfacevolume = "";
+		// 	if ($this->surface) {
+		// 		$labelsurfacevolume .= ($labelsurfacevolume ? " - " : "")."<b>".$langs->trans("Surface").'</b>: '.$this->surface.' '.measuringUnitString(0, 'surface', $this->surface_units);
+		// 	}
+		// 	if ($this->volume) {
+		// 		$labelsurfacevolume .= ($labelsurfacevolume ? " - " : "")."<b>".$langs->trans("Volume").'</b>: '.$this->volume.' '.measuringUnitString(0, 'volume', $this->volume_units);
+		// 	}
+		// 	if ($labelsurfacevolume) {
+		// 		$datas['surface']= "<br>" . $labelsurfacevolume;
+		// 	}
+		// }
 		if (!empty($this->pmp) && $this->pmp) {
 			$datas['pmp'] = "<br><b>".$langs->trans("PMPValue").'</b>: '.price($this->pmp, 0, '', 1, -1, -1, $conf->currency);
 		}
@@ -6115,20 +6118,20 @@ class Product extends CommonObject
 		$this->date_creation = $now;
 		$this->date_modification = $now;
 
-		$this->weight = 4;
-		$this->weight_units = 3;
+		// $this->weight = 4;
+		// $this->weight_units = 3;
 
-		$this->length = 5;
-		$this->length_units = 1;
-		$this->width = 6;
-		$this->width_units = 0;
-		$this->height = null;
-		$this->height_units = null;
+		// $this->length = 5;
+		// $this->length_units = 1;
+		// $this->width = 6;
+		// $this->width_units = 0;
+		// $this->height = null;
+		// $this->height_units = null;
 
-		$this->surface = 30;
-		$this->surface_units = 0;
-		$this->volume = 300;
-		$this->volume_units = 0;
+		// $this->surface = 30;
+		// $this->surface_units = 0;
+		// $this->volume = 300;
+		// $this->volume_units = 0;
 
 		$this->barcode = -1; // Create barcode automatically
 	}
