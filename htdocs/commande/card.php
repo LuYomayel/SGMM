@@ -1880,16 +1880,18 @@ if ($action == 'create' && $usercancreate) {
 	print '</td></tr>';
 
 	// Terms of payment
-	print '<tr><td class="nowrap">'.$langs->trans('PaymentConditionsShort').'</td><td>';
-	print img_picto('', 'payment', 'class="pictofixedwidth"');
-	print $form->getSelectConditionsPaiements($cond_reglement_id, 'cond_reglement_id', 1, 1, 0, 'maxwidth200 widthcentpercentminusx', $deposit_percent);
-	print '</td></tr>';
+	// Comentado
+	// print '<tr><td class="nowrap">'.$langs->trans('PaymentConditionsShort').'</td><td>';
+	// print img_picto('', 'payment', 'class="pictofixedwidth"');
+	// print $form->getSelectConditionsPaiements($cond_reglement_id, 'cond_reglement_id', 1, 1, 0, 'maxwidth200 widthcentpercentminusx', $deposit_percent);
+	// print '</td></tr>';
 
 	// Payment mode
-	print '<tr><td>'.$langs->trans('PaymentMode').'</td><td>';
-	print img_picto('', 'bank', 'class="pictofixedwidth"');
-	print $form->select_types_paiements($mode_reglement_id, 'mode_reglement_id', 'CRDT', 0, 1, 0, 0, 1, 'maxwidth200 widthcentpercentminusx', 1);
-	print '</td></tr>';
+	// Comentado
+	// print '<tr><td>'.$langs->trans('PaymentMode').'</td><td>';
+	// print img_picto('', 'bank', 'class="pictofixedwidth"');
+	// print $form->select_types_paiements($mode_reglement_id, 'mode_reglement_id', 'CRDT', 0, 1, 0, 0, 1, 'maxwidth200 widthcentpercentminusx', 1);
+	// print '</td></tr>';
 
 	// Bank Account
 	if (!empty($conf->global->BANK_ASK_PAYMENT_BANK_DURING_ORDER) && isModEnabled("banque")) {
@@ -1916,10 +1918,11 @@ if ($action == 'create' && $usercancreate) {
 	}
 
 	// Source / Channel - What trigger creation
-	print '<tr><td>'.$langs->trans('Channel').'</td><td>';
-	print img_picto('', 'question', 'class="pictofixedwidth"');
-	$form->selectInputReason((GETPOSTISSET('demand_reason_id')?GETPOST('demand_reason_id'):$demand_reason_id), 'demand_reason_id', '', 1, 'maxwidth200 widthcentpercentminusx');
-	print '</td></tr>';
+	// Comentado
+	// print '<tr><td>'.$langs->trans('Channel').'</td><td>';
+	// print img_picto('', 'question', 'class="pictofixedwidth"');
+	// $form->selectInputReason((GETPOSTISSET('demand_reason_id')?GETPOST('demand_reason_id'):$demand_reason_id), 'demand_reason_id', '', 1, 'maxwidth200 widthcentpercentminusx');
+	// print '</td></tr>';
 
 	// TODO How record was recorded OrderMode (llx_c_input_method)
 
