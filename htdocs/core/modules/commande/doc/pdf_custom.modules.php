@@ -674,11 +674,11 @@ class pdf_custom extends ModelePDFCommandes
 					$pdf->SetFont('', '', $default_font_size - 1); // We reposition the default font
 
 					// VAT Rate
-					if ($this->getColumnStatus('vat')) {
-						$vat_rate = pdf_getlinevatrate($object, $i, $outputlangs, $hidedetails);
-						$this->printStdColumnContent($pdf, $curY, 'vat', $vat_rate);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('vat')) {
+					// 	$vat_rate = pdf_getlinevatrate($object, $i, $outputlangs, $hidedetails);
+					// 	$this->printStdColumnContent($pdf, $curY, 'vat', $vat_rate);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Unit price before discount
 					if ($this->getColumnStatus('subprice')) {
