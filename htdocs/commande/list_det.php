@@ -426,7 +426,9 @@ $sql .= $hookmanager->resPrint;
 $sql .= ' WHERE c.fk_soc = s.rowid';
 $sql .= ' AND c.entity IN ('.getEntity('commande').')';
 $sql .= ' AND cdet.product_type <> 9';
-
+if ($user->login == 'corteva') {
+    $sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+}
 if (!empty($productobuy)) {
 	$sql .= " AND pr.tobuy = 1";
 }

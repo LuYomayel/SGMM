@@ -245,6 +245,9 @@ if ($separatedPMP) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_perentity as pa ON pa.fk_product = p.rowid AND pa.fk_product = ps.fk_product AND pa.entity = ". (int) $conf->entity;
 }
 $sql .= " WHERE t.entity IN (".getEntity('stock').")";
+if ($user->login == 'corteva') {
+    $sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+}
 foreach ($search as $key => $val) {
 	if (array_key_exists($key, $object->fields)) {
 		$class_key = $key;
