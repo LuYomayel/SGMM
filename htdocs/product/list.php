@@ -486,6 +486,9 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 }
 
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
+if ($user->login == 'corteva') {
+    $sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+}
 if ($sall) {
 	$sql .= ' AND (';
 	$sql .= natural_search(array_keys($fieldstosearchall), $sall, 0, 1);
