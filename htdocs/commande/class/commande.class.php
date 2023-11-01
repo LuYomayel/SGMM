@@ -4305,7 +4305,11 @@ class OrderLine extends CommonOrderLine
 		$sql .= ' cd.date_start, cd.date_end, cd.vat_src_code';
 		$sql .= ' FROM '.MAIN_DB_PREFIX.'commandedet as cd';
 		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product as p ON cd.fk_product = p.rowid';
+		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product_extrafields as ef ON p.rowid = ef.fk_object';  // Unión con la tabla extrafields
 		$sql .= ' WHERE cd.rowid = '.((int) $rowid);
+		if ($user->login == 'corteva') {
+			$sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+		}
 		$result = $this->db->query($sql);
 		if ($result) {
 			$objp = $this->db->fetch_object($result);
