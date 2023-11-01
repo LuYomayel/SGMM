@@ -40,7 +40,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/pdf.lib.php';
 /**
  *	Class to generate PDF orders with template Eratosthene
  */
-class pdf_eratosthene extends ModelePDFCommandes
+class pdf_custom extends ModelePDFCommandes
 {
 	/**
 	 * @var DoliDb Database handler
