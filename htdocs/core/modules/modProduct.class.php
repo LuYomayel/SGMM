@@ -323,6 +323,10 @@ class modProduct extends DolibarrModules
 		if (!empty($conf->global->EXPORTTOOL_CATEGORIES)) {
 			$this->export_sql_order[$r] = ' GROUP BY p.rowid'; // FIXME The group by used a generic value to say "all fields in select except function fields"
 		}
+		if ($user->login == 'corteva') {
+			$this->export_sql_end[$r] .= " AND extra.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+		}
+
 
 		if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
 			// Exports product multiprice
