@@ -217,7 +217,10 @@ class Products extends DolibarrApi
 		} elseif ($mode == 2) {
 			// Show only services
 			$sql .= " AND t.fk_product_type = 1";
+		}if ($user->login == 'corteva') {
+			$sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
 		}
+
 
 		// Add sql filters
 		if ($sqlfilters) {
