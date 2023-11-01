@@ -326,7 +326,9 @@ class Productlot extends CommonObject
 		} else {
 			$sql .= " WHERE t.rowid = ".((int) $id);
 		}
-
+		if ($user->login == 'corteva') {
+			$sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+		}
 		$resql = $this->db->query($sql);
 		if ($resql) {
 			$numrows = $this->db->num_rows($resql);

@@ -2104,7 +2104,11 @@ class Commande extends CommonOrder
 		$sql .= ' p.weight, p.weight_units, p.volume, p.volume_units';
 		$sql .= ' FROM '.MAIN_DB_PREFIX.'commandedet as l';
 		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product as p ON (p.rowid = l.fk_product)';
+		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'extrafields as ef ON (ef.fk_object = l.fk_product)';  // Unir con la tabla extrafields
 		$sql .= ' WHERE l.fk_commande = '.((int) $this->id);
+		if ($user->login == 'corteva') {
+			$sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+		}
 		if ($only_product) {
 			$sql .= ' AND p.fk_product_type = 0';
 		}

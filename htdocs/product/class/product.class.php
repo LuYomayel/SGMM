@@ -771,6 +771,9 @@ class Product extends CommonObject
 			$sql = "SELECT count(*) as nb";
 			$sql .= " FROM ".$this->db->prefix()."product";
 			$sql .= " WHERE entity IN (".getEntity('product').")";
+			if ($user->login == 'corteva') {
+				$sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+			}
 			$sql .= " AND ref = '".$this->db->escape($this->ref)."'";
 
 			$result = $this->db->query($sql);
