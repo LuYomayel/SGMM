@@ -291,6 +291,9 @@ class modCommande extends DolibarrModules
 		if (empty($user->rights->societe->client->voir)) {
 			$this->export_sql_end[$r] .= ' AND sc.fk_user = '.(empty($user) ? 0 : $user->id);
 		}
+		if ($user->login == 'corteva') {
+			$this->export_sql_end[$r] .= " AND extra3.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+		}
 
 		// Imports
 		//--------
