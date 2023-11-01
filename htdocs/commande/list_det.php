@@ -408,7 +408,7 @@ if ($search_product_category > 0) {
 }
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."projet as p ON p.rowid = c.fk_projet";
 $sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'user as u ON c.fk_user_author = u.rowid';
-$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product_extrafields as ef ON pr.rowid = ef.fk_object';
+$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product_extrafields as ef ON pr.rowid = ef.fk_product';
 
 // We'll need this table joined to the select in order to filter by sale
 if ($search_sale > 0 || (empty($user->rights->societe->client->voir) && !$socid)) {
