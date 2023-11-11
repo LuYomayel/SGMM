@@ -2248,15 +2248,15 @@ if ($action == 'create' && $usercancreate) {
 						}
 
 
-						// $paymentTermsSelect = $form->getSelectConditionsPaiements(0, 'cond_reglement_id', -1, 0, 0, 'minwidth200');
+						$paymentTermsSelect = $form->getSelectConditionsPaiements(0, 'cond_reglement_id', -1, 0, 0, 'minwidth200');
 
-						// $formquestion[] = array(
-						// 	'type' => 'other',
-						// 	'tdclass' => 'fieldrequired showonlyifgeneratedeposit',
-						// 	'name' => 'cond_reglement_id',
-						// 	'label' => $langs->trans('PaymentTerm'),
-						// 	'value' => $paymentTermsSelect
-						// );
+						$formquestion[] = array(
+							'type' => 'other',
+							'tdclass' => 'fieldrequired showonlyifgeneratedeposit',
+							'name' => 'cond_reglement_id',
+							'label' => $langs->trans('PaymentTerm'),
+							'value' => $paymentTermsSelect
+						);
 
 						$formquestion[] = array(
 							'type' => 'checkbox',
@@ -2580,30 +2580,30 @@ if ($action == 'create' && $usercancreate) {
 		print '</td></tr>';
 
 		// Terms of payment
-		print '<tr><td>';
-		$editenable = $usercancreate;
-		print $form->editfieldkey("PaymentConditionsShort", 'conditions', '', $object, $editenable);
-		print '</td><td class="valuefield">';
-		if ($action == 'editconditions') {
-			$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->cond_reglement_id, 'cond_reglement_id', 1, '', 1, $object->deposit_percent);
-		} else {
-			$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->cond_reglement_id, 'none', 1, '', 1, $object->deposit_percent);
-		}
-		print '</td>';
+		// print '<tr><td>';
+		// $editenable = $usercancreate;
+		// print $form->editfieldkey("PaymentConditionsShort", 'conditions', '', $object, $editenable);
+		// print '</td><td class="valuefield">';
+		// if ($action == 'editconditions') {
+		// 	$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->cond_reglement_id, 'cond_reglement_id', 1, '', 1, $object->deposit_percent);
+		// } else {
+		// 	$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->cond_reglement_id, 'none', 1, '', 1, $object->deposit_percent);
+		// }
+		// print '</td>';
 
-		print '</tr>';
+		// print '</tr>';
 
 		// Mode of payment
-		print '<tr><td>';
-		$editenable = $usercancreate;
-		print $form->editfieldkey("PaymentMode", 'mode', '', $object, $editenable);
-		print '</td><td class="valuefield">';
-		if ($action == 'editmode') {
-			$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->mode_reglement_id, 'mode_reglement_id', 'CRDT', 1, 1);
-		} else {
-			$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->mode_reglement_id, 'none');
-		}
-		print '</td></tr>';
+		// print '<tr><td>';
+		// $editenable = $usercancreate;
+		// print $form->editfieldkey("PaymentMode", 'mode', '', $object, $editenable);
+		// print '</td><td class="valuefield">';
+		// if ($action == 'editmode') {
+		// 	$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->mode_reglement_id, 'mode_reglement_id', 'CRDT', 1, 1);
+		// } else {
+		// 	$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id, $object->mode_reglement_id, 'none');
+		// }
+		// print '</td></tr>';
 
 		// Multicurrency
 		if (isModEnabled("multicurrency")) {
