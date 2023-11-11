@@ -208,40 +208,40 @@ $coldisplay++;
 
 	// VAT Rate
 	$coldisplay++;
-	// if (!$situationinvoicelinewithparent) {
-	// 	print '<td class="right">';
-	// 	print $form->load_tva('tva_tx', GETPOSTISSET('tva_tx') ? GETPOST('tva_tx', 'alpha') : ($line->tva_tx.($line->vat_src_code ? (' ('.$line->vat_src_code.')') : '')), $seller, $buyer, 0, $line->info_bits, $line->product_type, false, 1);
-	// 	print '</td>';
-	// } else {
-	// 	print '<td class="right"><input size="1" type="text" class="flat right" name="tva_tx" value="'.price($line->tva_tx).'" readonly />%</td>';
-	// }
+	if (!$situationinvoicelinewithparent) {
+		print '<td class="right">';
+		print $form->load_tva('tva_tx', GETPOSTISSET('tva_tx') ? GETPOST('tva_tx', 'alpha') : ($line->tva_tx.($line->vat_src_code ? (' ('.$line->vat_src_code.')') : '')), $seller, $buyer, 0, $line->info_bits, $line->product_type, false, 1);
+		print '</td>';
+	} else {
+		print '<td class="right"><input size="1" type="text" class="flat right" name="tva_tx" value="'.price($line->tva_tx).'" readonly />%</td>';
+	}
 
 	$coldisplay++;
-	// print '<td class="right"><input type="text" class="flat right" size="5" id="price_ht" name="price_ht" value="'.(GETPOSTISSET('price_ht') ? GETPOST('price_ht', 'alpha') : (isset($line->pu_ht) ? price($line->pu_ht, 0, '', 0) : price($line->subprice, 0, '', 0))).'"';
-	// if ($situationinvoicelinewithparent) {
-	// 	print ' readonly';
-	// }
-	// print '></td>';
+	print '<td class="right"><input type="text" class="flat right" size="5" id="price_ht" name="price_ht" value="'.(GETPOSTISSET('price_ht') ? GETPOST('price_ht', 'alpha') : (isset($line->pu_ht) ? price($line->pu_ht, 0, '', 0) : price($line->subprice, 0, '', 0))).'"';
+	if ($situationinvoicelinewithparent) {
+		print ' readonly';
+	}
+	print '></td>';
 
-	// if (isModEnabled("multicurrency") && $object->multicurrency_code != $conf->currency) {
-	// 	$coldisplay++;
-	// 	print '<td class="right"><input rel="'.$object->multicurrency_tx.'" type="text" class="flat right" size="5" id="multicurrency_subprice" name="multicurrency_subprice" value="'.(GETPOSTISSET('multicurrency_subprice') ? GETPOST('multicurrency_subprice', 'alpha') : price($line->multicurrency_subprice)).'" /></td>';
-	// }
+	if (isModEnabled("multicurrency") && $object->multicurrency_code != $conf->currency) {
+		$coldisplay++;
+		print '<td class="right"><input rel="'.$object->multicurrency_tx.'" type="text" class="flat right" size="5" id="multicurrency_subprice" name="multicurrency_subprice" value="'.(GETPOSTISSET('multicurrency_subprice') ? GETPOST('multicurrency_subprice', 'alpha') : price($line->multicurrency_subprice)).'" /></td>';
+	}
 
-	// if (!empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH_TAX')) {
-	// 	$coldisplay++;
-	// 	$upinctax = isset($line->pu_ttc) ? $line->pu_ttc : null;
-	// 	if (getDolGlobalInt('MAIN_UNIT_PRICE_WITH_TAX_IS_FOR_ALL_TAXES')) {
-	// 		$upinctax = price2num($line->total_ttc / $line->qty, 'MU');
-	// 	}
-	// 	print '<td class="right"><input type="text" class="flat right" size="5" id="price_ttc" name="price_ttc" value="'.(GETPOSTISSET('price_ttc') ? GETPOST('price_ttc') : (isset($upinctax) ? price($upinctax, 0, '', 0) : '')).'"';
-	// 	if ($situationinvoicelinewithparent) {
-	// 		print ' readonly';
-	// 	}
-	// 	print '></td>';
-	// }
-	// ?>
-	// <td class="right">
+	if (!empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH_TAX')) {
+		$coldisplay++;
+		$upinctax = isset($line->pu_ttc) ? $line->pu_ttc : null;
+		if (getDolGlobalInt('MAIN_UNIT_PRICE_WITH_TAX_IS_FOR_ALL_TAXES')) {
+			$upinctax = price2num($line->total_ttc / $line->qty, 'MU');
+		}
+		print '<td class="right"><input type="text" class="flat right" size="5" id="price_ttc" name="price_ttc" value="'.(GETPOSTISSET('price_ttc') ? GETPOST('price_ttc') : (isset($upinctax) ? price($upinctax, 0, '', 0) : '')).'"';
+		if ($situationinvoicelinewithparent) {
+			print ' readonly';
+		}
+		print '></td>';
+	}
+	?>
+	<td class="right">
 	<?php $coldisplay++;
 	if (($line->info_bits & 2) != 2) {
 		// I comment warning of stock because it shows the info even when it should not.
