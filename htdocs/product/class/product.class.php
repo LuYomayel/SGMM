@@ -2405,8 +2405,10 @@ class Product extends CommonObject
 			return -1;
 		}
 
-		$sql = "SELECT p.rowid, p.ref, p.ref_ext, p.label, p.description, p.url, p.note_public, p.note as note_private, p.customcode, p.fk_country, p.fk_state, p.lifetime, p.qc_frequency, p.price, p.price_ttc,";
-		$sql .= " p.price_min, p.price_min_ttc, p.price_base_type, p.cost_price, p.default_vat_code, p.tva_tx, p.recuperableonly as tva_npr, p.localtax1_tx, p.localtax2_tx, p.localtax1_type, p.localtax2_type, p.tosell,";
+		$sql = "SELECT p.rowid, p.ref, p.ref_ext, p.label, p.description, p.url, p.note_public, p.note as note_private, p.customcode, p.fk_country, p.fk_state, p.lifetime, p.qc_frequency,";
+		// $sql .= " p.price, p.price_ttc,";
+		// $sql .= " p.price_min, p.price_min_ttc, p.price_base_type, p.cost_price, p.default_vat_code, p.tva_tx, p.recuperableonly as tva_npr, p.localtax1_tx, p.localtax2_tx, p.localtax1_type, p.localtax2_type,";
+		$sql .= " p.tosell,";
 		$sql .= " p.tobuy, p.fk_product_type, p.duration, p.fk_default_warehouse, p.fk_default_workstation, p.seuil_stock_alerte, p.canvas, p.net_measure, p.net_measure_units, p.weight, p.weight_units,";
 		// $sql .= " p.length, p.length_units, p.width, p.width_units, p.height, p.height_units, p.surface, p.surface_units, p.volume, p.volume_units,";
 		$sql .= " p.barcode, p.fk_barcode_type, p.finished, p.fk_default_bom, p.mandatory_period,";
@@ -2415,6 +2417,7 @@ class Product extends CommonObject
 		} else {
 			$sql .= " ppe.accountancy_code_buy, ppe.accountancy_code_buy_intra, ppe.accountancy_code_buy_export, ppe.accountancy_code_sell, ppe.accountancy_code_sell_intra, ppe.accountancy_code_sell_export,";
 		}
+
 
 		//For MultiCompany
 		//PMP per entity & Stocks Sharings stock_reel includes only stocks shared with this entity
@@ -2518,6 +2521,7 @@ class Product extends CommonObject
 				$this->state_id = $obj->fk_state;
 				$this->lifetime = $obj->lifetime;
 				$this->qc_frequency = $obj->qc_frequency;
+
 				$this->price = $obj->price;
 				$this->price_ttc = $obj->price_ttc;
 				$this->price_min = $obj->price_min;
@@ -2526,6 +2530,7 @@ class Product extends CommonObject
 				$this->cost_price = $obj->cost_price;
 				$this->default_vat_code = $obj->default_vat_code;
 				$this->tva_tx = $obj->tva_tx;
+
 				//! French VAT NPR
 				$this->tva_npr = $obj->tva_npr;
 				$this->recuperableonly = $obj->tva_npr; // For backward compatibility
