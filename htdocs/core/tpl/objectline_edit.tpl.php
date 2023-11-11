@@ -281,19 +281,21 @@ $coldisplay++;
 	<td class="nowraponall right linecoldiscount">
 	<?php
 	// Discount
-	$coldisplay++;
-	if (($line->info_bits & 2) != 2) {
-		print '<input type="text" class="flat right width40" name="remise_percent" id="remise_percent" value="'.(GETPOSTISSET('remise_percent') ? GETPOST('remise_percent') : ($line->remise_percent ? $line->remise_percent : '')).'"';
-		if ($situationinvoicelinewithparent) {
-			print ' readonly';
-		}
-		print '><span class="hideonsmartphone opacitymedium">%</span>';
-	} else { ?>
-		&nbsp;
-	<?php } ?>
-	</td>
+	// $coldisplay++;
+// if (($line->info_bits & 2) != 2) {
+//     print '<input type="text" class="flat right width40" name="remise_percent" id="remise_percent" value="'.(GETPOSTISSET('remise_percent') ? GETPOST('remise_percent') : ($line->remise_percent ? $line->remise_percent : '')).'"';
+//     if ($situationinvoicelinewithparent) {
+//         print ' readonly';
+//     }
+//     print '><span class="hideonsmartphone opacitymedium">%</span>';
+// }
+// else { ?>
+    <!-- &nbsp; -->
+<?php // } ?>
+// </td>
 
-	<?php
+// <?php
+
 	// Progession for situation invoices
 	if ($object->situation_cycle_ref) {
 		$coldisplay++;
