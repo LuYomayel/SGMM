@@ -408,10 +408,10 @@ if ($line->special_code == 3) { ?>
 }
 
 // Price inc tax
-if ($outputalsopricetotalwithtax) {
-	print '<td class="linecolht nowrap right">'.price($sign * $line->total_ttc).'</td>';
-	$coldisplay++;
-}
+// if ($outputalsopricetotalwithtax) {
+// 	print '<td class="linecolht nowrap right">'.price($sign * $line->total_ttc).'</td>';
+// 	$coldisplay++;
+// }
 
 if ($this->statut == 0 && !empty($object_rights->creer) && $action != 'selectlines') {
 	$situationinvoicelinewithparent = 0;
