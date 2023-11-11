@@ -61,12 +61,13 @@ if ($this->element == 'supplier_proposal' || $this->element == 'order_supplier' 
 }
 
 // VAT
-print '<th class="linecolvat right nowraponall">';
-if (!empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) || !empty($conf->global->FACTURE_LOCAL_TAX2_OPTION)) {
-	print $langs->trans('Taxes');
-} else {
-	print $langs->trans('VAT');
-}
+// Comentamos linecolvat
+// print '<th class="linecolvat right nowraponall">';
+// if (!empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) || !empty($conf->global->FACTURE_LOCAL_TAX2_OPTION)) {
+// 	print $langs->trans('Taxes');
+// } else {
+// 	print $langs->trans('VAT');
+// }
 
 if (in_array($object->element, array('propal', 'commande', 'facture', 'supplier_proposal', 'order_supplier', 'invoice_supplier')) && $object->status == $object::STATUS_DRAFT) {
 	global $mysoc;

@@ -119,7 +119,7 @@ if ($nolinesbefore) {
 			<?php
 		}
 		?>
-		<td class="linecolvat right"><span id="title_vat"><?php echo $langs->trans('VAT'); ?></span></td>
+		<!-- <td class="linecolvat right"><span id="title_vat"><?php echo $langs->trans('VAT'); ?></span></td> -->
 		<td class="linecoluht right"><span id="title_up_ht"><?php echo $langs->trans('PriceUHT'); ?></span></td>
 		<?php if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) { ?>
 			<td class="linecoluht_currency right"><span id="title_up_ht_currency"><?php echo $langs->trans('PriceUHTCurrency'); ?></span></td>

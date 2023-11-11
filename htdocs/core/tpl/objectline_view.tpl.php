@@ -299,25 +299,26 @@ if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) {
 }
 
 // VAT Rate
-print '<td class="linecolvat nowrap right">';
-$coldisplay++;
-$positiverates = '';
-if (price2num($line->tva_tx)) {
-	$positiverates .= ($positiverates ? '/' : '').price2num($line->tva_tx);
-}
-if (price2num($line->total_localtax1)) {
-	$positiverates .= ($positiverates ? '/' : '').price2num($line->localtax1_tx);
-}
-if (price2num($line->total_localtax2)) {
-	$positiverates .= ($positiverates ? '/' : '').price2num($line->localtax2_tx);
-}
-if (empty($positiverates)) {
-	$positiverates = '0';
-}
-print $tooltiponprice;
-print vatrate($positiverates.($line->vat_src_code ? ' ('.$line->vat_src_code.')' : ''), '%', $line->info_bits);
-print $tooltiponpriceend;
-?></td>
+// Comentamos linecolvat
+// print '<td class="linecolvat nowrap right">';
+// $coldisplay++;
+// $positiverates = '';
+// if (price2num($line->tva_tx)) {
+// 	$positiverates .= ($positiverates ? '/' : '').price2num($line->tva_tx);
+// }
+// if (price2num($line->total_localtax1)) {
+// 	$positiverates .= ($positiverates ? '/' : '').price2num($line->localtax1_tx);
+// }
+// if (price2num($line->total_localtax2)) {
+// 	$positiverates .= ($positiverates ? '/' : '').price2num($line->localtax2_tx);
+// }
+// if (empty($positiverates)) {
+// 	$positiverates = '0';
+// }
+// print $tooltiponprice;
+// print vatrate($positiverates.($line->vat_src_code ? ' ('.$line->vat_src_code.')' : ''), '%', $line->info_bits);
+// print $tooltiponpriceend;
+// ?></td>
 
 	<td class="linecoluht nowraponall right"><?php $coldisplay++; ?><?php print price($sign * $line->subprice); ?></td>
 
