@@ -1846,16 +1846,16 @@ if ($action == 'create' && $usercancreate) {
 		print '</td></tr>';
 
 		// Ligne info remises tiers
-		print '<tr><td>'.$langs->trans('Discounts').'</td><td>';
+		// print '<tr><td>'.$langs->trans('Discounts').'</td><td>';
 
-		$absolute_discount = $soc->getAvailableDiscounts();
+		// $absolute_discount = $soc->getAvailableDiscounts();
 
-		$thirdparty = $soc;
-		$discount_type = 0;
-		$backtopage = urlencode($_SERVER["PHP_SELF"].'?socid='.$thirdparty->id.'&action='.$action.'&origin='.GETPOST('origin').'&originid='.GETPOST('originid'));
-		include DOL_DOCUMENT_ROOT.'/core/tpl/object_discounts.tpl.php';
+		// $thirdparty = $soc;
+		// $discount_type = 0;
+		// $backtopage = urlencode($_SERVER["PHP_SELF"].'?socid='.$thirdparty->id.'&action='.$action.'&origin='.GETPOST('origin').'&originid='.GETPOST('originid'));
+		// include DOL_DOCUMENT_ROOT.'/core/tpl/object_discounts.tpl.php';
 
-		print '</td></tr>';
+		// print '</td></tr>';
 	}
 
 	// Date
