@@ -2466,17 +2466,17 @@ if ($action == 'create' && $usercancreate) {
 
 		// print '<tr><td class="titlefield">'.$langs->trans('Discounts').'</td><td class="valuefield">';
 
-		$absolute_discount = $soc->getAvailableDiscounts('', $filterabsolutediscount);
-		$absolute_creditnote = $soc->getAvailableDiscounts('', $filtercreditnote);
-		$absolute_discount = price2num($absolute_discount, 'MT');
-		$absolute_creditnote = price2num($absolute_creditnote, 'MT');
+		// $absolute_discount = $soc->getAvailableDiscounts('', $filterabsolutediscount);
+		// $absolute_creditnote = $soc->getAvailableDiscounts('', $filtercreditnote);
+		// $absolute_discount = price2num($absolute_discount, 'MT');
+		// $absolute_creditnote = price2num($absolute_creditnote, 'MT');
 
-		$thirdparty = $soc;
-		$discount_type = 0;
-		$backtopage = urlencode($_SERVER["PHP_SELF"].'?id='.$object->id);
-		include DOL_DOCUMENT_ROOT.'/core/tpl/object_discounts.tpl.php';
+		// $thirdparty = $soc;
+		// $discount_type = 0;
+		// $backtopage = urlencode($_SERVER["PHP_SELF"].'?id='.$object->id);
+		// include DOL_DOCUMENT_ROOT.'/core/tpl/object_discounts.tpl.php';
 
-		print '</td></tr>';
+		// print '</td></tr>';
 
 		// Date
 		print '<tr><td>';
