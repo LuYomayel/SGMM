@@ -357,16 +357,16 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 	}
 	print '</td>';
 }
-if (!empty($line->remise_percent) && $line->special_code != 3) {
-	print '<td class="linecoldiscount right">';
-	$coldisplay++;
-	include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-	print dol_print_reduction($line->remise_percent, $langs);
-	print '</td>';
-} else {
-	print '<td class="linecoldiscount">&nbsp;</td>';
-	$coldisplay++;
-}
+// if (!empty($line->remise_percent) && $line->special_code != 3) {
+// 	print '<td class="linecoldiscount right">';
+// 	$coldisplay++;
+// 	include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
+// 	print dol_print_reduction($line->remise_percent, $langs);
+// 	print '</td>';
+// } else {
+// 	print '<td class="linecoldiscount">&nbsp;</td>';
+// 	$coldisplay++;
+// }
 
 // Fields for situation invoices
 if (isset($this->situation_cycle_ref) && $this->situation_cycle_ref) {

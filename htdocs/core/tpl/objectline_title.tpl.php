@@ -107,24 +107,24 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 }
 
 // Reduction short
-print '<th class="linecoldiscount right nowraponall">';
-print $langs->trans('ReductionShort');
+// print '<th class="linecoldiscount right nowraponall">';
+// print $langs->trans('ReductionShort');
 
-if (in_array($object->element, array('propal', 'commande', 'facture')) && $object->status == $object::STATUS_DRAFT) {
-	global $mysoc;
+// if (in_array($object->element, array('propal', 'commande', 'facture')) && $object->status == $object::STATUS_DRAFT) {
+// 	global $mysoc;
 
-	if (empty($disableedit) && GETPOST('mode', 'aZ09') != 'remiseforalllines') {
-		print '<a class="reposition" href="'.$_SERVER["PHP_SELF"].'?mode=remiseforalllines&id='.$object->id.'">'.img_edit($langs->trans("UpdateForAllLines"), 0, 'class="clickvatforalllines opacitymedium paddingleft cursorpointer"').'</a>';
-	}
-	//print '<script>$(document).ready(function() { $(".clickremiseforalllines").click(function() { jQuery(".classremiseforalllines").toggle(); }); });</script>';
-	if (GETPOST('mode', 'aZ09') == 'remiseforalllines') {
-		print '<div class="remiseforalllines inline-block nowraponall">';
-		print '<input class="inline-block smallpaddingimp width50 right" name="remiseforalllines" value="" placeholder="%">';
-		print '<input class="inline-block button smallpaddingimp" type="submit" name="submitforalllines" value="'.$langs->trans("Update").'">';
-		print '</div>';
-	}
-}
-print '</th>';
+// 	if (empty($disableedit) && GETPOST('mode', 'aZ09') != 'remiseforalllines') {
+// 		print '<a class="reposition" href="'.$_SERVER["PHP_SELF"].'?mode=remiseforalllines&id='.$object->id.'">'.img_edit($langs->trans("UpdateForAllLines"), 0, 'class="clickvatforalllines opacitymedium paddingleft cursorpointer"').'</a>';
+// 	}
+// 	//print '<script>$(document).ready(function() { $(".clickremiseforalllines").click(function() { jQuery(".classremiseforalllines").toggle(); }); });</script>';
+// 	if (GETPOST('mode', 'aZ09') == 'remiseforalllines') {
+// 		print '<div class="remiseforalllines inline-block nowraponall">';
+// 		print '<input class="inline-block smallpaddingimp width50 right" name="remiseforalllines" value="" placeholder="%">';
+// 		print '<input class="inline-block button smallpaddingimp" type="submit" name="submitforalllines" value="'.$langs->trans("Update").'">';
+// 		print '</div>';
+// 	}
+// }
+// print '</th>';
 
 // Fields for situation invoice
 if (isset($this->situation_cycle_ref) && $this->situation_cycle_ref) {
