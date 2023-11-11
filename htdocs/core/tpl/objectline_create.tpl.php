@@ -387,21 +387,22 @@ if ($nolinesbefore) {
 		if ($object->element == 'supplier_proposal' || $object->element == 'order_supplier' || $object->element == 'invoice_supplier' || $object->element == 'invoice_supplier_rec') {	// We must have same test in printObjectLines
 			$coldisplay++;
 			?>
-	<td class="nobottom linecolrefsupplier"><input id="fourn_ref" name="fourn_ref" class="flat minwidth50 maxwidth100 maxwidth125onsmartphone" value="<?php echo (GETPOSTISSET("fourn_ref") ? GETPOST("fourn_ref", 'alpha', 2) : ''); ?>"></td>
+		<td class="nobottom linecolrefsupplier"><input id="fourn_ref" name="fourn_ref" class="flat minwidth50 maxwidth100 maxwidth125onsmartphone" value="<?php echo (GETPOSTISSET("fourn_ref") ? GETPOST("fourn_ref", 'alpha', 2) : ''); ?>"></td>
 		<?php }
-		print '<td class="nobottom linecolvat right">';
-		$coldisplay++;
-		if ($seller->tva_assuj == "0") {
-			echo '<input type="hidden" name="tva_tx" id="tva_tx" value="0">'.vatrate(0, true);
-		} else {
-			echo $form->load_tva('tva_tx', (GETPOSTISSET("tva_tx") ? GETPOST("tva_tx", 'alpha', 2) : -1), $seller, $buyer, 0, 0, '', false, 1);
-		}
-		?>
-	</td>
+	// 	print '<td class="nobottom linecolvat right">';
+	// 	$coldisplay++;
+	// 	if ($seller->tva_assuj == "0") {
+	// 		echo '<input type="hidden" name="tva_tx" id="tva_tx" value="0">'.vatrate(0, true);
+	// 	} else {
+	// 		echo $form->load_tva('tva_tx', (GETPOSTISSET("tva_tx") ? GETPOST("tva_tx", 'alpha', 2) : -1), $seller, $buyer, 0, 0, '', false, 1);
+	// 	}
+	// 	?>
+	<!-- </td> -->
 
-	<td class="nobottom linecoluht right"><?php $coldisplay++; ?>
-		<input type="text" size="5" name="price_ht" id="price_ht" class="flat right" value="<?php echo (GETPOSTISSET("price_ht") ? GETPOST("price_ht", 'alpha', 2) : ''); ?>">
-	</td>
+	<!-- <td class="nobottom linecoluht right"><?php // $coldisplay++; ?>
+    	<input type="text" size="5" name="price_ht" id="price_ht" class="flat right" value="<?php // echo (GETPOSTISSET("price_ht") ? GETPOST("price_ht", 'alpha', 2) : ''); ?>">
+	</td> -->
+
 
 	<?php
 	if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) {
@@ -440,7 +441,8 @@ if ($nolinesbefore) {
 	$coldisplay++;
 	?>
 
-	<td class="nobottom nowrap linecoldiscount right"><input type="text" name="remise_percent" id="remise_percent" class="flat width40 right" value="<?php echo (GETPOSTISSET("remise_percent") ? GETPOST("remise_percent", 'alpha', 2) : ($remise_percent ? $remise_percent : '')); ?>"><span class="opacitymedium hideonsmartphone">%</span></td>
+	<!-- <td class="nobottom nowrap linecoldiscount right"><input type="text" name="remise_percent" id="remise_percent" class="flat width40 right" value="<?php // echo (GETPOSTISSET("remise_percent") ? GETPOST("remise_percent", 'alpha', 2) : ($remise_percent ? $remise_percent : '')); ?>"><span class="opacitymedium hideonsmartphone">%</span></td> -->
+
 	<?php
 	if (isset($this->situation_cycle_ref) && $this->situation_cycle_ref) {
 		$coldisplay++;
