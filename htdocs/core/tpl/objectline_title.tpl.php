@@ -161,7 +161,7 @@ if ($usemargins && isModEnabled('margin') && empty($user->socid)) {
 }
 
 // Total HT
-print '<th class="linecolht right">'.$langs->trans('TotalHTShort').'</th>';
+// print '<th class="linecolht right">'.$langs->trans('TotalHTShort').'</th>';
 
 // Multicurrency
 if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) {
