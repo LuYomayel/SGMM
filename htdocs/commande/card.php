@@ -2006,16 +2006,16 @@ if ($action == 'create' && $usercancreate) {
 	print '</td></tr>';
 
 	// Note private
-	if (empty($user->socid)) {
-		print '<tr>';
-		print '<td class="tdtop">'.$langs->trans('NotePrivate').'</td>';
-		print '<td>';
+	// if (empty($user->socid)) {
+	// 	print '<tr>';
+	// 	print '<td class="tdtop">'.$langs->trans('NotePrivate').'</td>';
+	// 	print '<td>';
 
-		$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, empty($conf->global->FCKEDITOR_ENABLE_NOTE_PRIVATE) ? 0 : 1, ROWS_3, '90%');
-		print $doleditor->Create(1);
-		// print '<textarea name="note" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'</textarea>';
-		print '</td></tr>';
-	}
+	// 	$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, empty($conf->global->FCKEDITOR_ENABLE_NOTE_PRIVATE) ? 0 : 1, ROWS_3, '90%');
+	// 	print $doleditor->Create(1);
+	// 	// print '<textarea name="note" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'</textarea>';
+	// 	print '</td></tr>';
+	// }
 
 	if (!empty($origin) && !empty($originid) && is_object($objectsrc)) {
 		// TODO for compatibility
