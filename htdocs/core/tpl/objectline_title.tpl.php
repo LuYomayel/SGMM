@@ -86,7 +86,8 @@ if (in_array($object->element, array('propal', 'commande', 'facture', 'supplier_
 print '</th>';
 
 // Price HT
-print '<th class="linecoluht right nowraponall">'.$langs->trans('PriceUHT').'</th>';
+// Comentamos linecoluht
+// print '<th class="linecoluht right nowraponall">'.$langs->trans('PriceUHT').'</th>';
 
 // Multicurrency
 if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) {
