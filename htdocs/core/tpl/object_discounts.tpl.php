@@ -46,18 +46,18 @@ $viewabsolutediscount = '<a href="'.DOL_URL_ROOT.'/comm/remx.php?id='.((int) $th
 
 $fixedDiscount = $thirdparty->remise_percent;
 if (!empty($discount_type)) {
-	$fixedDiscount = $thirdparty->remise_supplier_percent;
+	// $fixedDiscount = $thirdparty->remise_supplier_percent;
 }
 
 if ($fixedDiscount > 0) {
-	$translationKey = (!empty($discount_type)) ? 'HasRelativeDiscountFromSupplier' : 'CompanyHasRelativeDiscount';
-	print $langs->trans($translationKey, $fixedDiscount).'.';
+	// $translationKey = (!empty($discount_type)) ? 'HasRelativeDiscountFromSupplier' : 'CompanyHasRelativeDiscount';
+	// print $langs->trans($translationKey, $fixedDiscount).'.';
 } else {
-	$translationKey = (!empty($discount_type)) ? 'HasNoRelativeDiscountFromSupplier' : 'CompanyHasNoRelativeDiscount';
-	print '<span class="opacitymedium hideonsmartphone">'.$langs->trans($translationKey).'.</span>';
+	// $translationKey = (!empty($discount_type)) ? 'HasNoRelativeDiscountFromSupplier' : 'CompanyHasNoRelativeDiscount';
+	// print '<span class="opacitymedium hideonsmartphone">'.$langs->trans($translationKey).'.</span>';
 }
 if ($isNewObject) {
-	print ' ('.$addrelativediscount.')';
+	// print ' ('.$addrelativediscount.')';
 }
 
 // Is there is commercial discount or down payment available ?
