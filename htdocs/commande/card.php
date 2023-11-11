@@ -2840,7 +2840,7 @@ if ($action == 'create' && $usercancreate) {
 		if ($object->statut == Commande::STATUS_DRAFT && $usercancreate && $action != 'selectlines') {
 			if ($action != 'editline') {
 				// Add free products/services
-
+// Comentario random
 				$parameters = array();
 				// Note that $action and $object may be modified by hook
 				$reshook = $hookmanager->executeHooks('formAddObjectLine', $parameters, $object, $action);
