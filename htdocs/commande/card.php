@@ -2712,77 +2712,78 @@ if ($action == 'create' && $usercancreate) {
 		print '</table>';
 
 		print '</div>';
-		print '<div class="fichehalfright">';
-		print '<div class="underbanner clearboth"></div>';
 
-		print '<table class="border tableforfield centpercent">';
+		// print '<div class="fichehalfright">';
+		// print '<div class="underbanner clearboth"></div>';
 
-		$alert = '';
-		if (!empty($conf->global->ORDER_MANAGE_MIN_AMOUNT) && $object->total_ht < $object->thirdparty->order_min_amount) {
-			$alert = ' ' . img_warning($langs->trans('OrderMinAmount') . ': ' . price($object->thirdparty->order_min_amount));
-		}
+		// print '<table class="border tableforfield centpercent">';
 
-		print '<tr>';
-		print '<td class="titlefieldmiddle">' . $langs->trans('AmountHT') . '</td>';
-		print '<td class="nowrap amountcard right">' . price($object->total_ht, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
-		if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
-			// Multicurrency Amount HT
-			print '<td class="nowrap amountcard right">' . price($object->multicurrency_total_ht, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
-		}
-		print '</tr>';
+		// $alert = '';
+		// if (!empty($conf->global->ORDER_MANAGE_MIN_AMOUNT) && $object->total_ht < $object->thirdparty->order_min_amount) {
+		// 	$alert = ' ' . img_warning($langs->trans('OrderMinAmount') . ': ' . price($object->thirdparty->order_min_amount));
+		// }
 
-		print '<tr>';
-		print '<td class="titlefieldmiddle">' . $langs->trans('AmountVAT') . '</td>';
-		print '<td class="nowrap amountcard right">' . price($object->total_tva, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
-		if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
-			// Multicurrency Amount VAT
-			print '<td class="nowrap amountcard right">' . price($object->multicurrency_total_tva, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
-		}
-		print '</tr>';
+		// print '<tr>';
+		// print '<td class="titlefieldmiddle">' . $langs->trans('AmountHT') . '</td>';
+		// print '<td class="nowrap amountcard right">' . price($object->total_ht, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
+		// if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
+		// 	// Multicurrency Amount HT
+		// 	print '<td class="nowrap amountcard right">' . price($object->multicurrency_total_ht, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
+		// }
+		// print '</tr>';
 
-		// Amount Local Taxes
-		if ($mysoc->localtax1_assuj == "1" || $object->total_localtax1 != 0) {
-			print '<tr>';
-			print '<td class="titlefieldmiddle">' . $langs->transcountry("AmountLT1", $mysoc->country_code) . '</td>';
-			print '<td class="nowrap amountcard right">' . price($object->total_localtax1, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
-			if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
-				print '<td class="nowrap amountcard right">' . price($object->total_localtax1, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
-			}
-			print '</tr>';
+		// print '<tr>';
+		// print '<td class="titlefieldmiddle">' . $langs->trans('AmountVAT') . '</td>';
+		// print '<td class="nowrap amountcard right">' . price($object->total_tva, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
+		// if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
+		// 	// Multicurrency Amount VAT
+		// 	print '<td class="nowrap amountcard right">' . price($object->multicurrency_total_tva, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
+		// }
+		// print '</tr>';
 
-			print '<tr>';
-			// Amount Local Taxes
-			if ($mysoc->localtax2_assuj == "1" || $object->total_localtax2 != 0) {
-				print '<td>' . $langs->transcountry("AmountLT2", $mysoc->country_code) . '</td>';
-				print '<td class="nowrap amountcard right">' . price($object->total_localtax2, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
-				if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
-					print '<td class="nowrap amountcard right">' . price($object->total_localtax2, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
-				}
-				print '</tr>';
-			}
-		}
+		// // Amount Local Taxes
+		// if ($mysoc->localtax1_assuj == "1" || $object->total_localtax1 != 0) {
+		// 	print '<tr>';
+		// 	print '<td class="titlefieldmiddle">' . $langs->transcountry("AmountLT1", $mysoc->country_code) . '</td>';
+		// 	print '<td class="nowrap amountcard right">' . price($object->total_localtax1, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
+		// 	if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
+		// 		print '<td class="nowrap amountcard right">' . price($object->total_localtax1, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
+		// 	}
+		// 	print '</tr>';
 
-		print '<tr>';
-		print '<td>' . $langs->trans('AmountTTC') . '</td>';
-		print '<td class="valuefield nowrap right amountcard">' . price($object->total_ttc, 1, '', 1, -1, -1, $conf->currency) . '</td>';
-		if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
-			// Multicurrency Amount TTC
-			print '<td class="valuefield nowrap right amountcard">' . price($object->multicurrency_total_ttc, 1, '', 1, -1, -1, $object->multicurrency_code) . '</td>';
-		}
-		print '</tr>'."\n";
+		// 	print '<tr>';
+		// 	// Amount Local Taxes
+		// 	if ($mysoc->localtax2_assuj == "1" || $object->total_localtax2 != 0) {
+		// 		print '<td>' . $langs->transcountry("AmountLT2", $mysoc->country_code) . '</td>';
+		// 		print '<td class="nowrap amountcard right">' . price($object->total_localtax2, '', $langs, 0, -1, -1, $conf->currency) . '</td>';
+		// 		if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
+		// 			print '<td class="nowrap amountcard right">' . price($object->total_localtax2, '', $langs, 0, -1, -1, $object->multicurrency_code) . '</td>';
+		// 		}
+		// 		print '</tr>';
+		// 	}
+		// }
 
-		print '</table>';
+		// print '<tr>';
+		// print '<td>' . $langs->trans('AmountTTC') . '</td>';
+		// print '<td class="valuefield nowrap right amountcard">' . price($object->total_ttc, 1, '', 1, -1, -1, $conf->currency) . '</td>';
+		// if (isModEnabled("multicurrency") && ($object->multicurrency_code && $object->multicurrency_code != $conf->currency)) {
+		// 	// Multicurrency Amount TTC
+		// 	print '<td class="valuefield nowrap right amountcard">' . price($object->multicurrency_total_ttc, 1, '', 1, -1, -1, $object->multicurrency_code) . '</td>';
+		// }
+		// print '</tr>'."\n";
 
-		// Statut
-		//print '<tr><td>' . $langs->trans('Status') . '</td><td>' . $object->getLibStatut(4) . '</td></tr>';
+		// print '</table>';
 
-		// Margin Infos
-		if (isModEnabled('margin')) {
-			$formmargin->displayMarginInfos($object);
-		}
+		// // Statut
+		// //print '<tr><td>' . $langs->trans('Status') . '</td><td>' . $object->getLibStatut(4) . '</td></tr>';
+
+		// // Margin Infos
+		// if (isModEnabled('margin')) {
+		// 	$formmargin->displayMarginInfos($object);
+		// }
 
 
-		print '</div>';
+		// print '</div>';
 		print '</div>'; // Close fichecenter
 
 		print '<div class="clearboth"></div><br>';
