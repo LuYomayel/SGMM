@@ -322,7 +322,7 @@ if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) {
 // // Comentamos linecoluht
 	<!-- <td class="linecoluht nowraponall right"><?php $coldisplay++; ?><?php print price($sign * $line->subprice); ?></td> -->
 
-<?php if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) { ?>
+<!-- <?php if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) { ?>
 	<td class="linecoluht_currency nowraponall right"><?php $coldisplay++; ?><?php print price($sign * $line->multicurrency_subprice); ?></td>
 <?php }
 
@@ -334,7 +334,7 @@ if (!empty($inputalsopricewithtax) && !getDolGlobalInt('MAIN_NO_INPUT_PRICE_WITH
 	}
 	print (isset($upinctax) ? price($sign * $upinctax) : price($sign * $line->subprice));
 	?></td>
-<?php } ?>
+<?php } ?> -->
 
 	<td class="linecolqty nowraponall right"><?php $coldisplay++; ?>
 <?php
