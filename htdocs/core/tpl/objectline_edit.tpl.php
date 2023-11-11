@@ -292,9 +292,9 @@ $coldisplay++;
 // else { ?>
     <!-- &nbsp; -->
 <?php // } ?>
-// </td>
+</td>
 
-// <?php
+<?php
 
 	// Progession for situation invoices
 	if ($object->situation_cycle_ref) {

@@ -319,7 +319,7 @@ if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) {
 // print vatrate($positiverates.($line->vat_src_code ? ' ('.$line->vat_src_code.')' : ''), '%', $line->info_bits);
 // print $tooltiponpriceend;
 // ?></td>
-// // Comentamos linecoluht
+
 	<!-- <td class="linecoluht nowraponall right"><?php $coldisplay++; ?><?php print price($sign * $line->subprice); ?></td> -->
 
 <!-- <?php if (isModEnabled("multicurrency") && $this->multicurrency_code != $conf->currency) { ?>
