@@ -189,15 +189,15 @@ class box_produits extends ModeleBoxes
 							}
 						}
 					}
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="nowraponall right amount"',
-						'text' => $price,
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="nowraponall right amount"',
+					// 	'text' => $price,
+					// );
 
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="nowrap"',
-						'text' => $price_base_type,
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="nowrap"',
+					// 	'text' => $price_base_type,
+					// );
 
 					$this->info_box_contents[$line][] = array(
 						'td' => 'class="center nowraponall" title="'.dol_escape_htmltag($langs->trans("DateModification").': '.dol_print_date($datem, 'dayhour', 'tzuserrel')).'"',
