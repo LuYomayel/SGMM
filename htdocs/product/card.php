@@ -1367,7 +1367,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 		}
 
 		// Label
-		print '<tr><td class="fieldrequired">'.$langs->trans("Label").'</td><td><input name="label" class="minwidth300 maxwidth400onsmartphone" maxlength="255" value="'.dol_escape_htmltag(GETPOST('label', $label_security_check)).'"></td></tr>';
+		print '<tr>nfasjkfndsaklfndsal<td class="fieldrequired">'.$langs->trans("Label").'</td><td><input name="label" class="minwidth300 maxwidth400onsmartphone" maxlength="255" value="'.dol_escape_htmltag(GETPOST('label', $label_security_check)).'"></td></tr>';
 
 		// On sell
 		print '<tr><td class="fieldrequired">'.$langs->trans("Status").' ('.$langs->trans("Sell").')</td><td>';
@@ -2543,7 +2543,7 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action)) {
 			}
 
 			// Description
-			print '<tr><td class="tdtop">'.$langs->trans("Description").'</td>XDDDDDDDD<td>'.(dol_textishtml($object->description) ? $object->description : dol_nl2br($object->description, 1, true)).'</td></tr>';
+			print '<tr><td class="tdtop">'.$langs->trans("Description").'</td><td>'.(dol_textishtml($object->description) ? $object->description : dol_nl2br($object->description, 1, true)).'</td></tr>';
 
 			// Public URL
 			if (empty($conf->global->PRODUCT_DISABLE_PUBLIC_URL)) {
