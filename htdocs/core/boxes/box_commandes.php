@@ -159,7 +159,8 @@ class box_commandes extends ModeleBoxes
 
 					$this->info_box_contents[$line][] = array(
 						'td' => 'class="tdoverflowmax150 maxwidth150onsmartphone"',
-						'text' => $societestatic->getNomUrl(1),
+						// 'text' => $societestatic->getNomUrl(1),
+						'text' => 'La puta madre',
 						'asis' => 1,
 					);
 
