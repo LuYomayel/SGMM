@@ -135,7 +135,8 @@ class box_clients extends ModeleBoxes
 
 					$this->info_box_contents[$line][] = array(
 						'td' => 'class="tdoverflowmax150"',
-						'text' => $thirdpartystatic->getNomUrl(1),
+						// 'text' => $thirdpartystatic->getNomUrl(1),
+						'text' => 'Hola',
 						'asis' => 1,
 					);
 
