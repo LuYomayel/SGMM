@@ -198,17 +198,17 @@ class box_produits_alerte_stock extends ModeleBoxes
 						'text2'=>img_warning($langs->transnoentitiesnoconv("StockLowerThanLimit", $objp->seuil_stock_alerte)),
 					);
 
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="right" width="18"',
-						'text' => '<span class="statusrefsell">'.$productstatic->LibStatut($objp->tosell, 3, 0).'</span>',
-						'asis' => 1
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="right" width="18"',
+					// 	'text' => '<span class="statusrefsell">'.$productstatic->LibStatut($objp->tosell, 3, 0).'</span>',
+					// 	'asis' => 1
+					// );
 
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="right" width="18"',
-						'text' => '<span class="statusrefbuy">'.$productstatic->LibStatut($objp->tobuy, 3, 1).'</span>',
-						'asis' => 1
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="right" width="18"',
+					// 	'text' => '<span class="statusrefbuy">'.$productstatic->LibStatut($objp->tobuy, 3, 1).'</span>',
+					// 	'asis' => 1
+					// );
 
 					$line++;
 				}
