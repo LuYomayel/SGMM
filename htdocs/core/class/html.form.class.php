@@ -2645,7 +2645,7 @@ class Form
 		} else {
 			$selectFieldsGrouped = ", " . $this->db->ifsql("p.stock IS NULL", 0, "p.stock") . " AS stock";
 		}
-
+		global $user;
 		// Obtener los depósitos a los que el usuario tiene acceso
 		$user_id = $user->id; // Make sure you have the ID of the current user
 		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
