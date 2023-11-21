@@ -2764,7 +2764,7 @@ class Form
 		?>
 		<script>
 
-					console.log('focus on a select2');
+					console.log('focus on a select2', $allowed_entrepots);
 
 		</script>
 	<?php
