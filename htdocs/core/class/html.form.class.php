@@ -2660,8 +2660,8 @@ class Form
 		?>
 		<script>
 			var allowed_entrepots = <?php echo json_encode($allowed_entrepots); ?>;
-
-			console.log('focus on a select2', allowed_entrepots);
+			var user_id = <?php echo $user_id; ?>;
+			console.log('focus on a select2', allowed_entrepots, user_id);
 		</script>
 		<?php
 		$sql = "SELECT ";
