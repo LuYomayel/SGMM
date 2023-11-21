@@ -2649,23 +2649,15 @@ class Form
 		// Obtener los depósitos a los que el usuario tiene acceso
 		$user_id = $user->id; // Make sure you have the ID of the current user
 
-		?>
-		<script>
+		// $sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
+		// $resql_restrict = $this->db->query($sql_restrict);
 
-			var user_id = <?php echo $user; ?>;
-			console.log('id', user_id);
-		</script>
-		<?php
-
-		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
-		$resql_restrict = $this->db->query($sql_restrict);
-
-		$allowed_entrepots = [];
-		if ($resql_restrict) {
-			while ($obj = $this->db->fetch_object($resql_restrict)) {
-				$allowed_entrepots[] = $obj->entrepot_id;
-			}
-		}
+		// $allowed_entrepots = [];
+		// if ($resql_restrict) {
+		// 	while ($obj = $this->db->fetch_object($resql_restrict)) {
+		// 		$allowed_entrepots[] = $obj->entrepot_id;
+		// 	}
+		// }
 
 		$sql = "SELECT ";
 
