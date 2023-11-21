@@ -516,54 +516,54 @@ if ($action == 'create') {
 			print '</table>';
 
 			print '</div>';
-			print '<div class="fichehalfright">';
-			print '<div class="underbanner clearboth"></div>';
+			// print '<div class="fichehalfright">';
+			// print '<div class="underbanner clearboth"></div>';
 
-			print '<table class="border centpercent tableforfield">';
+			// print '<table class="border centpercent tableforfield">';
 
-			// Value
-			print '<tr><td class="titlefield">'.$langs->trans("EstimatedStockValueShort").'</td><td>';
-			print price((empty($calcproducts['value']) ? '0' : price2num($calcproducts['value'], 'MT')), 0, $langs, 0, -1, -1, $conf->currency);
-			print "</td></tr>";
+			// // Value
+			// print '<tr><td class="titlefield">'.$langs->trans("EstimatedStockValueShort").'</td><td>';
+			// print price((empty($calcproducts['value']) ? '0' : price2num($calcproducts['value'], 'MT')), 0, $langs, 0, -1, -1, $conf->currency);
+			// print "</td></tr>";
 
-			// Last movement
-			if (!empty($user->rights->stock->mouvement->lire)) {
-				$sql = "SELECT max(m.datem) as datem";
-				$sql .= " FROM ".MAIN_DB_PREFIX."stock_mouvement as m";
-				$sql .= " WHERE m.fk_entrepot = ".((int) $object->id);
-				$resqlbis = $db->query($sql);
-				if ($resqlbis) {
-					$obj = $db->fetch_object($resqlbis);
-					$lastmovementdate = $db->jdate($obj->datem);
-				} else {
-					dol_print_error($db);
-				}
-				print '<tr><td>'.$langs->trans("LastMovement").'</td><td>';
-				if ($lastmovementdate) {
-					print dol_print_date($lastmovementdate, 'dayhour');
-					print ' &nbsp; &nbsp; ';
-					print img_picto($langs->trans('LastMovement'), 'movement', 'class="pictofixedwidth"');
-					print '<a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?id='.$object->id.'">'.$langs->trans("FullList").'</a>';
-				} else {
-					print $langs->trans("None");
-				}
-				print "</td></tr>";
-			}
+			// // Last movement
+			// if (!empty($user->rights->stock->mouvement->lire)) {
+			// 	$sql = "SELECT max(m.datem) as datem";
+			// 	$sql .= " FROM ".MAIN_DB_PREFIX."stock_mouvement as m";
+			// 	$sql .= " WHERE m.fk_entrepot = ".((int) $object->id);
+			// 	$resqlbis = $db->query($sql);
+			// 	if ($resqlbis) {
+			// 		$obj = $db->fetch_object($resqlbis);
+			// 		$lastmovementdate = $db->jdate($obj->datem);
+			// 	} else {
+			// 		dol_print_error($db);
+			// 	}
+			// 	print '<tr><td>'.$langs->trans("LastMovement").'</td><td>';
+			// 	if ($lastmovementdate) {
+			// 		print dol_print_date($lastmovementdate, 'dayhour');
+			// 		print ' &nbsp; &nbsp; ';
+			// 		print img_picto($langs->trans('LastMovement'), 'movement', 'class="pictofixedwidth"');
+			// 		print '<a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?id='.$object->id.'">'.$langs->trans("FullList").'</a>';
+			// 	} else {
+			// 		print $langs->trans("None");
+			// 	}
+			// 	print "</td></tr>";
+			// }
 
-			// Other attributes
-			include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_view.tpl.php';
+			// // Other attributes
+			// include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_view.tpl.php';
 
-			// Categories
-			if (isModEnabled('categorie')) {
-				print '<tr><td valign="middle">'.$langs->trans("Categories").'</td><td colspan="3">';
-				print $form->showCategories($object->id, Categorie::TYPE_WAREHOUSE, 1);
-				print "</td></tr>";
-			}
+			// // Categories
+			// if (isModEnabled('categorie')) {
+			// 	print '<tr><td valign="middle">'.$langs->trans("Categories").'</td><td colspan="3">';
+			// 	print $form->showCategories($object->id, Categorie::TYPE_WAREHOUSE, 1);
+			// 	print "</td></tr>";
+			// }
 
-			print "</table>";
+			// print "</table>";
 
-			print '</div>';
-			print '</div>';
+			// print '</div>';
+			// print '</div>';
 
 			print '<div class="clearboth"></div>';
 
