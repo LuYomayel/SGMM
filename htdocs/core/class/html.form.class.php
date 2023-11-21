@@ -2764,7 +2764,13 @@ class Form
 
 		// Si el usuario tiene restricciones de depósito, modifica la consulta
 		if (!empty($allowed_entrepots)) {
-			echo "<script>console.log(" . json_encode($tuVariable) . ");</script>";
+			?>
+				<script>
+
+							console.log('focus on a select2');
+
+				</script>
+			<?php
 			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
 		}
 
