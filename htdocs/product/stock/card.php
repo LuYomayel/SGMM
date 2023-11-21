@@ -621,40 +621,40 @@ if ($action == 'create') {
 			$totalarray['pos'][$totalarray['nbfield']] = 'totalunit';
 			$totalarray['type'][$totalarray['nbfield']] = 'stock';
 
-			if (!empty($conf->global->PRODUCT_USE_UNITS)) {
-				print_liste_field_titre("Unit", "", "p.fk_unit", "&amp;id=".$id, "", 'align="left"', $sortfield, $sortorder);
-				$totalarray['nbfield']++;
-				$totalarray['pos'][$totalarray['nbfield']] = 'units';
-				$totalarray['type'][$totalarray['nbfield']] = 'string';
-			}
+			// if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+			// 	print_liste_field_titre("Unit", "", "p.fk_unit", "&amp;id=".$id, "", 'align="left"', $sortfield, $sortorder);
+			// 	$totalarray['nbfield']++;
+			// 	$totalarray['pos'][$totalarray['nbfield']] = 'units';
+			// 	$totalarray['type'][$totalarray['nbfield']] = 'string';
+			// }
 
-			print_liste_field_titre($form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc")), "", "p.pmp", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
-			$totalarray['nbfield']++;
+			// print_liste_field_titre($form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc")), "", "p.pmp", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
+			// $totalarray['nbfield']++;
 
-			print_liste_field_titre("EstimatedStockValueShort", "", "", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
-			$totalarray['nbfield']++;
-			$totalarray['pos'][$totalarray['nbfield']] = 'totalvalue';
-			$totalarray['type'][$totalarray['nbfield']] = '';
+			// print_liste_field_titre("EstimatedStockValueShort", "", "", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
+			// $totalarray['nbfield']++;
+			// $totalarray['pos'][$totalarray['nbfield']] = 'totalvalue';
+			// $totalarray['type'][$totalarray['nbfield']] = '';
 
 
-			if (empty($conf->global->PRODUIT_MULTIPRICES)) {
-				print_liste_field_titre("SellPriceMin", "", "p.price", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
-				$totalarray['nbfield']++;
-			}
-			if (empty($conf->global->PRODUIT_MULTIPRICES)) {
-				print_liste_field_titre("EstimatedStockValueSellShort", "", "", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
-				$totalarray['nbfield']++;
-				$totalarray['pos'][$totalarray['nbfield']] = 'totalvaluesell';
-				$totalarray['type'][$totalarray['nbfield']] = '';
-			}
-			if ($user->rights->stock->mouvement->creer) {
-				print_liste_field_titre('');
-				$totalarray['nbfield']++;
-			}
-			if ($user->rights->stock->creer) {
-				print_liste_field_titre('');
-				$totalarray['nbfield']++;
-			}
+			// if (empty($conf->global->PRODUIT_MULTIPRICES)) {
+			// 	print_liste_field_titre("SellPriceMin", "", "p.price", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
+			// 	$totalarray['nbfield']++;
+			// }
+			// if (empty($conf->global->PRODUIT_MULTIPRICES)) {
+			// 	print_liste_field_titre("EstimatedStockValueSellShort", "", "", "&amp;id=".$id, "", '', $sortfield, $sortorder, 'right ');
+			// 	$totalarray['nbfield']++;
+			// 	$totalarray['pos'][$totalarray['nbfield']] = 'totalvaluesell';
+			// 	$totalarray['type'][$totalarray['nbfield']] = '';
+			// }
+			// if ($user->rights->stock->mouvement->creer) {
+			// 	print_liste_field_titre('');
+			// 	$totalarray['nbfield']++;
+			// }
+			// if ($user->rights->stock->creer) {
+			// 	print_liste_field_titre('');
+			// 	$totalarray['nbfield']++;
+			// }
 			// Hook fields
 			$parameters = array('sortfield'=>$sortfield, 'sortorder'=>$sortorder, 'totalarray' => &$totalarray);
 			$reshook = $hookmanager->executeHooks('printFieldListTitle', $parameters); // Note that $action and $object may have been modified by hook
