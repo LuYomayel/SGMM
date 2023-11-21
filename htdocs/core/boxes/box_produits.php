@@ -204,17 +204,17 @@ class box_produits extends ModeleBoxes
 						'text' => dol_print_date($datem, 'day', 'tzuserrel'),
 					);
 
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="right" width="18"',
-						'text' => '<span class="statusrefsell">'.$productstatic->LibStatut($objp->tosell, 3, 0).'</span>',
-						'asis' => 1
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="right" width="18"',
+					// 	'text' => '<span class="statusrefsell">'.$productstatic->LibStatut($objp->tosell, 3, 0).'</span>',
+					// 	'asis' => 1
+					// );
 
-					$this->info_box_contents[$line][] = array(
-						'td' => 'class="right" width="18"',
-						'text' => '<span class="statusrefbuy">'.$productstatic->LibStatut($objp->tobuy, 3, 1).'</span>',
-						'asis' => 1
-					);
+					// $this->info_box_contents[$line][] = array(
+					// 	'td' => 'class="right" width="18"',
+					// 	'text' => '<span class="statusrefbuy">'.$productstatic->LibStatut($objp->tobuy, 3, 1).'</span>',
+					// 	'asis' => 1
+					// );
 
 					$line++;
 				}
