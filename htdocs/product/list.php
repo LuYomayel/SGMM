@@ -425,6 +425,19 @@ if ($search_type != '' && $search_type != '-1') {
 	}
 }
 
+// Suponemos que $user es el objeto del usuario actual
+// y $db es el objeto de la base de datos
+
+// Obtener los depósitos a los que el usuario tiene acceso
+$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+$resql_restrict = $db->query($sql_restrict);
+
+$allowed_entrepots = [];
+if ($resql_restrict) {
+    while ($obj = $db->fetch_object($resql_restrict)) {
+        $allowed_entrepots[] = $obj->entrepot_id;
+    }
+}
 
 
 // Build and execute select
