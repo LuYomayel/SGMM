@@ -3234,18 +3234,18 @@ class Form
 
 		// If level no defined or multiprice not found, we used the default price
 		if (empty($hidepriceinlabel) && !$found) {
-			if ($objp->price_base_type == 'HT') {
-				$opt .= ' - ' . price($objp->price, 1, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->trans("HT");
-				$outval .= ' - ' . price($objp->price, 0, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->transnoentities("HT");
-			} else {
-				$opt .= ' - ' . price($objp->price_ttc, 1, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->trans("TTC");
-				$outval .= ' - ' . price($objp->price_ttc, 0, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->transnoentities("TTC");
-			}
-			$outprice_ht = price($objp->price);
-			$outprice_ttc = price($objp->price_ttc);
-			$outpricebasetype = $objp->price_base_type;
-			$outtva_tx = $objp->tva_tx;
-			$outdefault_vat_code = $objp->default_vat_code;
+			// if ($objp->price_base_type == 'HT') {
+			// 	$opt .= ' - ' . price($objp->price, 1, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->trans("HT");
+			// 	$outval .= ' - ' . price($objp->price, 0, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->transnoentities("HT");
+			// } else {
+			// 	$opt .= ' - ' . price($objp->price_ttc, 1, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->trans("TTC");
+			// 	$outval .= ' - ' . price($objp->price_ttc, 0, $langs, 0, 0, -1, $conf->currency) . ' ' . $langs->transnoentities("TTC");
+			// }
+			// $outprice_ht = price($objp->price);
+			// $outprice_ttc = price($objp->price_ttc);
+			// $outpricebasetype = $objp->price_base_type;
+			// $outtva_tx = $objp->tva_tx;
+			// $outdefault_vat_code = $objp->default_vat_code;
 		}
 
 		if (isModEnabled('stock') && isset($objp->stock) && ($objp->fk_product_type == Product::TYPE_PRODUCT || !empty($conf->global->STOCK_SUPPORTS_SERVICES))) {
