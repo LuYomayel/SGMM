@@ -2649,13 +2649,6 @@ class Form
 		// Obtener los depósitos a los que el usuario tiene acceso
 		$user_id = $user->id; // Make sure you have the ID of the current user
 
-		?>
-		<script>
-			var user_id = <?php echo $user_id; ?>;
-			console.log('id', user_id);
-		</script>
-		<?php
-
 		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
 		$resql_restrict = $this->db->query($sql_restrict);
 

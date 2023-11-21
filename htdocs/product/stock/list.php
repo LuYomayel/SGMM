@@ -203,6 +203,16 @@ $now = dol_now();
 $title = $langs->trans("Warehouses");
 $help_url = 'EN:Module_Stocks_En|FR:Module_Stock|ES:M&oacute;dulo_Stocks';
 
+// Obtener los depósitos a los que el usuario tiene acceso
+$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+$resql_restrict = $db->query($sql_restrict);
+
+$allowed_entrepots = [];
+if ($resql_restrict) {
+    while ($obj = $db->fetch_object($resql_restrict)) {
+        $allowed_entrepots[] = $obj->entrepot_id;
+    }
+}
 
 // Build and execute select
 // --------------------------------------------------------------------
@@ -245,6 +255,10 @@ if ($separatedPMP) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_perentity as pa ON pa.fk_product = p.rowid AND pa.fk_product = ps.fk_product AND pa.entity = ". (int) $conf->entity;
 }
 $sql .= " WHERE t.entity IN (".getEntity('stock').")";
+
+if (!empty($allowed_entrepots)) {
+	$sql .= " AND t.rowid IN (".implode(',', $allowed_entrepots).")";
+}
 foreach ($search as $key => $val) {
 	if (array_key_exists($key, $object->fields)) {
 		$class_key = $key;
