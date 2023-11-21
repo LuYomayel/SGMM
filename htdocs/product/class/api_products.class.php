@@ -187,6 +187,17 @@ class Products extends DolibarrApi
 
 		$socid = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : '';
 
+		$user_id = $user->id; // Make sure you have the ID of the current user
+		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
+		$resql_restrict = $this->db->query($sql_restrict);
+
+		$allowed_entrepots = [];
+		if ($resql_restrict) {
+			while ($obj = $this->db->fetch_object($resql_restrict)) {
+				$allowed_entrepots[] = $obj->entrepot_id;
+			}
+		}
+
 		$sql = "SELECT t.rowid, t.ref, t.ref_ext";
 		$sql .= " FROM ".$this->db->prefix()."product as t";
 		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields AS ef ON ef.fk_object = t.rowid";	// So we will be able to filter on extrafields
@@ -194,7 +205,11 @@ class Products extends DolibarrApi
 			$sql .= ", ".$this->db->prefix()."categorie_product as c";
 		}
 		$sql .= ' WHERE t.entity IN ('.getEntity('product').')';
+		// Si el usuario tiene restricciones de depósito, modifica la consulta
+		if (!empty($allowed_entrepots)) {
 
+			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
+		}
 		if ($variant_filter == 1) {
 			$sql .= ' AND t.rowid not in (select distinct fk_product_parent from '.$this->db->prefix().'product_attribute_combination)';
 			$sql .= ' AND t.rowid not in (select distinct fk_product_child from '.$this->db->prefix().'product_attribute_combination)';
