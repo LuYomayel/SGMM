@@ -2015,8 +2015,9 @@ while ($i < $imaxinloop) {
 		}
 		// Stock real
 		if (!empty($arrayfields['p.stock']['checked'])) {
-			print '<td class="right"> 1234';
+			print '<td class="right">';
 			if ($product_static->type != 1) {
+				print $product_static->stock_reel;
 				if ($obj->seuil_stock_alerte != '' && $product_static->stock_reel < (float) $obj->seuil_stock_alerte) {
 					print img_warning($langs->trans("StockLowerThanLimit", $obj->seuil_stock_alerte)).' ';
 				}
