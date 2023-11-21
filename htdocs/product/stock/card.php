@@ -647,14 +647,14 @@ if ($action == 'create') {
 			// 	$totalarray['pos'][$totalarray['nbfield']] = 'totalvaluesell';
 			// 	$totalarray['type'][$totalarray['nbfield']] = '';
 			// }
-			// if ($user->rights->stock->mouvement->creer) {
-			// 	print_liste_field_titre('');
-			// 	$totalarray['nbfield']++;
-			// }
-			// if ($user->rights->stock->creer) {
-			// 	print_liste_field_titre('');
-			// 	$totalarray['nbfield']++;
-			// }
+			if ($user->rights->stock->mouvement->creer) {
+				print_liste_field_titre('');
+				$totalarray['nbfield']++;
+			}
+			if ($user->rights->stock->creer) {
+				print_liste_field_titre('');
+				$totalarray['nbfield']++;
+			}
 			// Hook fields
 			$parameters = array('sortfield'=>$sortfield, 'sortorder'=>$sortorder, 'totalarray' => &$totalarray);
 			$reshook = $hookmanager->executeHooks('printFieldListTitle', $parameters); // Note that $action and $object may have been modified by hook
@@ -779,35 +779,35 @@ if ($action == 'create') {
 					print '</td>';
 					$totalunit += $objp->value;
 
-					if (!empty($conf->global->PRODUCT_USE_UNITS)) {
-						// Units
-						print '<td align="left">';
-						if (is_null($productstatic->fk_unit)) {
-							$productstatic->fk_unit = 1;
-						}
-						print $langs->trans($productstatic->getLabelOfUnit());
-						print '</td>';
-					}
+					// if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+					// 	// Units
+					// 	print '<td align="left">';
+					// 	if (is_null($productstatic->fk_unit)) {
+					// 		$productstatic->fk_unit = 1;
+					// 	}
+					// 	print $langs->trans($productstatic->getLabelOfUnit());
+					// 	print '</td>';
+					// }
 
-					// Price buy PMP
-					print '<td class="right nowraponall">'.price(price2num($objp->ppmp, 'MU')).'</td>';
+					// // Price buy PMP
+					// print '<td class="right nowraponall">'.price(price2num($objp->ppmp, 'MU')).'</td>';
 
-					// Total PMP
-					print '<td class="right amount nowraponall">'.price(price2num($objp->ppmp * $objp->value, 'MT')).'</td>';
-					$totalvalue += price2num($objp->ppmp * $objp->value, 'MT');
+					// // Total PMP
+					// print '<td class="right amount nowraponall">'.price(price2num($objp->ppmp * $objp->value, 'MT')).'</td>';
+					// $totalvalue += price2num($objp->ppmp * $objp->value, 'MT');
 
-					// Price sell min
-					if (empty($conf->global->PRODUIT_MULTIPRICES)) {
-						$pricemin = $objp->price;
-						print '<td class="right">';
-						print price(price2num($pricemin, 'MU'), 1);
-						print '</td>';
-						// Total sell min
-						print '<td class="right">';
-						print price(price2num($pricemin * $objp->value, 'MT'), 1);
-						print '</td>';
-					}
-					$totalvaluesell += price2num($pricemin * $objp->value, 'MT');
+					// // Price sell min
+					// if (empty($conf->global->PRODUIT_MULTIPRICES)) {
+					// 	$pricemin = $objp->price;
+					// 	print '<td class="right">';
+					// 	print price(price2num($pricemin, 'MU'), 1);
+					// 	print '</td>';
+					// 	// Total sell min
+					// 	print '<td class="right">';
+					// 	print price(price2num($pricemin * $objp->value, 'MT'), 1);
+					// 	print '</td>';
+					// }
+					// $totalvaluesell += price2num($pricemin * $objp->value, 'MT');
 
 					// Link to transfer
 					if ($user->rights->stock->mouvement->creer) {
