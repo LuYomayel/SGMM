@@ -2646,6 +2646,18 @@ class Form
 			$selectFieldsGrouped = ", " . $this->db->ifsql("p.stock IS NULL", 0, "p.stock") . " AS stock";
 		}
 
+		// Obtener los depósitos a los que el usuario tiene acceso
+		$user_id = $user->id; // Asegúrate de tener el ID del usuario actual
+		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
+		$resql_restrict = $this->db->query($sql_restrict);
+
+		$allowed_entrepots = [];
+		if ($resql_restrict) {
+			while ($obj = $this->db->fetch_object($resql_restrict)) {
+				$allowed_entrepots[] = $obj->entrepot_id;
+			}
+		}
+
 		$sql = "SELECT ";
 
 		// Add select from hooks
@@ -2749,6 +2761,11 @@ class Form
 		}
 
 		$sql .= ' WHERE p.entity IN (' . getEntity('product') . ')';
+
+		// Si el usuario tiene restricciones de depósito, modifica la consulta
+		if (!empty($allowed_entrepots)) {
+			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
+		}
 
 		if (!empty($conf->global->PRODUIT_ATTRIBUTES_HIDECHILD)) {
 			$sql .= " AND pac.rowid IS NULL";
