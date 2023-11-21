@@ -2656,15 +2656,15 @@ class Form
 		</script>
 		<?php
 
-		// $sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
-		// $resql_restrict = $this->db->query($sql_restrict);
+		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
+		$resql_restrict = $this->db->query($sql_restrict);
 
-		// $allowed_entrepots = [];
-		// if ($resql_restrict) {
-		// 	while ($obj = $this->db->fetch_object($resql_restrict)) {
-		// 		$allowed_entrepots[] = $obj->entrepot_id;
-		// 	}
-		// }
+		$allowed_entrepots = [];
+		if ($resql_restrict) {
+			while ($obj = $this->db->fetch_object($resql_restrict)) {
+				$allowed_entrepots[] = $obj->entrepot_id;
+			}
+		}
 
 		$sql = "SELECT ";
 
