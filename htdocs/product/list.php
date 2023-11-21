@@ -425,16 +425,7 @@ if ($search_type != '' && $search_type != '-1') {
 	}
 }
 
-// Obtener los depósitos a los que el usuario tiene acceso
-$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
-$resql_restrict = $db->query($sql_restrict);
 
-$allowed_entrepots = [];
-if ($resql_restrict) {
-    while ($obj = $db->fetch_object($resql_restrict)) {
-        $allowed_entrepots[] = $obj->entrepot_id;
-    }
-}
 
 // Build and execute select
 // --------------------------------------------------------------------
@@ -495,15 +486,19 @@ if (isModEnabled('variants') && (!empty($conf->global->PRODUIT_ATTRIBUTES_HIDECH
 if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_units cu ON cu.rowid = p.fk_unit";
 }
+// Asegúrate de unir la tabla que relaciona productos con depósitos
+$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+
+// Aplicar restricciones de depósito
+if (!empty($allowed_entrepots)) {
+    $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+}
 
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 if ($user->login == 'corteva') {
     $sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
 }
-if (!empty($allowed_entrepots)) {
-    // El usuario tiene restricciones específicas de depósito
-    $sql .= " AND p.entrepot_id IN (".implode(',', $allowed_entrepots).")";
-}
+
 if ($sall) {
 	$sql .= ' AND (';
 	$sql .= natural_search(array_keys($fieldstosearchall), $sall, 0, 1);
