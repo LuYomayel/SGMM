@@ -2648,6 +2648,15 @@ class Form
 		global $user;
 		// Obtener los depósitos a los que el usuario tiene acceso
 		$user_id = $user->id; // Make sure you have the ID of the current user
+
+		?>
+		<script>
+
+			var user_id = <?php echo $user; ?>;
+			console.log('id', user_id);
+		</script>
+		<?php
+
 		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user_id;
 		$resql_restrict = $this->db->query($sql_restrict);
 
@@ -2657,13 +2666,7 @@ class Form
 				$allowed_entrepots[] = $obj->entrepot_id;
 			}
 		}
-		?>
-		<script>
-			var allowed_entrepots = <?php echo json_encode($allowed_entrepots); ?>;
-			var user_id = <?php echo $user; ?>;
-			console.log('focus on a select2', allowed_entrepots, user_id);
-		</script>
-		<?php
+
 		$sql = "SELECT ";
 
 		// Add select from hooks
