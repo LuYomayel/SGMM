@@ -2651,8 +2651,7 @@ class Form
 
 		?>
 		<script>
-
-			var user_id = <?php echo $user; ?>;
+			var user_id = <?php echo $user_id; ?>;
 			console.log('id', user_id);
 		</script>
 		<?php
