@@ -489,14 +489,14 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 // Asegúrate de unir la tabla que relaciona productos con depósitos
 $sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
 
-// Aplicar restricciones de depósito
-if (!empty($allowed_entrepots)) {
-    $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
-}
-
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 if ($user->login == 'corteva') {
     $sql .= " AND ef.categoria = 1";  // Suponiendo que 1 es el ID de la categoría que deseas restringir
+}
+
+// Aplicar restricciones de depósito
+if (!empty($allowed_entrepots)) {
+    $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
 }
 
 if ($sall) {
