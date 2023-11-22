@@ -136,6 +136,20 @@ $form = new Form($db);
 $htmlother = new FormOther($db);
 if (!empty($objp->stock_physique) && $objp->stock_physique < 0) { print '<span class="warning">'; }
 
+// Suponemos que $user es el objeto del usuario actual
+// y $db es el objeto de la base de datos
+
+// Obtener los depósitos a los que el usuario tiene acceso
+$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+$resql_restrict = $db->query($sql_restrict);
+
+$allowed_entrepots = [];
+if ($resql_restrict) {
+    while ($obj = $db->fetch_object($resql_restrict)) {
+        $allowed_entrepots[] = $obj->entrepot_id;
+    }
+}
+
 $sql = 'SELECT p.rowid, p.ref, p.label, p.barcode, p.price, p.price_ttc, p.price_base_type, p.entity,';
 $sql .= ' p.fk_product_type, p.tms as datem,';
 $sql .= ' p.duration, p.tosell as statut, p.tobuy, p.seuil_stock_alerte, p.desiredstock,';
@@ -149,6 +163,8 @@ $reshook = $hookmanager->executeHooks('printFieldListSelect', $parameters, $obje
 $sql .= $hookmanager->resPrint;
 $sql .= ' FROM '.MAIN_DB_PREFIX.'product as p';
 $sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product_stock as s ON p.rowid = s.fk_product';
+// Asegúrate de unir la tabla que relaciona productos con depósitos
+$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
 if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 	$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'c_units as u on p.fk_unit = u.rowid';
 }
@@ -157,6 +173,10 @@ $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldListFrom', $parameters, $object); // Note that $action and $object may have been modified by hook
 $sql .= $hookmanager->resPrint;
 $sql .= " WHERE p.entity IN (".getEntity('product').")";
+// Aplicar restricciones de depósito
+if (!empty($allowed_entrepots)) {
+    $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+}
 if (!empty($search_categ) && $search_categ != '-1') {
 	$sql .= " AND ";
 	if ($search_categ == -2) {
@@ -176,36 +196,36 @@ if (!empty($search_categ) && $search_categ != '-1') {
 if (empty($conf->global->PRODUCT_STOCK_LIST_SHOW_VIRTUAL_WITH_NO_PHYSICAL)) {
 	$sql .= " AND EXISTS (SELECT e.rowid FROM ".MAIN_DB_PREFIX."entrepot as e WHERE e.rowid = s.fk_entrepot AND e.entity IN (".getEntity('stock')."))";
 } else {
-	$sql .= " AND 
+	$sql .= " AND
 		(
-			EXISTS 
-				(SELECT e.rowid 
-				 FROM ".MAIN_DB_PREFIX."entrepot as e 
-				 WHERE e.rowid = s.fk_entrepot AND e.entity IN (".getEntity('stock').")) 
+			EXISTS
+				(SELECT e.rowid
+				 FROM ".MAIN_DB_PREFIX."entrepot as e
+				 WHERE e.rowid = s.fk_entrepot AND e.entity IN (".getEntity('stock')."))
 			OR (
-				SELECT SUM(cd1.qty) as qty 
-				FROM ".MAIN_DB_PREFIX."commande_fournisseurdet as cd1 
-				LEFT JOIN ".MAIN_DB_PREFIX."commande_fournisseur as c1 
-					ON c1.rowid = cd1.fk_commande 
+				SELECT SUM(cd1.qty) as qty
+				FROM ".MAIN_DB_PREFIX."commande_fournisseurdet as cd1
+				LEFT JOIN ".MAIN_DB_PREFIX."commande_fournisseur as c1
+					ON c1.rowid = cd1.fk_commande
 				WHERE c1.entity IN (1) AND cd1.fk_product = p.rowid AND c1.fk_statut in (3,4) AND cd1.qty <> 0
 			) IS NOT NULL
 			OR (
-				SELECT SUM(cd2.qty) as qty 
-				FROM ".MAIN_DB_PREFIX."commandedet as cd2 
-				LEFT JOIN ".MAIN_DB_PREFIX."commande as c2 ON c2.rowid = cd2.fk_commande 
+				SELECT SUM(cd2.qty) as qty
+				FROM ".MAIN_DB_PREFIX."commandedet as cd2
+				LEFT JOIN ".MAIN_DB_PREFIX."commande as c2 ON c2.rowid = cd2.fk_commande
 				WHERE c2.entity IN (1) AND cd2.fk_product = p.rowid AND c2.fk_statut in (1,2) AND cd2.qty <> 0
 			) IS NOT NULL
 			OR (
-				SELECT SUM(ed3.qty) as qty 
-				FROM ".MAIN_DB_PREFIX."expeditiondet as ed3 
-				LEFT JOIN ".MAIN_DB_PREFIX."expedition as e3 ON e3.rowid = ed3.fk_expedition 
-				LEFT JOIN ".MAIN_DB_PREFIX."commandedet as cd3 ON ed3.fk_origin_line = cd3.rowid 
-				LEFT JOIN ".MAIN_DB_PREFIX."commande as c3 ON c3.rowid = cd3.fk_commande 
+				SELECT SUM(ed3.qty) as qty
+				FROM ".MAIN_DB_PREFIX."expeditiondet as ed3
+				LEFT JOIN ".MAIN_DB_PREFIX."expedition as e3 ON e3.rowid = ed3.fk_expedition
+				LEFT JOIN ".MAIN_DB_PREFIX."commandedet as cd3 ON ed3.fk_origin_line = cd3.rowid
+				LEFT JOIN ".MAIN_DB_PREFIX."commande as c3 ON c3.rowid = cd3.fk_commande
 				WHERE e3.entity IN (1) AND cd3.fk_product = p.rowid AND c3.fk_statut IN (1,2) AND e3.fk_statut IN (1,2) AND ed3.qty <> 0
 			) IS NOT NULL
 			OR (
-				SELECT SUM(mp4.qty) as qty 
-				FROM ".MAIN_DB_PREFIX."mrp_production as mp4 
+				SELECT SUM(mp4.qty) as qty
+				FROM ".MAIN_DB_PREFIX."mrp_production as mp4
 				LEFT JOIN ".MAIN_DB_PREFIX."mrp_mo as m4 ON m4.rowid = mp4.fk_mo AND m4.entity IN (1) AND m4.status IN (1,2)
 				WHERE mp4.fk_product = p.rowid AND mp4.qty <> 0
 			) IS NOT NULL
