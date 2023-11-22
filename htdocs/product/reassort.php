@@ -514,8 +514,8 @@ if ($resql) {
 		print_liste_field_titre("Unit", $_SERVER["PHP_SELF"], "unit_short", '', $param, 'align="right"', $sortfield, $sortorder);
 	}
 	print_liste_field_titre('');
-	print_liste_field_titre("ProductStatusOnSell", $_SERVER["PHP_SELF"], "p.tosell", '', $param, "", $sortfield, $sortorder, 'right ');
-	print_liste_field_titre("ProductStatusOnBuy", $_SERVER["PHP_SELF"], "p.tobuy", '', $param, "", $sortfield, $sortorder, 'right ');
+	// print_liste_field_titre("ProductStatusOnSell", $_SERVER["PHP_SELF"], "p.tosell", '', $param, "", $sortfield, $sortorder, 'right ');
+	// print_liste_field_titre("ProductStatusOnBuy", $_SERVER["PHP_SELF"], "p.tobuy", '', $param, "", $sortfield, $sortorder, 'right ');
 	// Hook fields
 	$parameters = array('param'=>$param, 'sortfield'=>$sortfield, 'sortorder'=>$sortorder);
 	$reshook = $hookmanager->executeHooks('printFieldListTitle', $parameters); // Note that $action and $object may have been modified by hook
