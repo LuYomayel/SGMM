@@ -285,12 +285,36 @@ print '</div><div class="fichethirdleft">';
  * Latest modified products
  */
 if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("produit", "lire") || $user->hasRight("service", "lire"))) {
-	$max = 15;
+	// Suponemos que $user es el objeto del usuario actual
+	// y $db es el objeto de la base de datos
+
+	// Obtener los depósitos a los que el usuario tiene acceso
+	$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+	$resql_restrict = $db->query($sql_restrict);
+
+	$allowed_entrepots = [];
+	if ($resql_restrict) {
+		while ($obj = $db->fetch_object($resql_restrict)) {
+			$allowed_entrepots[] = $obj->entrepot_id;
+		}
+	}
+
+	$max = 5;
 	$sql = "SELECT p.rowid, p.label, p.price, p.ref, p.fk_product_type, p.tosell, p.tobuy, p.tobatch, p.fk_price_expression,";
 	$sql .= " p.entity,";
 	$sql .= " p.tms as datem";
 	$sql .= " FROM ".MAIN_DB_PREFIX."product as p";
+
+	// Asegúrate de unir la tabla que relaciona productos con depósitos
+	$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+
 	$sql .= " WHERE p.entity IN (".getEntity($product_static->element, 1).")";
+
+	// Aplicar restricciones de depósito
+	if (!empty($allowed_entrepots)) {
+		$sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+	}
+
 	if ($type != '') {
 		$sql .= " AND p.fk_product_type = ".((int) $type);
 	}
