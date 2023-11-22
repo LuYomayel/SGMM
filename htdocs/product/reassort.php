@@ -488,7 +488,7 @@ if ($resql) {
 	print '<tr class="liste_titre">';
 	// Action column
 	if (!empty($conf->global->MAIN_CHECKBOX_LEFT_COLUMN)) {
-		print_liste_field_titre('');
+		// print_liste_field_titre('');
 	}
 	print_liste_field_titre("Ref", $_SERVER["PHP_SELF"], "p.ref", '', $param, "", $sortfield, $sortorder);
 	print_liste_field_titre("Label", $_SERVER["PHP_SELF"], "p.label", '', $param, "", $sortfield, $sortorder);
@@ -522,7 +522,7 @@ if ($resql) {
 	print $hookmanager->resPrint;
 	// Action column
 	if (empty($conf->global->MAIN_CHECKBOX_LEFT_COLUMN)) {
-		print_liste_field_titre('');
+		// print_liste_field_titre('');
 	}
 	print "</tr>\n";
 
@@ -536,7 +536,7 @@ if ($resql) {
 		print '<tr>';
 		// Action column
 		if (!empty($conf->global->MAIN_CHECKBOX_LEFT_COLUMN)) {
-			print '<td></td>';
+			// print '<td></td>';
 		}
 		print '<td class="nowrap">';
 		print $product->getNomUrl(1, '', 16);
@@ -614,7 +614,7 @@ if ($resql) {
 		print $hookmanager->resPrint;
 		// Action column
 		if (empty($conf->global->MAIN_CHECKBOX_LEFT_COLUMN)) {
-			print '<td></td>';
+			// print '<td></td>';
 		}
 
 		print "</tr>\n";
