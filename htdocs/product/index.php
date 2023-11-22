@@ -409,13 +409,13 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 						}
 					}
 					print '<td class="nowraponall amount right">';
-					if ($usercancreadprice) {
-						if (isset($objp->price_base_type) && $objp->price_base_type == 'TTC') {
-							print price($objp->price_ttc).' '.$langs->trans("TTC");
-						} else {
-							print price($objp->price).' '.$langs->trans("HT");
-						}
-					}
+					// if ($usercancreadprice) {
+					// 	if (isset($objp->price_base_type) && $objp->price_base_type == 'TTC') {
+					// 		print price($objp->price_ttc).' '.$langs->trans("TTC");
+					// 	} else {
+					// 		print price($objp->price).' '.$langs->trans("HT");
+					// 	}
+					// }
 					print '</td>';
 				}
 				// print '<td class="right nowrap width25"><span class="statusrefsell">';
