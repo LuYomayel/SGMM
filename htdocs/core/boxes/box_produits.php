@@ -84,6 +84,20 @@ class box_produits extends ModeleBoxes
 
 		$this->info_box_head = array('text' => $langs->trans("BoxTitleLastProducts", $max));
 
+		// Suponemos que $user es el objeto del usuario actual
+		// y $db es el objeto de la base de datos
+
+		// Obtener los depósitos a los que el usuario tiene acceso
+		$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+		$resql_restrict = $db->query($sql_restrict);
+
+		$allowed_entrepots = [];
+		if ($resql_restrict) {
+			while ($obj = $db->fetch_object($resql_restrict)) {
+				$allowed_entrepots[] = $obj->entrepot_id;
+			}
+		}
+
 		if ($user->rights->produit->lire || $user->hasRight('service', 'lire')) {
 			$sql = "SELECT p.rowid, p.label, p.ref, p.price, p.price_base_type, p.price_ttc, p.fk_product_type, p.tms, p.tosell, p.tobuy, p.fk_price_expression, p.entity";
 			$sql .= ", p.accountancy_code_sell";
@@ -94,7 +108,18 @@ class box_produits extends ModeleBoxes
 			$sql .= ", p.accountancy_code_buy_export";
 			$sql .= ', p.barcode';
 			$sql .= " FROM ".MAIN_DB_PREFIX."product as p";
+
+			// Asegúrate de unir la tabla que relaciona productos con depósitos
+			$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+
 			$sql .= ' WHERE p.entity IN ('.getEntity($productstatic->element).')';
+
+			// Aplicar restricciones de depósito
+			if (!empty($allowed_entrepots)) {
+				$sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+			}
+
+
 			if (empty($user->rights->produit->lire)) {
 				$sql .= ' AND p.fk_product_type != 0';
 			}
