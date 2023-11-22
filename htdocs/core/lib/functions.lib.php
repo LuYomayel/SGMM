@@ -2023,6 +2023,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 	?>
 	 <script>
 	 var links = <?php echo json_encode($links); ?>;
+	 var title = <?php echo json_encode($title); ?>;
 	 console.log("dol_get_fiche_head");
 	 console.log(links);
 	 </script>
