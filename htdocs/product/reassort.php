@@ -451,9 +451,6 @@ if ($resql) {
 	print '<td class="liste_titre">';
 	print '<input class="flat" type="text" name="sref" size="6" value="'.$sref.'">';
 	print '</td>';
-	print '<td class="liste_titre">';
-	print '<input class="flat" type="text" name="snom" size="8" value="'.$snom.'">';
-	print '</td>';
 	// Duration
 	if (isModEnabled("service") && $type == 1) {
 		print '<td class="liste_titre">';
@@ -470,8 +467,8 @@ if ($resql) {
 	if ($virtualdiffersfromphysical) {
 		print '<td class="liste_titre">&nbsp;</td>';
 	}
-	print '<td class="liste_titre">&nbsp;</td>';
-	print '<td class="liste_titre" colspan="'.$colspan_warehouse.'">&nbsp;</td>';
+	// print '<td class="liste_titre">&nbsp;</td>';
+	// print '<td class="liste_titre" colspan="'.$colspan_warehouse.'">&nbsp;</td>';
 	print '<td class="liste_titre"></td>';
 	$parameters = array();
 	$reshook = $hookmanager->executeHooks('printFieldListOption', $parameters); // Note that $action and $object may have been modified by hook
