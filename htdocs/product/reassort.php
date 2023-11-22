@@ -462,7 +462,7 @@ if ($resql) {
 	print '<td class="liste_titre right">&nbsp;</td>';
 	// Physical stock
 	print '<td class="liste_titre right">';
-	print '<input class="flat" type="text" size="5" name="search_stock_physique" value="'.dol_escape_htmltag($search_stock_physique).'">';
+	// print '<input class="flat" type="text" size="5" name="search_stock_physique" value="'.dol_escape_htmltag($search_stock_physique).'">';
 	print '</td>';
 	if ($virtualdiffersfromphysical) {
 		print '<td class="liste_titre">&nbsp;</td>';
