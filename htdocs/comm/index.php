@@ -1000,7 +1000,7 @@ if (isModEnabled("propal") && $user->hasRight("propal", "lire")) {
 			}
 		}
 
-		addSummaryTableLine(5, $num, $nbofloop, empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $total_ttc : $total, "NoProposal", true);
+		// addSummaryTableLine(5, $num, $nbofloop, empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $total_ttc : $total, "NoProposal", true);
 		finishSimpleTable(true);
 
 		$db->free($resql);
