@@ -2019,7 +2019,14 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 			$maxkey = max($keys);
 		}
 	}
-
+	// Eliminar "Precios de venta" si el título es "Producto"
+    if ($title == 'Producto') {
+        foreach ($links as $key => $link) {
+            if ($link[1] == 'Precios de venta') {
+                unset($links[$key]);
+            }
+        }
+    }
 	?>
 	 <script>
 	 var links = <?php echo json_encode($links); ?>;
