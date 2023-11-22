@@ -970,12 +970,12 @@ if (!$variants) {
 	print '<tr class="liste_titre">';
 	print '<td colspan="4">'.$langs->trans("Warehouse").'</td>';
 	print '<td class="right">'.$langs->trans("NumberOfUnit").'</td>';
-	print '<td class="right">'.$form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc")).'</td>';
-	print '<td class="right">'.$langs->trans("EstimatedStockValueShort").'</td>';
-	print '<td class="right">'.$langs->trans("SellPriceMin").'</td>';
-	print '<td class="right">'.$langs->trans("EstimatedStockValueSellShort").'</td>';
-	print '<td></td>';
-	print '<td></td>';
+	// print '<td class="right">'.$form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc")).'</td>';
+	// print '<td class="right">'.$langs->trans("EstimatedStockValueShort").'</td>';
+	// print '<td class="right">'.$langs->trans("SellPriceMin").'</td>';
+	// print '<td class="right">'.$langs->trans("EstimatedStockValueSellShort").'</td>';
+	// print '<td></td>';
+	// print '<td></td>';
 	print '</tr>';
 
 	if ((isModEnabled('productbatch')) && $object->hasbatch()) {
@@ -1058,65 +1058,65 @@ if (!$variants) {
 			print '<td class="right">'.$stock_real.($stock_real < 0 ? ' '.img_warning() : '').'</td>';
 
 			// PMP
-			print '<td class="right nowraponall">'.(price2num($object->pmp) ? price2num($object->pmp, 'MU') : '').'</td>';
+			// print '<td class="right nowraponall">'.(price2num($object->pmp) ? price2num($object->pmp, 'MU') : '').'</td>';
 
 			// Value purchase
-			if ($usercancreadprice) {
-				print '<td class="right amount nowraponall">'.(price2num($object->pmp) ? price(price2num($object->pmp * $obj->reel, 'MT')) : '').'</td>';
-			} else {
-				print '<td class="right amount nowraponall"></td>';
-			}
+			// if ($usercancreadprice) {
+			// 	print '<td class="right amount nowraponall">'.(price2num($object->pmp) ? price(price2num($object->pmp * $obj->reel, 'MT')) : '').'</td>';
+			// } else {
+			// 	print '<td class="right amount nowraponall"></td>';
+			// }
 
 			// Sell price
-			$minsellprice = null; $maxsellprice = null;
-			print '<td class="right">';
-			if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
-				foreach ($object->multiprices as $priceforlevel) {
-					if (is_numeric($priceforlevel)) {
-						if (is_null($maxsellprice) || $priceforlevel > $maxsellprice) {
-							$maxsellprice = $priceforlevel;
-						}
-						if (is_null($minsellprice) || $priceforlevel < $minsellprice) {
-							$minsellprice = $priceforlevel;
-						}
-					}
-				}
-				print '<span class="valignmiddle">';
-				if ($usercancreadprice) {
-					if ($minsellprice != $maxsellprice) {
-						print price(price2num($minsellprice, 'MU'), 1).' - '.price(price2num($maxsellprice, 'MU'), 1);
-					} else {
-						print price(price2num($minsellprice, 'MU'), 1);
-					}
-				}
-				print '</span>';
-				print $form->textwithpicto('', $langs->trans("Variable"));
-			} elseif ($usercancreadprice) {
-				print price(price2num($object->price, 'MU'), 1);
-			}
-			print '</td>';
+			// $minsellprice = null; $maxsellprice = null;
+			// print '<td class="right">';
+			// if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
+			// 	foreach ($object->multiprices as $priceforlevel) {
+			// 		if (is_numeric($priceforlevel)) {
+			// 			if (is_null($maxsellprice) || $priceforlevel > $maxsellprice) {
+			// 				$maxsellprice = $priceforlevel;
+			// 			}
+			// 			if (is_null($minsellprice) || $priceforlevel < $minsellprice) {
+			// 				$minsellprice = $priceforlevel;
+			// 			}
+			// 		}
+			// 	}
+			// 	print '<span class="valignmiddle">';
+			// 	if ($usercancreadprice) {
+			// 		if ($minsellprice != $maxsellprice) {
+			// 			print price(price2num($minsellprice, 'MU'), 1).' - '.price(price2num($maxsellprice, 'MU'), 1);
+			// 		} else {
+			// 			print price(price2num($minsellprice, 'MU'), 1);
+			// 		}
+			// 	}
+			// 	print '</span>';
+			// 	print $form->textwithpicto('', $langs->trans("Variable"));
+			// } elseif ($usercancreadprice) {
+			// 	print price(price2num($object->price, 'MU'), 1);
+			// }
+			// print '</td>';
 
 			// Value sell
-			print '<td class="right amount nowraponall">';
-			if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
-				print '<span class="valignmiddle">';
-				if ($usercancreadprice) {
-					if ($minsellprice != $maxsellprice) {
-						print price(price2num($minsellprice * $obj->reel, 'MT'), 1).' - '.price(price2num($maxsellprice * $obj->reel, 'MT'), 1);
-					} else {
-						print price(price2num($minsellprice * $obj->reel, 'MT'), 1);
-					}
-				}
-				print '</span>';
-				print $form->textwithpicto('', $langs->trans("Variable"));
-			} else {
-				if ($usercancreadprice) {
-					print price(price2num($object->price * $obj->reel, 'MT'), 1);
-				}
-			}
-			print '</td>';
-			print '<td></td>';
-			print '<td></td>';
+			// print '<td class="right amount nowraponall">';
+			// if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
+			// 	print '<span class="valignmiddle">';
+			// 	if ($usercancreadprice) {
+			// 		if ($minsellprice != $maxsellprice) {
+			// 			print price(price2num($minsellprice * $obj->reel, 'MT'), 1).' - '.price(price2num($maxsellprice * $obj->reel, 'MT'), 1);
+			// 		} else {
+			// 			print price(price2num($minsellprice * $obj->reel, 'MT'), 1);
+			// 		}
+			// 	}
+			// 	print '</span>';
+			// 	print $form->textwithpicto('', $langs->trans("Variable"));
+			// } else {
+			// 	if ($usercancreadprice) {
+			// 		print price(price2num($object->price * $obj->reel, 'MT'), 1);
+			// 	}
+			// }
+			// print '</td>';
+			// print '<td></td>';
+			// print '<td></td>';
 			print '</tr>';
 			$total += $obj->reel;
 			if (price2num($object->pmp)) {

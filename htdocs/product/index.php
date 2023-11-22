@@ -396,7 +396,7 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 				print '<td class="nowraponall amount right">';
 				print '</td>';
 
-				print '<td title="'.dol_escape_htmltag($langs->trans("DateModification").': '.dol_print_date($db->jdate($objp->datem), 'dayhour', 'tzuserrel')).'">';
+				print '<td class="right" title="'.dol_escape_htmltag($langs->trans("DateModification").': '.dol_print_date($db->jdate($objp->datem), 'dayhour', 'tzuserrel')).'">';
 				print dol_print_date($db->jdate($objp->datem), 'day', 'tzuserrel');
 				print "</td>";
 
