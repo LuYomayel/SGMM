@@ -161,6 +161,11 @@ if (empty($reshook)) {
 			if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) {
 				$backtopage = $backurlforlist;
 			} else {
+				?>
+					<script>
+						console.log('backtopageforcancel');
+					</script>
+				<?php
 				$backtopage = DOL_URL_ROOT.'/commande/card.php?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
 			}
 		}
