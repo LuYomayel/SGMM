@@ -396,6 +396,7 @@ if (isModEnabled('commande') && $user->hasRight('commande', 'lire')) {
 				$total += (!empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $obj->total_ht : $obj->total_ttc);
 			}
 
+			// PEDIDOS BORRADOR
 			// if ($othernb) {
 			// 	print '<tr class="oddeven">';
 			// 	print '<td class="nowrap" colspan="5">';
@@ -405,7 +406,7 @@ if (isModEnabled('commande') && $user->hasRight('commande', 'lire')) {
 			// }
 		}
 
-		addSummaryTableLine(3, $num, $nbofloop, $total, "NoOrder");
+		// addSummaryTableLine(3, $num, $nbofloop, $total, "NoOrder");
 		finishSimpleTable(true);
 
 		$db->free($resql);
