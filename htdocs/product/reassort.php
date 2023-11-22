@@ -600,10 +600,10 @@ if ($resql) {
 		if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 			print '<td class="left">'.dol_escape_htmltag($objp->unit_short).'</td>';
 		}
-		print '<td class="center nowraponall">';
-		print img_picto($langs->trans("StockMovement"), 'movement', 'class="pictofixedwidth"');
-		print '<a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?idproduct='.$product->id.'">'.$langs->trans("Movements").'</a>';
-		print '</td>';
+		// print '<td class="center nowraponall">';
+		// print img_picto($langs->trans("StockMovement"), 'movement', 'class="pictofixedwidth"');
+		// print '<a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?idproduct='.$product->id.'">'.$langs->trans("Movements").'</a>';
+		// print '</td>';
 		// print '<td class="right nowrap">'.$product->LibStatut($objp->statut, 5, 0).'</td>';
 		// print '<td class="right nowrap">'.$product->LibStatut($objp->tobuy, 5, 1).'</td>';
 		// print '<td class="right nowrap"></td>';
