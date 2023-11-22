@@ -172,43 +172,43 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 	if ($conf->use_javascript_ajax) {
 		print '<div class="div-table-responsive-no-min">';
 		print '<table class="noborder centpercent">';
-		print '<tr class="liste_titre"><th>'.$langs->trans("Statistics").'</th></tr>';
-		print '<tr><td class="center nopaddingleftimp nopaddingrightimp">';
+		// print '<tr class="liste_titre"><th>'.$langs->trans("Statistics").'</th></tr>';
+		// print '<tr><td class="center nopaddingleftimp nopaddingrightimp">';
 
-		$SommeA = $prodser[0]['sell'];
-		$SommeB = $prodser[0]['buy'];
-		$SommeC = $prodser[0]['none'];
-		$SommeD = $prodser[1]['sell'];
-		$SommeE = $prodser[1]['buy'];
-		$SommeF = $prodser[1]['none'];
-		$total = 0;
-		$dataval = array();
-		$datalabels = array();
-		$i = 0;
+		// $SommeA = $prodser[0]['sell'];
+		// $SommeB = $prodser[0]['buy'];
+		// $SommeC = $prodser[0]['none'];
+		// $SommeD = $prodser[1]['sell'];
+		// $SommeE = $prodser[1]['buy'];
+		// $SommeF = $prodser[1]['none'];
+		// $total = 0;
+		// $dataval = array();
+		// $datalabels = array();
+		// $i = 0;
 
-		$total = $SommeA + $SommeB + $SommeC + $SommeD + $SommeE + $SommeF;
-		$dataseries = array();
-		if (isModEnabled("product")) {
-			$dataseries[] = array($langs->transnoentitiesnoconv("ProductsOnSale"), round($SommeA));
-			$dataseries[] = array($langs->transnoentitiesnoconv("ProductsOnPurchase"), round($SommeB));
-			$dataseries[] = array($langs->transnoentitiesnoconv("ProductsNotOnSell"), round($SommeC));
-		}
-		if (isModEnabled("service")) {
-			$dataseries[] = array($langs->transnoentitiesnoconv("ServicesOnSale"), round($SommeD));
-			$dataseries[] = array($langs->transnoentitiesnoconv("ServicesOnPurchase"), round($SommeE));
-			$dataseries[] = array($langs->transnoentitiesnoconv("ServicesNotOnSell"), round($SommeF));
-		}
-		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgraph.class.php';
-		$dolgraph = new DolGraph();
-		$dolgraph->SetData($dataseries);
-		$dolgraph->setShowLegend(2);
-		$dolgraph->setShowPercent(0);
-		$dolgraph->SetType(array('pie'));
-		$dolgraph->setHeight('200');
-		$dolgraph->draw('idgraphstatus');
-		print $dolgraph->show($total ? 0 : 1);
+		// $total = $SommeA + $SommeB + $SommeC + $SommeD + $SommeE + $SommeF;
+		// $dataseries = array();
+		// if (isModEnabled("product")) {
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ProductsOnSale"), round($SommeA));
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ProductsOnPurchase"), round($SommeB));
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ProductsNotOnSell"), round($SommeC));
+		// }
+		// if (isModEnabled("service")) {
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ServicesOnSale"), round($SommeD));
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ServicesOnPurchase"), round($SommeE));
+		// 	$dataseries[] = array($langs->transnoentitiesnoconv("ServicesNotOnSell"), round($SommeF));
+		// }
+		// include_once DOL_DOCUMENT_ROOT.'/core/class/dolgraph.class.php';
+		// $dolgraph = new DolGraph();
+		// $dolgraph->SetData($dataseries);
+		// $dolgraph->setShowLegend(2);
+		// $dolgraph->setShowPercent(0);
+		// $dolgraph->SetType(array('pie'));
+		// $dolgraph->setHeight('200');
+		// $dolgraph->draw('idgraphstatus');
+		// print $dolgraph->show($total ? 0 : 1);
 
-		print '</td></tr>';
+		// print '</td></tr>';
 		print '</table>';
 		print '</div>';
 	}
