@@ -88,7 +88,7 @@ $linkback = "";
 print load_fiche_titre($transAreaType, $linkback, 'product');
 
 
-print '<div class="fichecenter"><div class="fichethirdleft">';
+print '<div class="fichecenter"><div class="fichetwothirdright">';
 
 
 if (!empty($conf->global->MAIN_SEARCH_FORM_ON_HOME_AREAS)) {     // This may be useless due to the global search combo

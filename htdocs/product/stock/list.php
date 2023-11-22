@@ -214,6 +214,12 @@ if ($resql_restrict) {
     }
 }
 
+?>
+<script type="text/javascript">
+	console.log(<?php echo json_encode($allowed_entrepots); ?>);
+</script>
+<?php
+
 // Build and execute select
 // --------------------------------------------------------------------
 $sql = 'SELECT ';
