@@ -189,10 +189,10 @@ class box_produits extends ModeleBoxes
 							}
 						}
 					}
-					// $this->info_box_contents[$line][] = array(
-					// 	'td' => 'class="nowraponall right amount"',
-					// 	'text' => $price,
-					// );
+					$this->info_box_contents[$line][] = array(
+						'td' => 'class="nowraponall right amount"',
+						'text' => $price,
+					);
 
 					// $this->info_box_contents[$line][] = array(
 					// 	'td' => 'class="nowrap"',
