@@ -166,12 +166,12 @@ if (empty($reshook)) {
 						console.log('backtopageforcancel');
 					</script>
 				<?php
-				$subject = "Nuevo Pedido Borrador Creado";
-                $message = "Se ha creado un nuevo pedido en estado de borrador. ID del Pedido: " . $object->id;
-                $recipient = "yomayelluciano@gmail.com"; // Define el destinatario aquí
-
-                // Usar la función mail de PHP para enviar el correo
-                mail($recipient, $subject, $message);
+				$moreinheader = 'X-Dolibarr-Info: send_an_email by adherents/card.php'."\r\n";
+				$result = $object->sendEmail("texttosend", "subjecttosend", array(), array(), array(), "", "", 0, -1, '', $moreinheader);
+				if ($result < 0) {
+					$error++;
+					setEventMessages($object->error, $object->errors, 'errors');
+				}
 				$backtopage = DOL_URL_ROOT.'/commande/card.php?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
 			}
 		}
