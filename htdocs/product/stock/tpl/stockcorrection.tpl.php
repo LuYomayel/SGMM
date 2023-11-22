@@ -180,8 +180,8 @@ if (ismodEnabled('productbatch') &&
 
 // Purchase price and project
 print '<tr>';
-print '<td>'.$langs->trans("UnitPurchaseValue").'</td>';
-print '<td colspan="'.(isModEnabled('project') ? '1' : '3').'"><input name="unitprice" id="unitprice" size="10" value="'.GETPOST("unitprice").'"></td>';
+// print '<td>'.$langs->trans("UnitPurchaseValue").'</td>';
+// print '<td colspan="'.(isModEnabled('project') ? '1' : '3').'"><input name="unitprice" id="unitprice" size="10" value="'.GETPOST("unitprice").'"></td>';
 if (isModEnabled('project')) {
 	print '<td>'.$langs->trans('Project').'</td>';
 	print '<td>';
