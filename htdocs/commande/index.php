@@ -314,7 +314,7 @@ if (isModEnabled('commande')) {
 
 				print '<td class="right">'.dol_print_date($db->jdate($obj->date), 'day').'</td>'."\n";
 
-				print '<td class="right">'.$commandestatic->LibStatut($obj->fk_statut, $obj->facture, 3).'</td>';
+				// print '<td class="right">'.$commandestatic->LibStatut($obj->fk_statut, $obj->facture, 3).'</td>';
 
 				print '</tr>';
 				$i++;
