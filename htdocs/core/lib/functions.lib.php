@@ -1983,7 +1983,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 		$showtitle = 0;
 	}
 
-	$out = "\n".'<!-- dol_fiche_head - dol_get_fiche_head -->';
+	$out = "\n".'<!-- dol_fiche_head - dol_get_fiche_head 1234421 -->';
 
 	if ((!empty($title) && $showtitle) || $morehtmlright || !empty($links)) {
 		$out .= '<div class="tabs'.($picto ? '' : ' nopaddingleft').'" data-role="controlgroup" data-type="horizontal">'."\n";
