@@ -394,12 +394,12 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 					}
 					print '</td>';
 				}
-				print '<td class="right nowrap width25"><span class="statusrefsell">';
-				print $product_static->LibStatut($objp->tosell, 3, 0);
-				print "</span></td>";
-				print '<td class="right nowrap width25"><span class="statusrefbuy">';
-				print $product_static->LibStatut($objp->tobuy, 3, 1);
-				print "</span></td>";
+				// print '<td class="right nowrap width25"><span class="statusrefsell">';
+				// print $product_static->LibStatut($objp->tosell, 3, 0);
+				// print "</span></td>";
+				// print '<td class="right nowrap width25"><span class="statusrefbuy">';
+				// print $product_static->LibStatut($objp->tobuy, 3, 1);
+				// print "</span></td>";
 				print "</tr>\n";
 				$i++;
 			}
