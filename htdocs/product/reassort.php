@@ -513,7 +513,7 @@ if ($resql) {
 	if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 		print_liste_field_titre("Unit", $_SERVER["PHP_SELF"], "unit_short", '', $param, 'align="right"', $sortfield, $sortorder);
 	}
-	print_liste_field_titre('');
+	// print_liste_field_titre('');
 	// print_liste_field_titre("ProductStatusOnSell", $_SERVER["PHP_SELF"], "p.tosell", '', $param, "", $sortfield, $sortorder, 'right ');
 	// print_liste_field_titre("ProductStatusOnBuy", $_SERVER["PHP_SELF"], "p.tobuy", '', $param, "", $sortfield, $sortorder, 'right ');
 	// Hook fields
@@ -606,6 +606,8 @@ if ($resql) {
 		print '</td>';
 		// print '<td class="right nowrap">'.$product->LibStatut($objp->statut, 5, 0).'</td>';
 		// print '<td class="right nowrap">'.$product->LibStatut($objp->tobuy, 5, 1).'</td>';
+		// print '<td class="right nowrap"></td>';
+		// print '<td class="right nowrap"></td>';
 		// Fields from hook
 		$parameters = array('obj'=>$objp);
 		$reshook = $hookmanager->executeHooks('printFieldListValue', $parameters, $product); // Note that $action and $object may have been modified by hook
