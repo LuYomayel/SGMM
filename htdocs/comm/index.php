@@ -1121,7 +1121,8 @@ if (isModEnabled('commande') && $user->hasRight('commande', 'lire')) {
 			}
 		}
 
-		addSummaryTableLine(5, $num, $nbofloop, empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $total_ttc : $total, "None", true);
+		// PEDIDOS A PROCESAR
+		// addSummaryTableLine(5, $num, $nbofloop, empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $total_ttc : $total, "None", true);
 		finishSimpleTable(true);
 
 		$db->free($resql);
