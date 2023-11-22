@@ -170,8 +170,8 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 	}
 
 	if ($conf->use_javascript_ajax) {
-		print '<div class="div-table-responsive-no-min">';
-		print '<table class="noborder centpercent">';
+		// print '<div class="div-table-responsive-no-min">';
+		// print '<table class="noborder centpercent">';
 		// print '<tr class="liste_titre"><th>'.$langs->trans("Statistics").'</th></tr>';
 		// print '<tr><td class="center nopaddingleftimp nopaddingrightimp">';
 
@@ -209,8 +209,8 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 		// print $dolgraph->show($total ? 0 : 1);
 
 		// print '</td></tr>';
-		print '</table>';
-		print '</div>';
+		// print '</table>';
+		// print '</div>';
 	}
 }
 
