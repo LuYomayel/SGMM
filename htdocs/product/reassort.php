@@ -469,7 +469,7 @@ if ($resql) {
 	}
 	// print '<td class="liste_titre">&nbsp;</td>';
 	// print '<td class="liste_titre" colspan="'.$colspan_warehouse.'">&nbsp;</td>';
-	print '<td class="liste_titre"></td>';
+	// print '<td class="liste_titre"></td>';
 	$parameters = array();
 	$reshook = $hookmanager->executeHooks('printFieldListOption', $parameters); // Note that $action and $object may have been modified by hook
 	print $hookmanager->resPrint;
