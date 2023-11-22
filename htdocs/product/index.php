@@ -278,7 +278,7 @@ if (isModEnabled('categorie') && !empty($conf->global->CATEGORY_GRAPHSTATS_ON_PR
 	print '</table>';
 	print '</div>';
 }
-print '</div><div class="fichetwothirdright">';
+print '</div><div class="fichethirdleft">';
 
 
 /*
