@@ -623,112 +623,112 @@ if ($id > 0 || $ref) {
 		if (!$variants) {
 			print '<div class="fichecenter">';
 
-			print '<div class="fichehalfleft">';
-			print '<div class="underbanner clearboth"></div>';
+			// print '<div class="fichehalfleft">';
+			// print '<div class="underbanner clearboth"></div>';
 
-			print '<table class="border tableforfield centpercent">';
+			// print '<table class="border tableforfield centpercent">';
 
-			// Type
-			if (isModEnabled("product") && isModEnabled("service")) {
-				$typeformat = 'select;0:'.$langs->trans("Product").',1:'.$langs->trans("Service");
-				print '<tr><td class="">';
-				print (empty($conf->global->PRODUCT_DENY_CHANGE_PRODUCT_TYPE)) ? $form->editfieldkey("Type", 'fk_product_type', $object->type, $object, 0, $typeformat) : $langs->trans('Type');
-				print '</td><td>';
-				print $form->editfieldval("Type", 'fk_product_type', $object->type, $object, 0, $typeformat);
-				print '</td></tr>';
-			}
+			// // Type
+			// if (isModEnabled("product") && isModEnabled("service")) {
+			// 	$typeformat = 'select;0:'.$langs->trans("Product").',1:'.$langs->trans("Service");
+			// 	print '<tr><td class="">';
+			// 	print (empty($conf->global->PRODUCT_DENY_CHANGE_PRODUCT_TYPE)) ? $form->editfieldkey("Type", 'fk_product_type', $object->type, $object, 0, $typeformat) : $langs->trans('Type');
+			// 	print '</td><td>';
+			// 	print $form->editfieldval("Type", 'fk_product_type', $object->type, $object, 0, $typeformat);
+			// 	print '</td></tr>';
+			// }
 
-			if (isModEnabled('productbatch')) {
-				print '<tr><td class="">'.$langs->trans("ManageLotSerial").'</td><td>';
-				print $object->getLibStatut(0, 2);
-				print '</td></tr>';
-			}
+			// if (isModEnabled('productbatch')) {
+			// 	print '<tr><td class="">'.$langs->trans("ManageLotSerial").'</td><td>';
+			// 	print $object->getLibStatut(0, 2);
+			// 	print '</td></tr>';
+			// }
 
-			// Cost price. Can be used for margin module for option "calculate margin on explicit cost price
-			print '<tr><td>';
-			$textdesc = $langs->trans("CostPriceDescription");
-			$textdesc .= "<br>".$langs->trans("CostPriceUsage");
-			$text = $form->textwithpicto($langs->trans("CostPrice"), $textdesc, 1, 'help', '');
-			if (!$usercancreadprice) {
-				print $form->editfieldkey($text, 'cost_price', '', $object, 0, 'amount:6');
-				print '</td><td>';
-				print $form->editfieldval($text, 'cost_price', '', $object, 0, 'amount:6');
-			} else {
-				print $form->editfieldkey($text, 'cost_price', $object->cost_price, $object, $usercancreate, 'amount:6');
-				print '</td><td>';
-				print $form->editfieldval($text, 'cost_price', $object->cost_price, $object, $usercancreate, 'amount:6');
-			}
-			print '</td></tr>';
+			// // Cost price. Can be used for margin module for option "calculate margin on explicit cost price
+			// print '<tr><td>';
+			// $textdesc = $langs->trans("CostPriceDescription");
+			// $textdesc .= "<br>".$langs->trans("CostPriceUsage");
+			// $text = $form->textwithpicto($langs->trans("CostPrice"), $textdesc, 1, 'help', '');
+			// if (!$usercancreadprice) {
+			// 	print $form->editfieldkey($text, 'cost_price', '', $object, 0, 'amount:6');
+			// 	print '</td><td>';
+			// 	print $form->editfieldval($text, 'cost_price', '', $object, 0, 'amount:6');
+			// } else {
+			// 	print $form->editfieldkey($text, 'cost_price', $object->cost_price, $object, $usercancreate, 'amount:6');
+			// 	print '</td><td>';
+			// 	print $form->editfieldval($text, 'cost_price', $object->cost_price, $object, $usercancreate, 'amount:6');
+			// }
+			// print '</td></tr>';
 
 
 
-			// AWP
-			print '<tr><td class="titlefield">';
-			print $form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc"));
-			print '</td>';
-			print '<td>';
-			if ($object->pmp > 0 && $usercancreadprice) {
-				print price($object->pmp).' '.$langs->trans("HT");
-			}
-			print '</td>';
-			print '</tr>';
+			// // AWP
+			// print '<tr><td class="titlefield">';
+			// print $form->textwithpicto($langs->trans("AverageUnitPricePMPShort"), $langs->trans("AverageUnitPricePMPDesc"));
+			// print '</td>';
+			// print '<td>';
+			// if ($object->pmp > 0 && $usercancreadprice) {
+			// 	print price($object->pmp).' '.$langs->trans("HT");
+			// }
+			// print '</td>';
+			// print '</tr>';
 
-			// Minimum Price
-			print '<tr><td>'.$langs->trans("BuyingPriceMin").'</td>';
-			print '<td>';
-			$product_fourn = new ProductFournisseur($db);
-			if ($product_fourn->find_min_price_product_fournisseur($object->id) > 0) {
-				if ($product_fourn->product_fourn_price_id > 0 && $usercancreadprice) {
-					print $product_fourn->display_price_product_fournisseur();
-				} else {
-					print $langs->trans("NotDefined");
-				}
-			}
-			print '</td></tr>';
+			// // Minimum Price
+			// print '<tr><td>'.$langs->trans("BuyingPriceMin").'</td>';
+			// print '<td>';
+			// $product_fourn = new ProductFournisseur($db);
+			// if ($product_fourn->find_min_price_product_fournisseur($object->id) > 0) {
+			// 	if ($product_fourn->product_fourn_price_id > 0 && $usercancreadprice) {
+			// 		print $product_fourn->display_price_product_fournisseur();
+			// 	} else {
+			// 		print $langs->trans("NotDefined");
+			// 	}
+			// }
+			// print '</td></tr>';
 
-			if (empty($conf->global->PRODUIT_MULTIPRICES)) {
-				// Price
-				print '<tr><td>'.$langs->trans("SellingPrice").'</td><td>';
-				if ($usercancreadprice) {
-					if ($object->price_base_type == 'TTC') {
-						print price($object->price_ttc).' '.$langs->trans($object->price_base_type);
-					} else {
-						print price($object->price).' '.$langs->trans($object->price_base_type);
-					}
-				}
-				print '</td></tr>';
+			// if (empty($conf->global->PRODUIT_MULTIPRICES)) {
+			// 	// Price
+			// 	print '<tr><td>'.$langs->trans("SellingPrice").'</td><td>';
+			// 	if ($usercancreadprice) {
+			// 		if ($object->price_base_type == 'TTC') {
+			// 			print price($object->price_ttc).' '.$langs->trans($object->price_base_type);
+			// 		} else {
+			// 			print price($object->price).' '.$langs->trans($object->price_base_type);
+			// 		}
+			// 	}
+			// 	print '</td></tr>';
 
-				// Price minimum
-				print '<tr><td>'.$langs->trans("MinPrice").'</td><td>';
-				if ($usercancreadprice) {
-					if ($object->price_base_type == 'TTC') {
-						print price($object->price_min_ttc).' '.$langs->trans($object->price_base_type);
-					} else {
-						print price($object->price_min).' '.$langs->trans($object->price_base_type);
-					}
-				}
-				print '</td></tr>';
-			} else {
-				// Price
-				print '<tr><td>'.$langs->trans("SellingPrice").'</td><td>';
-				print '<span class="opacitymedium">'.$langs->trans("Variable").'</span>';
-				print '</td></tr>';
+			// 	// Price minimum
+			// 	print '<tr><td>'.$langs->trans("MinPrice").'</td><td>';
+			// 	if ($usercancreadprice) {
+			// 		if ($object->price_base_type == 'TTC') {
+			// 			print price($object->price_min_ttc).' '.$langs->trans($object->price_base_type);
+			// 		} else {
+			// 			print price($object->price_min).' '.$langs->trans($object->price_base_type);
+			// 		}
+			// 	}
+			// 	print '</td></tr>';
+			// } else {
+			// 	// Price
+			// 	print '<tr><td>'.$langs->trans("SellingPrice").'</td><td>';
+			// 	print '<span class="opacitymedium">'.$langs->trans("Variable").'</span>';
+			// 	print '</td></tr>';
 
-				// Price minimum
-				print '<tr><td>'.$langs->trans("MinPrice").'</td><td>';
-				print '<span class="opacitymedium">'.$langs->trans("Variable").'</span>';
-				print '</td></tr>';
-			}
+			// 	// Price minimum
+			// 	print '<tr><td>'.$langs->trans("MinPrice").'</td><td>';
+			// 	print '<span class="opacitymedium">'.$langs->trans("Variable").'</span>';
+			// 	print '</td></tr>';
+			// }
 
-			// Hook formObject
-			$parameters = array();
-			$reshook = $hookmanager->executeHooks('formObjectOptions', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
-			print $hookmanager->resPrint;
+			// // Hook formObject
+			// $parameters = array();
+			// $reshook = $hookmanager->executeHooks('formObjectOptions', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
+			// print $hookmanager->resPrint;
 
-			print '</table>';
+			// print '</table>';
 
-			print '</div>';
-			print '<div class="fichehalfright"><div class="underbanner clearboth"></div>';
+			// print '</div>';
+			print '<div class="fichehalfleft"><div class="underbanner clearboth"></div>';
 
 			print '<table class="border tableforfield centpercent">';
 
