@@ -298,13 +298,13 @@ if (isModEnabled('supplier_proposal') && $user->hasRight("supplier_proposal", "l
 				$total += (!empty($conf->global->MAIN_DASHBOARD_USE_TOTAL_HT) ? $obj->total_ht : $obj->total_ttc);
 			}
 
-			if ($othernb) {
-				print '<tr class="oddeven">';
-				print '<td class="nowrap" colspan="5">';
-				print '<span class="opacitymedium">'.$langs->trans("More").'...'.($othernb < $maxofloop ? ' ('.$othernb.')' : '').'</span>';
-				print '</td>';
-				print "</tr>\n";
-			}
+			// if ($othernb) {
+			// 	print '<tr class="oddeven">';
+			// 	print '<td class="nowrap" colspan="5">';
+			// 	print '<span class="opacitymedium">'.$langs->trans("More").'...'.($othernb < $maxofloop ? ' ('.$othernb.')' : '').'</span>';
+			// 	print '</td>';
+			// 	print "</tr>\n";
+			// }
 		}
 
 		addSummaryTableLine(3, $num, $nbofloop, $total, "NoProposal");
