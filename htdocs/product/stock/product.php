@@ -1214,46 +1214,46 @@ if (!$variants) {
 	}
 
 	// Total line
-	print '<tr class="liste_total"><td class="right liste_total" colspan="4">'.$langs->trans("Total").':</td>';
-	print '<td class="liste_total right">'.price2num($total, 'MS').'</td>';
-	print '<td class="liste_total right">';
-	if ($usercancreadprice) {
-		print ($totalwithpmp ? price(price2num($totalvalue / $totalwithpmp, 'MU')) : '&nbsp;'); // This value may have rounding errors
-	}
-	print '</td>';
-	// Value purchase
-	print '<td class="liste_total right">';
-	if ($usercancreadprice) {
-		print $totalvalue ? price(price2num($totalvalue, 'MT'), 1) : '&nbsp;';
-	}
-	print '</td>';
-	print '<td class="liste_total right">';
-	if ($num) {
-		if ($total) {
-			print '<span class="valignmiddle">';
-			if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
-				print $form->textwithpicto('', $langs->trans("Variable"));
-			} elseif ($usercancreadprice) {
-				print price($totalvaluesell / $total, 1);
-			}
-			print '</span>';
-		}
-	}
-	print '</td>';
-	// Value to sell
-	print '<td class="liste_total right amount">';
-	if ($num) {
-		print '<span class="valignmiddle">';
-		if (empty($conf->global->PRODUIT_MULTIPRICES) && $usercancreadprice) {
-			print price(price2num($totalvaluesell, 'MT'), 1);
-		} else {
-			print $form->textwithpicto('', $langs->trans("Variable"));
-		}
-		print '</span>';
-	}
-	print '</td>';
-	print '<td></td>';
-	print '<td></td>';
+	// print '<tr class="liste_total"><td class="right liste_total" colspan="4">'.$langs->trans("Total").':</td>';
+	// print '<td class="liste_total right">'.price2num($total, 'MS').'</td>';
+	// print '<td class="liste_total right">';
+	// if ($usercancreadprice) {
+	// 	print ($totalwithpmp ? price(price2num($totalvalue / $totalwithpmp, 'MU')) : '&nbsp;'); // This value may have rounding errors
+	// }
+	// print '</td>';
+	// // Value purchase
+	// print '<td class="liste_total right">';
+	// if ($usercancreadprice) {
+	// 	print $totalvalue ? price(price2num($totalvalue, 'MT'), 1) : '&nbsp;';
+	// }
+	// print '</td>';
+	// print '<td class="liste_total right">';
+	// if ($num) {
+	// 	if ($total) {
+	// 		print '<span class="valignmiddle">';
+	// 		if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
+	// 			print $form->textwithpicto('', $langs->trans("Variable"));
+	// 		} elseif ($usercancreadprice) {
+	// 			print price($totalvaluesell / $total, 1);
+	// 		}
+	// 		print '</span>';
+	// 	}
+	// }
+	// print '</td>';
+	// // Value to sell
+	// print '<td class="liste_total right amount">';
+	// if ($num) {
+	// 	print '<span class="valignmiddle">';
+	// 	if (empty($conf->global->PRODUIT_MULTIPRICES) && $usercancreadprice) {
+	// 		print price(price2num($totalvaluesell, 'MT'), 1);
+	// 	} else {
+	// 		print $form->textwithpicto('', $langs->trans("Variable"));
+	// 	}
+	// 	print '</span>';
+	// }
+	// print '</td>';
+	// print '<td></td>';
+	// print '<td></td>';
 	print "</tr>";
 
 	print "</table>";
