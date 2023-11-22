@@ -396,28 +396,28 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 				print dol_print_date($db->jdate($objp->datem), 'day', 'tzuserrel');
 				print "</td>";
 				// Sell price
-				// if (empty($conf->global->PRODUIT_MULTIPRICES)) {
-				// 	if (isModEnabled('dynamicprices') && !empty($objp->fk_price_expression)) {
-				// 		$product = new Product($db);
-				// 		$product->fetch($objp->rowid);
+				if (empty($conf->global->PRODUIT_MULTIPRICES)) {
+					if (isModEnabled('dynamicprices') && !empty($objp->fk_price_expression)) {
+						$product = new Product($db);
+						$product->fetch($objp->rowid);
 
-				// 		require_once DOL_DOCUMENT_ROOT.'/product/dynamic_price/class/price_parser.class.php';
-				// 		$priceparser = new PriceParser($db);
-				// 		$price_result = $priceparser->parseProduct($product);
-				// 		if ($price_result >= 0) {
-				// 			$objp->price = $price_result;
-				// 		}
-				// 	}
-				// 	print '<td class="nowraponall amount right">';
-				// 	if ($usercancreadprice) {
-				// 		if (isset($objp->price_base_type) && $objp->price_base_type == 'TTC') {
-				// 			print price($objp->price_ttc).' '.$langs->trans("TTC");
-				// 		} else {
-				// 			print price($objp->price).' '.$langs->trans("HT");
-				// 		}
-				// 	}
-				// 	print '</td>';
-				// }
+						require_once DOL_DOCUMENT_ROOT.'/product/dynamic_price/class/price_parser.class.php';
+						$priceparser = new PriceParser($db);
+						$price_result = $priceparser->parseProduct($product);
+						if ($price_result >= 0) {
+							$objp->price = $price_result;
+						}
+					}
+					print '<td class="nowraponall amount right">';
+					if ($usercancreadprice) {
+						if (isset($objp->price_base_type) && $objp->price_base_type == 'TTC') {
+							print price($objp->price_ttc).' '.$langs->trans("TTC");
+						} else {
+							print price($objp->price).' '.$langs->trans("HT");
+						}
+					}
+					print '</td>';
+				}
 				// print '<td class="right nowrap width25"><span class="statusrefsell">';
 				// print $product_static->LibStatut($objp->tosell, 3, 0);
 				// print "</span></td>";
