@@ -2026,6 +2026,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 	 var title = <?php echo json_encode($title); ?>;
 	 console.log("dol_get_fiche_head");
 	 console.log(links);
+	 console.log(title);
 	 </script>
 	<?php
 	// Show tabs
