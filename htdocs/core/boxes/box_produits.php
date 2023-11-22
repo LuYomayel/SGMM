@@ -92,12 +92,6 @@ class box_produits extends ModeleBoxes
 
 			// Obtener los depósitos a los que el usuario tiene acceso
 
-			?>
-			<script>
-				console.log(<?php echo $user->id ?>);
-			</script>
-			<?php
-
 			$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
 			$resql_restrict = $this->db->query($sql_restrict);
 
@@ -107,13 +101,6 @@ class box_produits extends ModeleBoxes
 					$allowed_entrepots[] = $obj->entrepot_id;
 				}
 			}
-
-
-			?>
-			<script>
-				console.log(<?php echo $allowed_entrepots ?>);
-			</script>
-			<?php
 
 			$sql = "SELECT p.rowid, p.label, p.ref, p.price, p.price_base_type, p.price_ttc, p.fk_product_type, p.tms, p.tosell, p.tobuy, p.fk_price_expression, p.entity";
 			$sql .= ", p.accountancy_code_sell";
@@ -126,7 +113,7 @@ class box_produits extends ModeleBoxes
 			$sql .= " FROM ".MAIN_DB_PREFIX."product as p";
 
 			// Asegúrate de unir la tabla que relaciona productos con depósitos
-			// $sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+			$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
 
 			$sql .= ' WHERE p.entity IN ('.getEntity($productstatic->element).')';
 
