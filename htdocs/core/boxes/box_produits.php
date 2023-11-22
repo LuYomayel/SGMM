@@ -112,7 +112,7 @@ class box_produits extends ModeleBoxes
 			$sql .= " FROM ".MAIN_DB_PREFIX."product as p";
 
 			// Asegúrate de unir la tabla que relaciona productos con depósitos
-			$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+			// $sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
 
 			$sql .= ' WHERE p.entity IN ('.getEntity($productstatic->element).')';
 
