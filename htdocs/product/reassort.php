@@ -604,8 +604,8 @@ if ($resql) {
 		print img_picto($langs->trans("StockMovement"), 'movement', 'class="pictofixedwidth"');
 		print '<a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?idproduct='.$product->id.'">'.$langs->trans("Movements").'</a>';
 		print '</td>';
-		print '<td class="right nowrap">'.$product->LibStatut($objp->statut, 5, 0).'</td>';
-		print '<td class="right nowrap">'.$product->LibStatut($objp->tobuy, 5, 1).'</td>';
+		// print '<td class="right nowrap">'.$product->LibStatut($objp->statut, 5, 0).'</td>';
+		// print '<td class="right nowrap">'.$product->LibStatut($objp->tobuy, 5, 1).'</td>';
 		// Fields from hook
 		$parameters = array('obj'=>$objp);
 		$reshook = $hookmanager->executeHooks('printFieldListValue', $parameters, $product); // Note that $action and $object may have been modified by hook
