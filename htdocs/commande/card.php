@@ -161,17 +161,8 @@ if (empty($reshook)) {
 			if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) {
 				$backtopage = $backurlforlist;
 			} else {
-				?>
-					<script>
-						console.log('backtopageforcancel');
-					</script>
-				<?php
-				$moreinheader = 'X-Dolibarr-Info: send_an_email by adherents/card.php'."\r\n";
-				$result = $object->sendEmail("texttosend", "subjecttosend", array(), array(), array(), "", "", 0, -1, '', $moreinheader);
-				if ($result < 0) {
-					$error++;
-					setEventMessages($object->error, $object->errors, 'errors');
-				}
+
+
 				$backtopage = DOL_URL_ROOT.'/commande/card.php?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
 			}
 		}
@@ -491,6 +482,17 @@ if (empty($reshook)) {
 						if ($reshook < 0) {
 							setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 							$error++;
+						}
+						?>
+							<script>
+								console.log('create');
+							</script>
+						<?php
+						$moreinheader = 'X-Dolibarr-Info: send_an_email by adherents/card.php'."\r\n";
+						$result = $object->sendEmail("texttosend", "subjecttosend", array(), array(), array(), "", "", 0, -1, '', $moreinheader);
+						if ($result < 0) {
+							$error++;
+							setEventMessages($object->error, $object->errors, 'errors');
 						}
 					} else {
 						setEventMessages($object->error, $object->errors, 'errors');
