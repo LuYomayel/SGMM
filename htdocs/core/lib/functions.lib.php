@@ -2020,6 +2020,13 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 		}
 	}
 
+	?>
+	 <script>
+	 var links = <?php echo json_encode($links); ?>;
+	 console.log("dol_get_fiche_head");
+	 console.log(links);
+	 </script>
+	<?php
 	// Show tabs
 	// if =0 we don't use the feature
 	if (empty($limittoshow)) {
