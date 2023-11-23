@@ -501,7 +501,7 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_units cu ON cu.rowid = p.fk_unit";
 }
 // Asegúrate de unir la tabla que relaciona productos con depósitos
-$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."stock_mouvement as sm ON sm.fk_product = p.rowid";
 
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 

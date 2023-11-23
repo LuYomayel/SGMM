@@ -164,7 +164,8 @@ $sql .= $hookmanager->resPrint;
 $sql .= ' FROM '.MAIN_DB_PREFIX.'product as p';
 $sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'product_stock as s ON p.rowid = s.fk_product';
 // Asegúrate de unir la tabla que relaciona productos con depósitos
-$sql .= " LEFT JOIN llx_stock_mouvement as sm ON sm.fk_product = p.rowid";
+$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."stock_mouvement as sm ON sm.fk_product = p.rowid";
+$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
 if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 	$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'c_units as u on p.fk_unit = u.rowid';
 }
@@ -176,6 +177,8 @@ $sql .= " WHERE p.entity IN (".getEntity('product').")";
 // Aplicar restricciones de depósito
 if (!empty($allowed_entrepots)) {
     $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+	// Restricción adicional para usuarios con acceso limitado a almacenes
+	$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 }
 if (!empty($search_categ) && $search_categ != '-1') {
 	$sql .= " AND ";
