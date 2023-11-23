@@ -681,11 +681,11 @@ class pdf_custom extends ModelePDFCommandes
 					// }
 
 					// Unit price before discount
-					if ($this->getColumnStatus('subprice')) {
-						$up_excl_tax = pdf_getlineupexcltax($object, $i, $outputlangs, $hidedetails);
-						$this->printStdColumnContent($pdf, $curY, 'subprice', $up_excl_tax);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('subprice')) {
+					// 	$up_excl_tax = pdf_getlineupexcltax($object, $i, $outputlangs, $hidedetails);
+					// 	$this->printStdColumnContent($pdf, $curY, 'subprice', $up_excl_tax);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Quantity
 					// Enough for 6 chars
@@ -697,32 +697,32 @@ class pdf_custom extends ModelePDFCommandes
 
 
 					// Unit
-					if ($this->getColumnStatus('unit')) {
-						$unit = pdf_getlineunit($object, $i, $outputlangs, $hidedetails, $hookmanager);
-						$this->printStdColumnContent($pdf, $curY, 'unit', $unit);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('unit')) {
+					// 	$unit = pdf_getlineunit($object, $i, $outputlangs, $hidedetails, $hookmanager);
+					// 	$this->printStdColumnContent($pdf, $curY, 'unit', $unit);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Discount on line
-					if ($this->getColumnStatus('discount') && $object->lines[$i]->remise_percent) {
-						$remise_percent = pdf_getlineremisepercent($object, $i, $outputlangs, $hidedetails);
-						$this->printStdColumnContent($pdf, $curY, 'discount', $remise_percent);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('discount') && $object->lines[$i]->remise_percent) {
+					// 	$remise_percent = pdf_getlineremisepercent($object, $i, $outputlangs, $hidedetails);
+					// 	$this->printStdColumnContent($pdf, $curY, 'discount', $remise_percent);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Total excl tax line (HT)
-					if ($this->getColumnStatus('totalexcltax')) {
-						$total_excl_tax = pdf_getlinetotalexcltax($object, $i, $outputlangs, $hidedetails);
-						$this->printStdColumnContent($pdf, $curY, 'totalexcltax', $total_excl_tax);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('totalexcltax')) {
+					// 	$total_excl_tax = pdf_getlinetotalexcltax($object, $i, $outputlangs, $hidedetails);
+					// 	$this->printStdColumnContent($pdf, $curY, 'totalexcltax', $total_excl_tax);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Total with tax line (TTC)
-					if ($this->getColumnStatus('totalincltax')) {
-						$total_incl_tax = pdf_getlinetotalwithtax($object, $i, $outputlangs, $hidedetails);
-						$this->printStdColumnContent($pdf, $curY, 'totalincltax', $total_incl_tax);
-						$nexY = max($pdf->GetY(), $nexY);
-					}
+					// if ($this->getColumnStatus('totalincltax')) {
+					// 	$total_incl_tax = pdf_getlinetotalwithtax($object, $i, $outputlangs, $hidedetails);
+					// 	$this->printStdColumnContent($pdf, $curY, 'totalincltax', $total_incl_tax);
+					// 	$nexY = max($pdf->GetY(), $nexY);
+					// }
 
 					// Extrafields
 					if (!empty($object->lines[$i]->array_options)) {
