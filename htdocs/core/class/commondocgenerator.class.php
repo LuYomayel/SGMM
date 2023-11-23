@@ -1600,7 +1600,12 @@ abstract class CommonDocGenerator
 				if (!$this->getColumnStatus($colKey)) {
 					continue;
 				}
-
+				?>
+					<script>
+						var colKey = <?php echo json_encode($colKey); ?>;
+						console.log("colKey:", colKey);
+					</script>
+				<?php
 				// get title label
 				$colDef['title']['label'] = !empty($colDef['title']['label']) ? $colDef['title']['label'] : $outputlangs->transnoentities($colDef['title']['textkey']);
 
@@ -1608,7 +1613,7 @@ abstract class CommonDocGenerator
 				if (!empty($colDef['border-left']) && isset($colDef['xStartPos'])) {
 					$pdf->line($colDef['xStartPos'], $tab_top, $colDef['xStartPos'], $tab_top + $tab_height);
 				}
-				$hidetop=true;
+
 				if (empty($hidetop)) {
 					// save curent cell padding
 					$curentCellPaddinds = $pdf->getCellPaddings();
