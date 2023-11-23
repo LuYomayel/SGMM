@@ -258,6 +258,8 @@ $sql .= " WHERE t.entity IN (".getEntity('stock').")";
 
 if (!empty($allowed_entrepots)) {
 	$sql .= " AND t.rowid IN (".implode(',', $allowed_entrepots).")";
+	// Restricción adicional para usuarios con acceso limitado a almacenes
+    $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 }
 foreach ($search as $key => $val) {
 	if (array_key_exists($key, $object->fields)) {
