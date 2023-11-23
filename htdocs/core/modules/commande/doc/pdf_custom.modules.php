@@ -865,7 +865,7 @@ class pdf_custom extends ModelePDFCommandes
 				$posy = $this->drawInfoTable($pdf, $object, $bottomlasttab, $outputlangs);
 
 				// Display total zone
-				$posy = $this->drawTotalTable($pdf, $object, $deja_regle, $bottomlasttab, $outputlangs);
+				// $posy = $this->drawTotalTable($pdf, $object, $deja_regle, $bottomlasttab, $outputlangs);
 
 				// Affiche zone versements
 				/*
