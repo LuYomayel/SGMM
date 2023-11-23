@@ -483,17 +483,16 @@ if (empty($reshook)) {
 							setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 							$error++;
 						}
-						?>
-							<script>
-								console.log('create');
-							</script>
-						<?php
-						$moreinheader = 'X-Dolibarr-Info: send_an_email by adherents/card.php'."\r\n";
-						$result = $object->sendEmail("texttosend", "subjecttosend", array(), array(), array(), "", "", 0, -1, '', $moreinheader);
-						if ($result < 0) {
-							$error++;
-							setEventMessages($object->error, $object->errors, 'errors');
-						}
+
+
+
+
+						// $moreinheader = 'X-Dolibarr-Info: send_an_email by adherents/card.php'."\r\n";
+						// $result = $object->sendEmail("texttosend", "subjecttosend", array(), array(), array(), "", "", 0, -1, '', $moreinheader);
+						// if ($result < 0) {
+						// 	$error++;
+						// 	setEventMessages($object->error, $object->errors, 'errors');
+						// }
 					} else {
 						setEventMessages($object->error, $object->errors, 'errors');
 						$error++;
