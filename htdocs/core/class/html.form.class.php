@@ -2716,6 +2716,8 @@ class Form
 		}
 
 		$sql .= " FROM ".$this->db->prefix()."product as p";
+		$sql .= " LEFT JOIN " . $this->db->prefix() . "product_extrafields as ef on (p.rowid = ef.fk_object)";
+
 		// Add from (left join) from hooks
 		$parameters = array();
 		$reshook = $hookmanager->executeHooks('selectProductsListFrom', $parameters); // Note that $action and $object may have been modified by hook
@@ -2767,6 +2769,7 @@ class Form
 		if (!empty($allowed_entrepots)) {
 
 			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
+			$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 'premium')";
 		}
 
 		if (!empty($conf->global->PRODUIT_ATTRIBUTES_HIDECHILD)) {
