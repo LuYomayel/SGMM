@@ -2769,7 +2769,7 @@ class Form
 		if (!empty($allowed_entrepots)) {
 
 			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
-			$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 'premium')";
+			$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 		}
 
 		if (!empty($conf->global->PRODUIT_ATTRIBUTES_HIDECHILD)) {

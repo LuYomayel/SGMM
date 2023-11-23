@@ -251,7 +251,7 @@ $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_stock as ps ON t.rowid = ps.fk_ent
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product as p ON ps.fk_product = p.rowid";
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_departements as c_dep ON c_dep.rowid = t.fk_departement";
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_country as ccount ON ccount.rowid = t.fk_pays";
-$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
+// $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
 if ($separatedPMP) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_perentity as pa ON pa.fk_product = p.rowid AND pa.fk_product = ps.fk_product AND pa.entity = ". (int) $conf->entity;
 }
@@ -260,7 +260,7 @@ $sql .= " WHERE t.entity IN (".getEntity('stock').")";
 if (!empty($allowed_entrepots)) {
 	$sql .= " AND t.rowid IN (".implode(',', $allowed_entrepots).")";
 	// Restricción adicional para usuarios con acceso limitado a almacenes
-    $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
+    // $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 }
 foreach ($search as $key => $val) {
 	if (array_key_exists($key, $object->fields)) {
