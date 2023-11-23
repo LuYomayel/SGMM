@@ -1560,7 +1560,7 @@ abstract class CommonDocGenerator
 	 *  @param	string		$colKey    		the column key
 	 *  @return	boolean						true if column on
 	 */
-	public function getColumnStatus($colKey)
+	public function getColumnStatus1($colKey)
 	{
 		if (!empty($this->cols[$colKey]['status'])) {
 			return true;
@@ -1568,6 +1568,19 @@ abstract class CommonDocGenerator
 			return  false;
 		}
 	}
+	// Esta función devuelve true si la columna actual está activada
+	public function getColumnStatus($colKey)
+{
+    // Lista de columnas para las que la función devolverá true
+    $allowedColumns = ['qty', 'desc'];
+
+    // Comprobar si la columna actual está en la lista de columnas permitidas
+    if (in_array($colKey, $allowedColumns)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 	/**
 	 * Print standard column content
