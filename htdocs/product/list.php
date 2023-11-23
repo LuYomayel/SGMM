@@ -510,7 +510,7 @@ $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 if (!empty($allowed_entrepots)) {
     $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
 	// Restricción adicional para usuarios con acceso limitado a almacenes
-    $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 'premium')";
+    $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 }
 
 if ($sall) {
