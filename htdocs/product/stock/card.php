@@ -669,6 +669,16 @@ if ($action == 'create') {
 			if (!empty($conf->global->MULTICOMPANY_PRODUCT_SHARING_ENABLED) && !empty($conf->global->MULTICOMPANY_PMP_PER_ENTITY_ENABLED)) {
 				$separatedPMP = true;
 			}
+			// Obtener los depósitos a los que el usuario tiene acceso
+			$sql_restrict = "SELECT entrepot_id FROM llx_user_warehouse_restrictions WHERE user_id = ".$user->id;
+			$resql_restrict = $db->query($sql_restrict);
+
+			$allowed_entrepots = [];
+			if ($resql_restrict) {
+				while ($obj = $db->fetch_object($resql_restrict)) {
+					$allowed_entrepots[] = $obj->entrepot_id;
+				}
+			}
 
 			$sql = "SELECT p.rowid as rowid, p.ref, p.label as produit, p.tobatch, p.fk_product_type as type, p.price, p.price_ttc, p.entity,";
 			$sql .= "p.tosell, p.tobuy,";
@@ -701,7 +711,13 @@ if ($action == 'create') {
 				$sql .= ", ".MAIN_DB_PREFIX."product_perentity as pa";
 			}
 
+			$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
+
 			$sql .= " WHERE ps.fk_product = p.rowid";
+			if (!empty($allowed_entrepots)) {
+				// Restricción adicional para usuarios con acceso limitado a almacenes
+				$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
+			}
 			$sql .= " AND ps.reel <> 0"; // We do not show if stock is 0 (no product in this warehouse)
 			$sql .= " AND ps.fk_entrepot = ".((int) $object->id);
 
