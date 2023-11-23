@@ -485,6 +485,7 @@ if (!empty($conf->global->MAIN_PRODUCT_PERENTITY_SHARED)) {
 }
 if (!empty($extrafields->attributes[$object->table_element]['label']) && is_array($extrafields->attributes[$object->table_element]['label']) && count($extrafields->attributes[$object->table_element]['label'])) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
+
 }
 $linktopfp = " LEFT JOIN ".MAIN_DB_PREFIX."product_fournisseur_price as pfp ON p.rowid = pfp.fk_product";
 $sql .= $linktopfp;
@@ -508,6 +509,8 @@ $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 // Aplicar restricciones de depósito
 if (!empty($allowed_entrepots)) {
     $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+	// Restricción adicional para usuarios con acceso limitado a almacenes
+    $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 'premium')";
 }
 
 if ($sall) {
