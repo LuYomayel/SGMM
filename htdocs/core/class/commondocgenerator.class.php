@@ -1608,7 +1608,7 @@ abstract class CommonDocGenerator
 				if (!empty($colDef['border-left']) && isset($colDef['xStartPos'])) {
 					$pdf->line($colDef['xStartPos'], $tab_top, $colDef['xStartPos'], $tab_top + $tab_height);
 				}
-
+				$hidetop=true;
 				if (empty($hidetop)) {
 					// save curent cell padding
 					$curentCellPaddinds = $pdf->getCellPaddings();
