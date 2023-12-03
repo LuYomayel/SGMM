@@ -534,6 +534,7 @@ if (empty($reshook)) {
 
 				?>
 				<script>
+					console.log('creacion de pedido')
 					alert("Se ha creado un nuevo pedido con ID: <?php echo $object_id; ?>");
 				</script>
 				<?php
