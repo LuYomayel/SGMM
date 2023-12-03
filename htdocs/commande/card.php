@@ -354,6 +354,22 @@ if (empty($reshook)) {
 
 						dol_syslog("Try to find source object origin=".$object->origin." originid=".$object->origin_id." to add lines");
 						$result = $srcobject->fetch($object->origin_id);
+
+						// Aquí se coloca la lógica de envío de correo electrónico
+						$recipients = ["l.yomayel@gmail.com", "yomayelluciano@gmail.com"]; // Define los destinatarios
+						$subject = "Nuevo Pedido Creado"; // Asunto del correo
+						$message = "Se ha creado un nuevo pedido con ID: " . $object_id; // Mensaje del correo
+
+						?>
+						<script>
+							alert("Se ha creado un nuevo pedido con ID: <?php echo $object_id; ?>");
+						</script>
+						<?php
+						// Envía el correo a cada destinatario
+						foreach ($recipients as $recipient) {
+							mail($recipient, $subject, $message);
+						}
+
 						if ($result > 0) {
 							$lines = $srcobject->lines;
 							if (empty($lines) && method_exists($srcobject, 'fetch_lines')) {
