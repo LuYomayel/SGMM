@@ -209,7 +209,8 @@ class FormProduct
 		if (preg_match('/warehouseinternal/', $status)) {
 			$warehouseStatus[] = Entrepot::STATUS_OPEN_INTERNAL;
 		}
-
+		echo '<script>console.log(HOLA);</script>';
+		echo '<script>console.log(' . json_encode($idPedido) . ');</script>';
 		// Añadir consulta para obtener el usuario que creó el pedido
 		$sqlUser = "SELECT fk_user_author FROM llx_commande WHERE rowid = " . $idPedido;
 		$resqlUser = $this->db->query($sqlUser);
