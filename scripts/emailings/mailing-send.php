@@ -124,7 +124,7 @@ if ($resql) {
 
 			dol_syslog("Process mailing with id ".$obj->rowid);
 			print "Process mailing with id ".$obj->rowid."\n";
-
+			echo "<script type='text/javascript'>console.log('".$obj->rowid."');</script>";
 			$emailing = new Mailing($db);
 			$emailing->fetch($obj->rowid);
 

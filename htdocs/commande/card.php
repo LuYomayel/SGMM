@@ -527,21 +527,6 @@ if (empty($reshook)) {
 			// End of object creation, we show it
 			if ($object_id > 0 && !$error) {
 				$db->commit();
-				// Aquí se coloca la lógica de envío de correo electrónico
-				$recipients = ["l.yomayel@gmail.com", "yomayelluciano@gmail.com"]; // Define los destinatarios
-				$subject = "Nuevo Pedido Creado"; // Asunto del correo
-				$message = "Se ha creado un nuevo pedido con ID: " . $object_id; // Mensaje del correo
-
-				?>
-				<script>
-					console.log('creacion de pedido')
-					alert("Se ha creado un nuevo pedido con ID: <?php echo $object_id; ?>");
-				</script>
-				<?php
-				// Envía el correo a cada destinatario
-				foreach ($recipients as $recipient) {
-					mail($recipient, $subject, $message);
-				}
 				header('Location: '.$_SERVER["PHP_SELF"].'?id='.$object_id);
 				exit();
 			} else {
