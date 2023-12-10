@@ -2321,6 +2321,14 @@ if ($action == 'create' && $usercancreate) {
 			}
 
 			if (!$error) {
+				?>
+				<script type="text/javascript">
+					console.log(json_encode($formquestion))
+				</script>
+				<?php
+
+echo '<script>console.log(' . json_encode($formquestion) . ');</script>';
+
 				$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('ValidateOrder'), $text, 'confirm_validate', $formquestion, 0, 1, 220);
 			}
 		}
