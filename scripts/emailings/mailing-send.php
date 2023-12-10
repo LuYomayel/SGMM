@@ -185,7 +185,7 @@ if ($resql) {
 						$now = dol_now();
 
 						$obj = $db->fetch_object($resql2);
-						echo "Send email to ".$obj."\n";
+						echo "<script type='text/javascript'>console.log('".$obj."');</script>";
 						// sendto en RFC2822
 						$sendto = str_replace(',', ' ', dolGetFirstLastname($obj->firstname, $obj->lastname)." <".$obj->email.">");
 
