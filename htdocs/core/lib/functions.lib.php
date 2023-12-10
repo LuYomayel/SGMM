@@ -7935,7 +7935,8 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				$substitutionarray['__RECEPTIONTRACKNUMURL__'] = 'Shipping tracking url';
 			}
 		} else {
-			$substitutionarray['__ID__'] = $object->id;
+			// $substitutionarray['__ID__'] = $object->id;
+			$substitutionarray['__ID__'] = 'HOLAAA';
 			$substitutionarray['__REF__'] = $object->ref;
 			$substitutionarray['__NEWREF__'] = $object->newref;
 			$substitutionarray['__LABEL__'] = (isset($object->label) ? $object->label : (isset($object->title) ? $object->title : null));
