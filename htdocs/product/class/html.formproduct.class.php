@@ -542,7 +542,7 @@ class FormProduct
 	 *
 	 *  @throws Exception
 	 */
-	public function selectWarehousesByIdPedido($idPedido, $selected = '', $htmlname = 'idwarehouse', $filterstatus = '', $empty = 0, $disabled = 0, $fk_product = 0, $empty_label = '', $showstock = 0, $forcecombo = 0, $events = array(), $morecss = 'minwidth200', $exclude = array(), $showfullpath = 1, $stockMin = false, $orderBy = 'e.ref', $multiselect = 0)
+	public function selectWarehousesByIdPedido($selected = '', $htmlname = 'idwarehouse', $idPedido,  $filterstatus = '', $empty = 0, $disabled = 0, $fk_product = 0, $empty_label = '', $showstock = 0, $forcecombo = 0, $events = array(), $morecss = 'minwidth200', $exclude = array(), $showfullpath = 1, $stockMin = false, $orderBy = 'e.ref', $multiselect = 0)
 	{
 		global $conf, $langs, $user, $hookmanager;
 
