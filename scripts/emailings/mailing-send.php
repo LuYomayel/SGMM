@@ -218,7 +218,7 @@ if ($resql) {
 								$substitutionarray['__THIRDPARTY_CUSTOMER_CODE__'] = '';
 							}
 						}
-						$substitutionarray['__EMAIL__'] = $obj->email;
+						$substitutionarray['__EMAILLLLLLL__'] = $obj->email;
 						$substitutionarray['__LASTNAME__'] = $obj->lastname;
 						$substitutionarray['__FIRSTNAME__'] = $obj->firstname;
 						$substitutionarray['__MAILTOEMAIL__'] = '<a href="mailto:'.$obj->email.'">'.$obj->email.'</a>';
