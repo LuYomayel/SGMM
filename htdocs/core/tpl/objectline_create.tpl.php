@@ -192,32 +192,32 @@ if ($nolinesbefore) {
 				}
 			}
 			// Free line
-			echo '<span class="prod_entry_mode_free">';
-			// Show radio free line
-			if ($forceall >= 0 && (isModEnabled("product") || isModEnabled("service"))) {
-				echo '<label for="prod_entry_mode_free">';
-				echo '<input type="radio" class="prod_entry_mode_free" name="prod_entry_mode" id="prod_entry_mode_free" value="free"';
-				//echo (GETPOST('prod_entry_mode')=='free' ? ' checked' : ((empty($forceall) && (!isModEnabled('product') || !isModEnabled('service')))?' checked':'') );
-				echo ((GETPOST('prod_entry_mode', 'alpha') == 'free' || !empty($conf->global->MAIN_FREE_PRODUCT_CHECKED_BY_DEFAULT)) ? ' checked' : '');
-				echo '> ';
-				// Show type selector
-				echo '<span class="textradioforitem">'.$langs->trans("FreeLineOfType").'</span>';
-				echo '</label>';
-				echo ' ';
-			} else {
-				echo '<input type="hidden" id="prod_entry_mode_free" name="prod_entry_mode" value="free">';
-				// Show type selector
-				if ($forceall >= 0) {
-					if (!isModEnabled('product') || !isModEnabled('service')) {
-						echo $langs->trans("Type");
-					} else {
-						echo $langs->trans("FreeLineOfType");
-					}
-					echo ' ';
-				}
-			}
-			$form->select_type_of_lines(GETPOSTISSET("type") ? GETPOST("type", 'alpha', 2) : -1, 'type', 1, 1, $forceall);
-			echo '</span>';
+			// echo '<span class="prod_entry_mode_free">';
+			// // Show radio free line
+			// if ($forceall >= 0 && (isModEnabled("product") || isModEnabled("service"))) {
+			// 	echo '<label for="prod_entry_mode_free">';
+			// 	echo '<input type="radio" class="prod_entry_mode_free" name="prod_entry_mode" id="prod_entry_mode_free" value="free"';
+			// 	//echo (GETPOST('prod_entry_mode')=='free' ? ' checked' : ((empty($forceall) && (!isModEnabled('product') || !isModEnabled('service')))?' checked':'') );
+			// 	echo ((GETPOST('prod_entry_mode', 'alpha') == 'free' || !empty($conf->global->MAIN_FREE_PRODUCT_CHECKED_BY_DEFAULT)) ? ' checked' : '');
+			// 	echo '> ';
+			// 	// Show type selector
+			// 	echo '<span class="textradioforitem">'.$langs->trans("FreeLineOfType").'</span>';
+			// 	echo '</label>';
+			// 	echo ' ';
+			// } else {
+			// 	echo '<input type="hidden" id="prod_entry_mode_free" name="prod_entry_mode" value="free">';
+			// 	// Show type selector
+			// 	if ($forceall >= 0) {
+			// 		if (!isModEnabled('product') || !isModEnabled('service')) {
+			// 			echo $langs->trans("Type");
+			// 		} else {
+			// 			echo $langs->trans("FreeLineOfType");
+			// 		}
+			// 		echo ' ';
+			// 	}
+			// }
+			// $form->select_type_of_lines(GETPOSTISSET("type") ? GETPOST("type", 'alpha', 2) : -1, 'type', 1, 1, $forceall);
+			// echo '</span>';
 		}
 		// Predefined product/service
 		if (isModEnabled("product") || isModEnabled("service")) {
