@@ -554,7 +554,7 @@ class FormProduct
 		if (!empty($fk_product) && $fk_product > 0) {
 			$this->cache_warehouses = array();
 		}
-
+		echo '<script>console.log(' . json_encode($idPedido) . ');</script>';
 		$this->loadWarehousesByIdPedido($idPedido, $fk_product, '', $filterstatus, true, $exclude, $stockMin, $orderBy);
 		$nbofwarehouses = count($this->cache_warehouses);
 
