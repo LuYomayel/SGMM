@@ -211,7 +211,7 @@ class FormProduct
 		}
 		echo "idPedido: ".$idPedido;
 		echo '<script>console.log(' . json_encode($idPedido) . ');</script>';
-		Añadir consulta para obtener el usuario que creó el pedido
+		// Añadir consulta para obtener el usuario que creó el pedido
 		$sqlUser = "SELECT fk_user_author FROM llx_commande WHERE rowid = " . $idPedido;
 		$resqlUser = $this->db->query($sqlUser);
 		if ($resqlUser) {
