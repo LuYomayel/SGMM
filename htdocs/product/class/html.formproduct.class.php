@@ -239,7 +239,7 @@ class FormProduct
 			}
 		}
 		$sql .= " WHERE e.entity IN (".getEntity('stock').")";
-		$sql .= " AND uwr.user_id = " . $idUser;
+		$sql .= " AND (uwr.user_id IS NOT NULL OR " . $idUser . " IS NULL)";
 		if (count($warehouseStatus)) {
 			$sql .= " AND e.statut IN (".$this->db->sanitize(implode(',', $warehouseStatus)).")";
 		} else {
