@@ -219,6 +219,11 @@ class FormProduct
 			$idUser = $objUser->fk_user_author;
 		}
 		echo "idUser: ".$idUser;
+		$sqlCheckRestrictions = "SELECT COUNT(*) as count FROM llx_user_warehouse_restrictions WHERE user_id = " . $idUser;
+		$resqlCheckRestrictions = $this->db->query($sqlCheckRestrictions);
+		$objRestrictions = $this->db->fetch_object($resqlCheckRestrictions);
+
+
 		$sql = "SELECT e.rowid, e.ref as label, e.description, e.fk_parent";
 		if (!empty($fk_product) && $fk_product > 0) {
 			if (!empty($batch)) {
@@ -241,8 +246,11 @@ class FormProduct
 		}
 		$sql .= " WHERE e.entity IN (".getEntity('stock').")";
 
-		// $sql .= " AND uwr.user_id = " . $idUser;
-		$sql .= " AND (uwr.user_id = " . $idUser . " OR uwr.user_id IS NULL)";
+		echo "objRestrictions->count: ".$objRestrictions->count;
+		if ($objRestrictions->count > 0) {
+			// El usuario tiene restricciones, aplicar el filtro en la consulta de almacenes
+			$sql .= " AND uwr.user_id = " . $idUser;
+		}
 		if (count($warehouseStatus)) {
 			$sql .= " AND e.statut IN (".$this->db->sanitize(implode(',', $warehouseStatus)).")";
 		} else {
