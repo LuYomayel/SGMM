@@ -174,6 +174,133 @@ class FormProduct
 	}
 
 	/**
+	 * Load in cache array list of warehouses
+	 * If fk_product is not 0, we do not use cache
+	 *
+	 * @param	int		    $fk_product			Add quantity of stock in label for product with id fk_product. Nothing if 0.
+	 * @param	string	    $batch				Add quantity of batch stock in label for product with batch name batch, batch name precedes batch_id. Nothing if ''.
+	 * @param	string	    $status				warehouse status filter, following comma separated filter options can be used
+	 *                      				    'warehouseopen' = select products from open warehouses,
+	 *                      				    'warehouseclosed' = select products from closed warehouses,
+	 *                      				    'warehouseinternal' = select products from warehouses for internal correct/transfer only
+	 * @param	boolean	    $sumStock		    sum total stock of a warehouse, default true
+	 * @param	array       $exclude            warehouses ids to exclude
+	 * @param   bool|int    $stockMin           [=false] Value of minimum stock to filter or false not not filter by minimum stock
+	 * @param   string      $orderBy            [='e.ref'] Order by
+	 * @return  int                             Nb of loaded lines, 0 if already loaded, <0 if KO
+	 * @throws  Exception
+	 */
+	public function loadWarehousesByIdPedido($idPedido, $fk_product = 0, $batch = '', $status = '', $sumStock = true, $exclude = array(), $stockMin = false, $orderBy = 'e.ref')
+	{
+		global $conf, $langs;
+
+		if (empty($fk_product) && count($this->cache_warehouses)) {
+			return 0; // Cache already loaded and we do not want a list with information specific to a product
+		}
+
+		$warehouseStatus = array();
+
+		if (preg_match('/warehouseclosed/', $status)) {
+			$warehouseStatus[] = Entrepot::STATUS_CLOSED;
+		}
+		if (preg_match('/warehouseopen/', $status)) {
+			$warehouseStatus[] = Entrepot::STATUS_OPEN_ALL;
+		}
+		if (preg_match('/warehouseinternal/', $status)) {
+			$warehouseStatus[] = Entrepot::STATUS_OPEN_INTERNAL;
+		}
+
+		// Añadir consulta para obtener el usuario que creó el pedido
+		$sqlUser = "SELECT fk_user_author FROM llx_commande WHERE rowid = " . $idPedido;
+		$resqlUser = $this->db->query($sqlUser);
+		if ($resqlUser) {
+			$objUser = $this->db->fetch_object($resqlUser);
+			$idUser = $objUser->fk_user_author;
+		}
+
+		$sql = "SELECT e.rowid, e.ref as label, e.description, e.fk_parent";
+		if (!empty($fk_product) && $fk_product > 0) {
+			if (!empty($batch)) {
+				$sql .= ", pb.qty as stock";
+			} else {
+				$sql .= ", ps.reel as stock";
+			}
+		} elseif ($sumStock) {
+			$sql .= ", sum(ps.reel) as stock";
+		}
+		$sql .= " FROM ".$this->db->prefix()."entrepot as e";
+		$sql .= " LEFT JOIN ".$this->db->prefix()."product_stock as ps on ps.fk_entrepot = e.rowid";
+		$sql .= " LEFT JOIN ".$this->db->prefix()."user_warehouse_restrictions as uwr ON e.rowid = uwr.entrepot_id";
+		if (!empty($fk_product) && $fk_product > 0) {
+			$sql .= " AND ps.fk_product = ".((int) $fk_product);
+			if (!empty($batch)) {
+				$sql .= " LEFT JOIN ".$this->db->prefix()."product_batch as pb on pb.fk_product_stock = ps.rowid AND pb.batch = '".$this->db->escape($batch)."'";
+			}
+		}
+		$sql .= " WHERE e.entity IN (".getEntity('stock').")";
+		$sql .= " AND uwr.user_id = " . $idUser;
+		if (count($warehouseStatus)) {
+			$sql .= " AND e.statut IN (".$this->db->sanitize(implode(',', $warehouseStatus)).")";
+		} else {
+			$sql .= " AND e.statut = 1";
+		}
+
+		if (is_array($exclude) && !empty($exclude)) {
+			$sql .= ' AND e.rowid NOT IN('.$this->db->sanitize(implode(',', $exclude)).')';
+		}
+
+		// minimum stock
+		if ($stockMin !== false) {
+			if (!empty($fk_product) && $fk_product > 0) {
+				if (!empty($batch)) {
+					$sql .= " AND pb.qty > ".((float) $stockMin);
+				} else {
+					$sql .= " AND ps.reel > ".((float) $stockMin);
+				}
+			}
+		}
+
+		if ($sumStock && empty($fk_product)) {
+			$sql .= " GROUP BY e.rowid, e.ref, e.description, e.fk_parent";
+
+			// minimum stock
+			if ($stockMin !== false) {
+				$sql .= " HAVING sum(ps.reel) > ".((float) $stockMin);
+			}
+		}
+		$sql .= " ORDER BY ".$orderBy;
+
+		dol_syslog(get_class($this).'::loadWarehouses', LOG_DEBUG);
+		$resql = $this->db->query($sql);
+		if ($resql) {
+			$num = $this->db->num_rows($resql);
+			$i = 0;
+			while ($i < $num) {
+				$obj = $this->db->fetch_object($resql);
+				if ($sumStock) {
+					$obj->stock = price2num($obj->stock, 5);
+				}
+				$this->cache_warehouses[$obj->rowid]['id'] = $obj->rowid;
+				$this->cache_warehouses[$obj->rowid]['label'] = $obj->label;
+				$this->cache_warehouses[$obj->rowid]['parent_id'] = $obj->fk_parent;
+				$this->cache_warehouses[$obj->rowid]['description'] = $obj->description;
+				$this->cache_warehouses[$obj->rowid]['stock'] = $obj->stock;
+				$i++;
+			}
+
+			// Full label init
+			foreach ($this->cache_warehouses as $obj_rowid => $tab) {
+				$this->cache_warehouses[$obj_rowid]['full_label'] = $this->get_parent_path($tab);
+			}
+
+			return $num;
+		} else {
+			dol_print_error($this->db);
+			return -1;
+		}
+	}
+
+	/**
 	 * Load in cache array list of workstations
 	 * If fk_product is not 0, we do not use cache
 	 *
@@ -298,6 +425,137 @@ class FormProduct
 		}
 
 		$this->loadWarehouses($fk_product, '', $filterstatus, true, $exclude, $stockMin, $orderBy);
+		$nbofwarehouses = count($this->cache_warehouses);
+
+		if ($conf->use_javascript_ajax && !$forcecombo) {
+			include_once DOL_DOCUMENT_ROOT.'/core/lib/ajax.lib.php';
+			$comboenhancement = ajax_combobox($htmlname, $events);
+			$out .= $comboenhancement;
+		}
+
+		if (strpos($htmlname, 'search_') !== 0) {
+			if (empty($user->fk_warehouse) || $user->fk_warehouse == -1) {
+				if (is_scalar($selected) && ($selected == '-2' || $selected == 'ifone') && !empty($conf->global->MAIN_DEFAULT_WAREHOUSE)) {
+					$selected = $conf->global->MAIN_DEFAULT_WAREHOUSE;
+				}
+			} else {
+				if (is_scalar($selected) && ($selected == '-2' || $selected == 'ifone') && !empty($conf->global->MAIN_DEFAULT_WAREHOUSE_USER)) {
+					$selected = $user->fk_warehouse;
+				}
+			}
+		}
+
+		$out .= '<select '.($multiselect ? 'multiple ' : '').'class="flat'.($morecss ? ' '.$morecss : '').'"'.($disabled ? ' disabled' : '');
+		$out .= ' id="'.$htmlname.'" name="'.($htmlname.($multiselect?'[]':'').($disabled ? '_disabled' : '')).'"';
+		//$out .= ' placeholder="todo"'; 	// placeholder for select2 must be added by setting the id+placeholder js param when calling select2
+		$out .= '>';
+		if ($empty) {
+			$out .= '<option value="-1">'.($empty_label ? $empty_label : '&nbsp;').'</option>';
+		}
+		foreach ($this->cache_warehouses as $id => $arraytypes) {
+			$label = '';
+			if ($showfullpath) {
+				$label .= $arraytypes['full_label'];
+			} else {
+				$label .= $arraytypes['label'];
+			}
+			if (($fk_product || ($showstock > 0)) && ($arraytypes['stock'] != 0 || ($showstock > 0))) {
+				if ($arraytypes['stock'] <= 0) {
+					$label .= ' <span class="text-warning">('.$langs->trans("Stock").':'.$arraytypes['stock'].')</span>';
+				} else {
+					$label .= ' <span class="opacitymedium">('.$langs->trans("Stock").':'.$arraytypes['stock'].')</span>';
+				}
+			}
+
+			$out .= '<option value="'.$id.'"';
+			if (is_array($selected)) {
+				if (in_array($id, $selected)) {
+					$out .= ' selected';
+				}
+			} else {
+				if ($selected == $id || (preg_match('/^ifone/', $selected) && $nbofwarehouses == 1)) {
+					$out .= ' selected';
+				}
+			}
+			$out .= ' data-html="'.dol_escape_htmltag($label).'"';
+			$out .= '>';
+			$out .= $label;
+			$out .= '</option>';
+		}
+		$out .= '</select>';
+		if ($disabled) {
+			$out .= '<input type="hidden" name="'.$htmlname.'" value="'.(($selected > 0) ? $selected : '').'">';
+		}
+
+		$parameters = array(
+			'selected' => $selected,
+			'htmlname' => $htmlname,
+			'filterstatus' => $filterstatus,
+			'empty' => $empty,
+			'disabled ' => $disabled,
+			'fk_product' => $fk_product,
+			'empty_label' => $empty_label,
+			'showstock' => $showstock,
+			'forcecombo' => $forcecombo,
+			'events' => $events,
+			'morecss' => $morecss,
+			'exclude' => $exclude,
+			'showfullpath' => $showfullpath,
+			'stockMin' => $stockMin,
+			'orderBy' => $orderBy
+		);
+
+		$reshook = $hookmanager->executeHooks('selectWarehouses', $parameters, $this);
+		if ($reshook > 0) {
+			$out = $hookmanager->resPrint;
+		} elseif ($reshook == 0) {
+			$out .= $hookmanager->resPrint;
+		}
+
+		return $out;
+	}
+
+	/**
+	 *  Return list of warehouses by id pedido
+	 *
+	 *  @param  string|int|array  $selected           Id of preselected warehouse ('' or '-1' for no value, 'ifone' and 'ifonenodefault' = select value if one value otherwise no value, '-2' to use the default value from setup)
+	 *  @param  string      $htmlname           Name of html select html
+	 *  @param  string      $filterstatus       warehouse status filter, following comma separated filter options can be used
+	 *                                          'warehouseopen' = select products from open warehouses,
+	 *                                          'warehouseclosed' = select products from closed warehouses,
+	 *                                          'warehouseinternal' = select products from warehouses for internal correct/transfer only
+	 *  @param  int		    $empty			    1=Can be empty, 0 if not
+	 * 	@param	int		    $disabled		    1=Select is disabled
+	 * 	@param	int		    $fk_product		    Add quantity of stock in label for product with id fk_product. Nothing if 0.
+	 *  @param	string	    $empty_label	    Empty label if needed (only if $empty=1)
+	 *  @param	int		    $showstock		    1=Show stock count
+	 *  @param	int	    	$forcecombo		    1=Force combo iso ajax select2
+	 *  @param	array	    $events			    Events to add to select2
+	 *  @param  string      $morecss            Add more css classes to HTML select
+	 *  @param	array	    $exclude            Warehouses ids to exclude
+	 *  @param  int         $showfullpath       1=Show full path of name (parent ref into label), 0=Show only ref of current warehouse
+	 *  @param  bool|int    $stockMin           [=false] Value of minimum stock to filter or false not not filter by minimum stock
+	 *  @param  string      $orderBy            [='e.ref'] Order by
+	 *  @param	int			$multiselect		1=Allow multiselect
+	 * 	@return string					        HTML select
+	 *
+	 *  @throws Exception
+	 */
+	public function selectWarehousesByIdPedido($idPedido, $selected = '', $htmlname = 'idwarehouse', $filterstatus = '', $empty = 0, $disabled = 0, $fk_product = 0, $empty_label = '', $showstock = 0, $forcecombo = 0, $events = array(), $morecss = 'minwidth200', $exclude = array(), $showfullpath = 1, $stockMin = false, $orderBy = 'e.ref', $multiselect = 0)
+	{
+		global $conf, $langs, $user, $hookmanager;
+
+		dol_syslog(get_class($this)."::selectWarehouses $selected, $htmlname, $filterstatus, $empty, $disabled, $fk_product, $empty_label, $showstock, $forcecombo, $morecss", LOG_DEBUG);
+
+		$out = '';
+		if (empty($conf->global->ENTREPOT_EXTRA_STATUS)) {
+			$filterstatus = '';
+		}
+		if (!empty($fk_product) && $fk_product > 0) {
+			$this->cache_warehouses = array();
+		}
+
+		$this->loadWarehousesByIdPedido($idPedido, $fk_product, '', $filterstatus, true, $exclude, $stockMin, $orderBy);
 		$nbofwarehouses = count($this->cache_warehouses);
 
 		if ($conf->use_javascript_ajax && !$forcecombo) {
