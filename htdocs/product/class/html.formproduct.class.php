@@ -232,6 +232,7 @@ class FormProduct
 		$sql .= " FROM ".$this->db->prefix()."entrepot as e";
 		$sql .= " LEFT JOIN ".$this->db->prefix()."product_stock as ps on ps.fk_entrepot = e.rowid";
 		$sql .= " LEFT JOIN ".$this->db->prefix()."user_warehouse_restrictions as uwr ON e.rowid = uwr.entrepot_id";
+
 		if (!empty($fk_product) && $fk_product > 0) {
 			$sql .= " AND ps.fk_product = ".((int) $fk_product);
 			if (!empty($batch)) {
@@ -239,7 +240,9 @@ class FormProduct
 			}
 		}
 		$sql .= " WHERE e.entity IN (".getEntity('stock').")";
-		$sql .= " AND (uwr.user_id IS NOT NULL OR " . $idUser . " IS NULL)";
+
+		// $sql .= " AND uwr.user_id = " . $idUser;
+		$sql .= " AND (uwr.user_id = " . $idUser . " OR uwr.user_id IS NULL)";
 		if (count($warehouseStatus)) {
 			$sql .= " AND e.statut IN (".$this->db->sanitize(implode(',', $warehouseStatus)).")";
 		} else {
