@@ -345,13 +345,14 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_TITLE_'.$contact['code'].'__'] = $contactstatic->getCivilityLabel();
 
 			// Add extrafields to substitution array
-			$substitutionarray['__CONTACT_DNI_'.$contact['code'].'__'] = $contactstatic->array_options['options_dni'];
-			$substitutionarray['__CONTACT_PHONE_PERSON_'.$contact['code'].'__'] = $contactstatic->phone_perso;
-			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = $contactstatic->town;
-			$substitutionarray['__CONTACT_NOMBRE_FANTASIA_'.$contact['code'].'__'] = $contactstatic->array_options['options_nombrefantasia'];
-			$substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = $contactstatic->array_options['options_marca'];
-			$substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = $contactstatic->array_options['options_lugardeentrega'];
-			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = $contactstatic->zip;
+			$substitutionarray['__CONTACT_DNI_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_dni']) ? $contactstatic->array_options['options_dni'] : '';
+			$substitutionarray['__CONTACT_PHONE_PERSON_'.$contact['code'].'__'] = !empty($contactstatic->phone_perso) ? $contactstatic->phone_perso : '';
+			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
+			$substitutionarray['__CONTACT_NOMBRE_FANTASIA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_nombrefantasia']) ? $contactstatic->array_options['options_nombrefantasia'] : '';
+			$substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_marca']) ? $contactstatic->array_options['options_marca'] : '';
+			$substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_lugardeentrega']) ? $contactstatic->array_options['options_lugardeentrega'] : '';
+			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
+			$substitutionarray['__CONTACT_ADDRESS_'.$contact['code'].'__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
 
 			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
 			// Complete $liste with the $contact
