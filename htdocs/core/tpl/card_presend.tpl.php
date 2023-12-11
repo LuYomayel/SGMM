@@ -343,7 +343,7 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_LASTNAME_'.$contact['code'].'__'] = $contactstatic->lastname;
 			$substitutionarray['__CONTACT_FIRSTNAME_'.$contact['code'].'__'] = $contactstatic->firstname;
 			$substitutionarray['__CONTACT_TITLE_'.$contact['code'].'__'] = $contactstatic->getCivilityLabel();
-			echo "<script>console.log('".$contactstatic."');</script>
+			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
 			// Complete $liste with the $contact
 			if (empty($liste[$contact['id']])) {	// If this contact id not already into the $liste
 				$contacttoshow = '';
