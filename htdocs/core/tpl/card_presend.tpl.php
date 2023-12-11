@@ -352,6 +352,7 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_marca']) ? $contactstatic->array_options['options_marca'] : '';
 			$substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_lugardeentrega']) ? $contactstatic->array_options['options_lugardeentrega'] : '';
 			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
+			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
 			$substitutionarray['__CONTACT_ADDRESS_'.$contact['code'].'__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
 
 			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
