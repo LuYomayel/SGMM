@@ -7965,6 +7965,25 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 			$substitutionarray['__SUPPLIER_ORDER_DATE_DELIVERY__'] = (isset($object->date_livraison) ? dol_print_date($object->date_livraison, 'day', 0, $outputlangs) : '');
 			$substitutionarray['__SUPPLIER_ORDER_DELAY_DELIVERY__'] = (isset($object->availability_code) ? ($outputlangs->transnoentities("AvailabilityType".$object->availability_code) != ('AvailabilityType'.$object->availability_code) ? $outputlangs->transnoentities("AvailabilityType".$object->availability_code) : $outputlangs->convToOutputCharset(isset($object->availability) ? $object->availability : '')) : '');
 
+
+			// PRODUCT LINES
+			$lines = $object->lines;
+			if (is_array($lines) && count($lines) > 0) {
+				// Procesar las líneas
+				$productsTable = "<table><tr><th>Cantidad</th><th>Código</th><th>Descripción</th></tr>";
+
+				foreach ($lines as $line) {
+					$qty = $line->qty;
+					$code = $line->product_ref;
+					$description = strip_tags($line->product_desc); // Elimina etiquetas HTML
+
+					$productsTable .= "<tr><td>$qty</td><td>$code</td><td>$description</td></tr>";
+				}
+
+				$productsTable .= "</table>";
+				$substitutionarray['__PRODUCTS__'] = $productsTable;
+			}
+
 			if (is_object($object) && ($object->element == 'adherent' || $object->element == 'member') && $object->id > 0) {
 				$birthday = (empty($object->birth) ? '' : dol_print_date($object->birth, 'day'));
 
