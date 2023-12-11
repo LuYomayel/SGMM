@@ -351,6 +351,7 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_NOMBRE_FANTASIA_'.$contact['code'].'__'] = $contactstatic->array_options['options_nombrefantasia'];
 			$substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = $contactstatic->array_options['options_marca'];
 			$substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = $contactstatic->array_options['options_lugardeentrega'];
+			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = $contactstatic->zip;
 
 			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
 			// Complete $liste with the $contact
