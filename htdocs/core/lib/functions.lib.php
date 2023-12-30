@@ -7975,8 +7975,8 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				foreach ($lines as $line) {
 					$qty = $line->qty;
 					$code = $line->product_ref;
-					$description = strip_tags($line->product_desc); // Elimina etiquetas HTML
-					echo "<script>console.log('".json_encode($line)."');</script>";
+					$description = strip_tags($line->product_label); // Elimina etiquetas HTML
+					// echo "<script>console.log('".json_encode($line)."');</script>";
 
 					$productsTable .= "<tr><td>$qty</td><td>$code</td><td>$description</td></tr>";
 				}
