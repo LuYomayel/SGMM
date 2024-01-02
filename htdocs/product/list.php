@@ -437,7 +437,7 @@ if ($resql_restrict) {
     while ($obj = $db->fetch_object($resql_restrict)) {
         $allowed_entrepots[] = $obj->entrepot_id;
 		// console_log("Entrepot: ".$obj->entrepot_id);
-		print '<script>console.log("Entrepot: '.$obj->entrepot_id.'");</script>';
+		print '<script>console.log("Entrepot: '.$obj->allowed_entrepots.'");</script>';
     }
 }
 
@@ -504,13 +504,14 @@ if (!empty($conf->global->PRODUCT_USE_UNITS)) {
 }
 // Asegúrate de unir la tabla que relaciona productos con depósitos
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."stock_mouvement as sm ON sm.fk_product = p.rowid";
-
+$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_stock as pstock ON pstock.fk_product = p.rowid";
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 
 
 // Aplicar restricciones de depósito
 if (!empty($allowed_entrepots)) {
-    $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+    // $sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+    $sql .= " AND pstock.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
 	// Restricción adicional para usuarios con acceso limitado a almacenes
     $sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 }
