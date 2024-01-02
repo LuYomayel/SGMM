@@ -436,6 +436,8 @@ $allowed_entrepots = [];
 if ($resql_restrict) {
     while ($obj = $db->fetch_object($resql_restrict)) {
         $allowed_entrepots[] = $obj->entrepot_id;
+		// console_log("Entrepot: ".$obj->entrepot_id);
+		print '<script>console.log("Entrepot: '.$obj->entrepot_id.'");</script>';
     }
 }
 
