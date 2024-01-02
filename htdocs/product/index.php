@@ -309,12 +309,13 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 
 	// Asegúrate de unir la tabla que relaciona productos con depósitos
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."stock_mouvement as sm ON sm.fk_product = p.rowid";
+	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_stock as pstock ON pstock.fk_product = p.rowid";
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_extrafields as ef on (p.rowid = ef.fk_object)";
 	$sql .= " WHERE p.entity IN (".getEntity($product_static->element, 1).")";
 
 	// Aplicar restricciones de depósito
 	if (!empty($allowed_entrepots)) {
-		$sql .= " AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
+		$sql .= " AND pstock.fk_entrepot IN (".implode(',', $allowed_entrepots).")";
 		// Restricción adicional para usuarios con acceso limitado a almacenes
 		$sql .= " AND (ef.niveleconomico IS NULL OR ef.niveleconomico != 3)";
 	}

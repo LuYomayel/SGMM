@@ -208,7 +208,8 @@ class Products extends DolibarrApi
 		// Si el usuario tiene restricciones de depósito, modifica la consulta
 		if (!empty($allowed_entrepots)) {
 
-			$sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
+			// $sql .= " AND EXISTS (SELECT 1 FROM llx_stock_mouvement sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
+			$sql .= " AND EXISTS (SELECT 1 FROM llx_product_stock sm WHERE sm.fk_product = p.rowid AND sm.fk_entrepot IN (".implode(',', $allowed_entrepots)."))";
 		}
 		if ($variant_filter == 1) {
 			$sql .= ' AND t.rowid not in (select distinct fk_product_parent from '.$this->db->prefix().'product_attribute_combination)';
