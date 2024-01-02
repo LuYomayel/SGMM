@@ -296,6 +296,8 @@ if ((isModEnabled("product") || isModEnabled("service")) && ($user->hasRight("pr
 	if ($resql_restrict) {
 		while ($obj = $db->fetch_object($resql_restrict)) {
 			$allowed_entrepots[] = $obj->entrepot_id;
+			// console log para debug
+			print '<script>console.log("entrepot_id: '.$obj->entrepot_id.'")</script>';
 		}
 	}
 
