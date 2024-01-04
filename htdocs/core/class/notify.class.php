@@ -631,7 +631,7 @@ class Notify
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
-							SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as sp
+							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
 							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
 							FROM llx_commande AS c
@@ -657,7 +657,6 @@ class Notify
 									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
-
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
