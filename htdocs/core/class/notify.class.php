@@ -629,8 +629,9 @@ class Notify
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
+							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
-							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email,
+							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso
 									spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
 									FROM llx_commande AS c
 									JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
@@ -649,11 +650,16 @@ class Notify
 									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = $row->dni;
 									$substitutionarray['__CONTACT_NOMBREFANTASIA_CUSTOMER__'] = $row->nombrefantasia;
 									$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = $row->marca;
-									$substitutionarray['__CONTACT_LUGARDEENTREGA_CUSTOMER__'] = $row->lugardeentrega;
+									$substitutionarray['__CONTACT_LUGAR_ENTREGA_CUSTOMER__'] = $row->lugardeentrega;
+									$substitutionarray['__CONTACT_ZIP_CUSTOMER__'] = $row->zip;
+									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = $row->address;
+									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = $row->town;
+									$substitutionarray['__CONTACT_PHONE_PERSO_CUSTOMER__'] = $row->phone_perso;
+
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
-							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
+
 
 							echo "<script> console.log('HOLA: ', " . json_encode($object) . "); </script>";
 							// necesito hacer un fetch a la base de datos que me traiga los contactos de este pedido
