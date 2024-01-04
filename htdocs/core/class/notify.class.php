@@ -630,8 +630,36 @@ class Notify
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
+							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email,
+									spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
+									FROM llx_commande AS c
+									JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
+									JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
+									JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
+									WHERE c.ref = '".$object->ref."'";
+							$result = $this->db->query($sql);
+							if ($result) {
+								while ($row = $this->db->fetch_object($result)) {
+									// Add the fetched data to the substitution array
+									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = $row->rowid;
+									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = $row->lastname;
+									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = $row->firstname;
+									$substitutionarray['__CONTACT_EMAIL_CUSTOMER__'] = $row->email;
+									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = $row->dni;
+									$substitutionarray['__CONTACT_NOMBREFANTASIA_CUSTOMER__'] = $row->nombrefantasia;
+									$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = $row->marca;
+									$substitutionarray['__CONTACT_LUGARDEENTREGA_CUSTOMER__'] = $row->lugardeentrega;
+								}
+							}
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
+
 							echo "<script> console.log('HOLA: ', " . json_encode($object) . "); </script>";
+							// necesito hacer un fetch a la base de datos que me traiga los contactos de este pedido
+							// y luego hacer un for each para agregarlos al array de substituciones
+
+
+
+
 							complete_substitutions_array($substitutionarray, $outputlangs, $object);
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);
 							$message = make_substitutions($arraydefaultmessage->content, $substitutionarray, $outputlangs);
