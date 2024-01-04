@@ -7981,7 +7981,7 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 					$productsTable .= "<tr><td>$qty</td><td>$code</td><td>$description</td></tr>";
 				}
 				$productsTable .= "</table>";
-				$substitutionarray['__PRODUCTS__'] = $productsTable;
+				// $substitutionarray['__PRODUCTS__'] = $productsTable;
 			}
 
 			if (is_object($object) && ($object->element == 'adherent' || $object->element == 'member') && $object->id > 0) {
