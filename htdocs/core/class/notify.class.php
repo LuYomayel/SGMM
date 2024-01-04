@@ -639,8 +639,8 @@ class Notify
 									WHERE c.ref = '".$object->ref."'";
 							$result = $this->db->query($sql);
 							if ($result) {
-								echo "<script>console.log('Estoy entrando aca');</script>";
 								while ($row = $this->db->fetch_object($result)) {
+									echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = $row->rowid;
 									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = $row->lastname;
@@ -650,6 +650,7 @@ class Notify
 									$substitutionarray['__CONTACT_NOMBREFANTASIA_CUSTOMER__'] = $row->nombrefantasia;
 									$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = $row->marca;
 									$substitutionarray['__CONTACT_LUGARDEENTREGA_CUSTOMER__'] = $row->lugardeentrega;
+									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
