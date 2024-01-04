@@ -620,6 +620,10 @@ class Notify
 						$template = $notifcode.'_TEMPLATE';
 						$labeltouse = getDolGlobalString($template);
 						if (!empty($labeltouse)) {
+							// console log debug
+							dol_syslog("Use template ".$labeltouse." for notification ".$notifcode." for object ".$object_type." with id ".$object->id, LOG_DEBUG);
+							echo "<script>console.log('".json_encode($template)."');</script>";
+							echo "<script>console.log('XD');</script>";
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
