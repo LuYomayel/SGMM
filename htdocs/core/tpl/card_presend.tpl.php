@@ -373,11 +373,11 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
 
 
-			echo "<script>console.log('".json_encode($contact)."');</script>";
+			// echo "<script>console.log('".json_encode($contact)."');</script>";
 			// contact code
 			echo "<script>console.log('".json_encode($contact['code'])."');</script>";
-			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
-			echo "<script>console.log('Lo de arriba deberia funcionar ');</script>";
+			// echo "<script>console.log('".json_encode($contactstatic)."');</script>";
+			// echo "<script>console.log('Lo de arriba deberia funcionar ');</script>";
 			// Complete $liste with the $contact
 			if (empty($liste[$contact['id']])) {	// If this contact id not already into the $liste
 				$contacttoshow = '';
