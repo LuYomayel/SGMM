@@ -339,21 +339,40 @@ if ($action == 'presend') {
 		foreach ($contactarr as $contact) {
 			$contactstatic->fetch($contact['id']);
 			// Complete substitution array
-			$substitutionarray['__CONTACT_NAME_'.$contact['code'].'__'] = $contactstatic->getFullName($outputlangs, 1);
-			$substitutionarray['__CONTACT_LASTNAME_'.$contact['code'].'__'] = $contactstatic->lastname;
-			$substitutionarray['__CONTACT_FIRSTNAME_'.$contact['code'].'__'] = $contactstatic->firstname;
-			$substitutionarray['__CONTACT_TITLE_'.$contact['code'].'__'] = $contactstatic->getCivilityLabel();
+			// $substitutionarray['__CONTACT_NAME_'.$contact['code'].'__'] = $contactstatic->getFullName($outputlangs, 1);
+			// $substitutionarray['__CONTACT_LASTNAME_'.$contact['code'].'__'] = $contactstatic->lastname;
+			// $substitutionarray['__CONTACT_FIRSTNAME_'.$contact['code'].'__'] = $contactstatic->firstname;
+			// $substitutionarray['__CONTACT_TITLE_'.$contact['code'].'__'] = $contactstatic->getCivilityLabel();
+
+			// // Add extrafields to substitution array
+			// $substitutionarray['__CONTACT_DNI_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_dni']) ? $contactstatic->array_options['options_dni'] : '';
+			// $substitutionarray['__CONTACT_PHONE_PERSON_'.$contact['code'].'__'] = !empty($contactstatic->phone_perso) ? $contactstatic->phone_perso : '';
+			// $substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
+			// $substitutionarray['__CONTACT_NOMBRE_FANTASIA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_nombrefantasia']) ? $contactstatic->array_options['options_nombrefantasia'] : '';
+			// $substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_marca']) ? $contactstatic->array_options['options_marca'] : '';
+			// $substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_lugardeentrega']) ? $contactstatic->array_options['options_lugardeentrega'] : '';
+			// $substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
+			// $substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
+			// $substitutionarray['__CONTACT_ADDRESS_'.$contact['code'].'__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
+
+			// Complete substitution array
+			$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = $contactstatic->getFullName($outputlangs, 1);
+			$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = $contactstatic->lastname;
+			$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = $contactstatic->firstname;
+			$substitutionarray['__CONTACT_TITLE_CUSTOMER__'] = $contactstatic->getCivilityLabel();
 
 			// Add extrafields to substitution array
-			$substitutionarray['__CONTACT_DNI_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_dni']) ? $contactstatic->array_options['options_dni'] : '';
-			$substitutionarray['__CONTACT_PHONE_PERSON_'.$contact['code'].'__'] = !empty($contactstatic->phone_perso) ? $contactstatic->phone_perso : '';
-			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
-			$substitutionarray['__CONTACT_NOMBRE_FANTASIA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_nombrefantasia']) ? $contactstatic->array_options['options_nombrefantasia'] : '';
-			$substitutionarray['__CONTACT_MARCA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_marca']) ? $contactstatic->array_options['options_marca'] : '';
-			$substitutionarray['__CONTACT_LUGAR_ENTREGA_'.$contact['code'].'__'] = !empty($contactstatic->array_options['options_lugardeentrega']) ? $contactstatic->array_options['options_lugardeentrega'] : '';
-			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
-			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
-			$substitutionarray['__CONTACT_ADDRESS_'.$contact['code'].'__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
+			$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = !empty($contactstatic->array_options['options_dni']) ? $contactstatic->array_options['options_dni'] : '';
+			$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($contactstatic->phone_perso) ? $contactstatic->phone_perso : '';
+			$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
+			$substitutionarray['__CONTACT_NOMBRE_FANTASIA_CUSTOMER__'] = !empty($contactstatic->array_options['options_nombrefantasia']) ? $contactstatic->array_options['options_nombrefantasia'] : '';
+			$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = !empty($contactstatic->array_options['options_marca']) ? $contactstatic->array_options['options_marca'] : '';
+			$substitutionarray['__CONTACT_LUGAR_ENTREGA_CUSTOMER__'] = !empty($contactstatic->array_options['options_lugardeentrega']) ? $contactstatic->array_options['options_lugardeentrega'] : '';
+			$substitutionarray['__CONTACT_ZIP_CUSTOMER__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
+			$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
+			$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
+
+
 			echo "<script>console.log('".json_encode($contact)."');</script>";
 			// contact code
 			echo "<script>console.log('".json_encode($contact['code'])."');</script>";
