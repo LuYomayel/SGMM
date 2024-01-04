@@ -631,13 +631,14 @@ class Notify
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
-							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso
-									spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
-									FROM llx_commande AS c
-									JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
-									JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
-									JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
-									WHERE c.ref = '".$object->ref."'";
+							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
+							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
+							FROM llx_commande AS c
+							JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
+							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
+							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
+							WHERE c.ref = '".$object->ref."'";
+
 							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
