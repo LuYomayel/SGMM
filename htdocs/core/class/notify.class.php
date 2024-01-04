@@ -623,6 +623,8 @@ class Notify
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
+							// console log debug
+							dol_syslog("Use template ".$labeltouse." for notification ".$notifcode." for object ".$object_type." with id ".$object->id, LOG_DEBUG);
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							complete_substitutions_array($substitutionarray, $outputlangs, $object);
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);
