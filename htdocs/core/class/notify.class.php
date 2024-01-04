@@ -629,7 +629,7 @@ class Notify
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
-							dol_syslog("Use template ".$labeltouse." for notification ".$notifcode." for object ".$object_type." with id ".$object->id, LOG_DEBUG);
+							echo "<script>console.log('Estoy entrando aca tambien');</script>";
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							complete_substitutions_array($substitutionarray, $outputlangs, $object);
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);
