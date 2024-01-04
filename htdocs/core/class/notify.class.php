@@ -639,6 +639,7 @@ class Notify
 									WHERE c.ref = '".$object->ref."'";
 							$result = $this->db->query($sql);
 							if ($result) {
+								echo "<script>console.log('Estoy entrando aca');</script>";
 								while ($row = $this->db->fetch_object($result)) {
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = $row->rowid;
