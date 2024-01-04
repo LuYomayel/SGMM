@@ -631,6 +631,7 @@ class Notify
 							// console log debug
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
+							echo "<script>console.log('array de objetos:' + '".json_encode($object)."');</script>";
 							complete_substitutions_array($substitutionarray, $outputlangs, $object);
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);
 							$message = make_substitutions($arraydefaultmessage->content, $substitutionarray, $outputlangs);
