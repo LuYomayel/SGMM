@@ -354,7 +354,9 @@ if ($action == 'presend') {
 			$substitutionarray['__CONTACT_ZIP_'.$contact['code'].'__'] = !empty($contactstatic->zip) ? $contactstatic->zip : '';
 			$substitutionarray['__CONTACT_TOWN_'.$contact['code'].'__'] = !empty($contactstatic->town) ? $contactstatic->town : '';
 			$substitutionarray['__CONTACT_ADDRESS_'.$contact['code'].'__'] = !empty($contactstatic->address) ? $contactstatic->address : '';
-
+			echo "<script>console.log('".json_encode($contact)."');</script>";
+			// contact code
+			echo "<script>console.log('".json_encode($contact['code'])."');</script>";
 			echo "<script>console.log('".json_encode($contactstatic)."');</script>";
 			echo "<script>console.log('Lo de arriba deberia funcionar ');</script>";
 			// Complete $liste with the $contact
