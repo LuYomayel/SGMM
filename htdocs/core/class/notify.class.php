@@ -631,6 +631,7 @@ class Notify
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							echo "<script>console.log('Estoy entrando aca tambien');</script>";
+							SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as sp
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
 							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
 							FROM llx_commande AS c
@@ -644,18 +645,18 @@ class Notify
 								while ($row = $this->db->fetch_object($result)) {
 									echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
-									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = $row->rowid;
-									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = $row->lastname;
-									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = $row->firstname;
-									$substitutionarray['__CONTACT_EMAIL_CUSTOMER__'] = $row->email;
-									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = $row->dni;
-									$substitutionarray['__CONTACT_NOMBREFANTASIA_CUSTOMER__'] = $row->nombrefantasia;
-									$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = $row->marca;
-									$substitutionarray['__CONTACT_LUGAR_ENTREGA_CUSTOMER__'] = $row->lugardeentrega;
-									$substitutionarray['__CONTACT_ZIP_CUSTOMER__'] = $row->zip;
-									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = $row->address;
-									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = $row->town;
-									$substitutionarray['__CONTACT_PHONE_PERSO_CUSTOMER__'] = $row->phone_perso;
+									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
+									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
+									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = !empty($row->firstname) ? $row->firstname : '';
+									$substitutionarray['__CONTACT_EMAIL_CUSTOMER__'] = !empty($row->email) ? $row->email : '';
+									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = !empty($row->dni) ? $row->dni : '';
+									$substitutionarray['__CONTACT_NOMBREFANTASIA_CUSTOMER__'] = !empty($row->nombrefantasia) ? $row->nombrefantasia : '';
+									$substitutionarray['__CONTACT_MARCA_CUSTOMER__'] = !empty($row->marca) ? $row->marca : '';
+									$substitutionarray['__CONTACT_LUGAR_ENTREGA_CUSTOMER__'] = !empty($row->lugardeentrega) ? $row->lugardeentrega : '';
+									$substitutionarray['__CONTACT_ZIP_CUSTOMER__'] = !empty($row->zip) ? $row->zip : '';
+									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
+									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
+									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
 
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
