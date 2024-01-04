@@ -646,7 +646,7 @@ class Notify
 									echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
-									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
+									$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
 									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = !empty($row->firstname) ? $row->firstname : '';
 									$substitutionarray['__CONTACT_EMAIL_CUSTOMER__'] = !empty($row->email) ? $row->email : '';
 									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = !empty($row->dni) ? $row->dni : '';
