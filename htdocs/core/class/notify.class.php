@@ -625,6 +625,7 @@ class Notify
 							echo "<script>console.log('".json_encode($template)."');</script>";
 							echo "<script>console.log('XD');</script>";
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
+							echo "<script>console.log('".json_encode($arraydefaultmessage)."');</script>";
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
