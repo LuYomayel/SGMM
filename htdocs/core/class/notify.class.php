@@ -661,7 +661,7 @@ class Notify
 							}
 
 
-							echo "<script> console.log('HOLA: ', " . json_encode($object) . "); </script>";
+							echo "<script> console.log('HOLA: ', " . json_encode($substitutionarray) . "); </script>";
 							// necesito hacer un fetch a la base de datos que me traiga los contactos de este pedido
 							// y luego hacer un for each para agregarlos al array de substituciones
 
