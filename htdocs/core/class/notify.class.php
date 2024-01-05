@@ -657,7 +657,7 @@ class Notify
 									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
-									$emailContact = $row->lastname . ' ' . $r' <' . $row->email . '>';
+									// $emailContact = $row->lastname . ' <' . $row->email . '>';
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
