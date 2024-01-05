@@ -639,10 +639,11 @@ class Notify
 							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
 							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
 							WHERE c.ref = '".$object->ref."'";
-							echo "<script>console.log('Estoy entrando aca tambien 2');</script>";
+							echo "<script>console.log('object ref: ', " . json_encode($object->ref) . "); </script>";
+
 							$result = $this->db->query($sql);
 							if ($result) {
-								echo "<script>console.log('hay resylt: ', " . json_encode($$object->ref) . "); </script>";
+
 								while ($row = $this->db->fetch_object($result)) {
 									echo "<script>console.log('Estoy entrando aca dentro del while');</script>";
 									// Add the fetched data to the substitution array
