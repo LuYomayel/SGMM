@@ -639,7 +639,6 @@ class Notify
 							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
 							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
 							WHERE c.ref = '".$object->ref."'";
-							$emailContact = '';
 							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
