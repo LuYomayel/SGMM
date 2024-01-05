@@ -642,9 +642,9 @@ class Notify
 
 							$result = $this->db->query($sql);
 							if ($result) {
-								echo "<script>console.log('hay result');</script>";
+								echo "<script>console.log('hay resylt: ', " . json_encode($result) . "); </script>";
 								while ($row = $this->db->fetch_object($result)) {
-									echo "<script>console.log('Estoy entrando aca');</script>";
+									echo "<script>console.log('Estoy entrando aca dentro del while');</script>";
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
 									$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
