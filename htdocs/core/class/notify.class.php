@@ -640,9 +640,8 @@ class Notify
 							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
 							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
 							WHERE c.ref = '".$object->ref."'";
-							// 583000
 							$result = $this->db->query($sql);
-							$emailUser = '';
+
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
 									echo "<script>console.log('Estoy entrando aca');</script>";
@@ -713,25 +712,7 @@ class Notify
 							$sendto = preg_replace('/[\s,]+$/', '', $sendto); // Clean end of string
 						}
 
-						$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
-							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
-							FROM llx_commande AS c
-							JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
-							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
-							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
-							WHERE c.ref = '".$object->ref."'";
-							// 583000
-							$result = $this->db->query($sql);
-							$emailUser = '';
-							if ($result) {
-								while ($row = $this->db->fetch_object($result)) {
-									// Add the fetched data to the substitution array
-									$emailUser = $row->email;
-								}
-							}
 
-						echo "<script> console.log('emailuser: ', " . json_encode($emailUser) . "); </script>";
-						echo "<script> console.log('sendto: ', " . json_encode($sendto) . "); </script>";
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
 							$action = '';
