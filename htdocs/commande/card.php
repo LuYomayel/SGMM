@@ -2899,7 +2899,7 @@ if ($action == 'create' && $usercancreate) {
 							// if the object status is validated then it would say 'Notificar envio'
 							if($object->statut == Commande::STATUS_DRAFT){
 								print dolGetButtonAction('', "Pedir aprobacion", 'default', $_SERVER["PHP_SELF"].'?action=presend&token='.newToken().'&id='.$object->id.'&mode=init#formmailbeforetitle', '');
-							} else if($object->statut == Commande::STATUS_CLOSED){
+							} else if($object->statut >= Commande::STATUS_VALIDATED){
 								print dolGetButtonAction('', "Notificar envio", 'default', $_SERVER["PHP_SELF"].'?action=presend&token='.newToken().'&id='.$object->id.'&mode=init#formmailbeforetitle', '');
 							}else{
 								print dolGetButtonAction('', $langs->trans('SendMail'), 'default', $_SERVER["PHP_SELF"].'?action=presend&token='.newToken().'&id='.$object->id.'&mode=init#formmailbeforetitle', '');
