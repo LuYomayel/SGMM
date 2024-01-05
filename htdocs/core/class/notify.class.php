@@ -639,7 +639,7 @@ class Notify
 							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
 							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
 							WHERE c.ref = '".$object->ref."'";
-
+							$emailContact = '';
 							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
@@ -657,6 +657,7 @@ class Notify
 									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
+									$emailContact = !empty($row->email) ? $row->email : '';
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
@@ -709,7 +710,7 @@ class Notify
 							$sendto = preg_replace('/^[\s,]+/', '', $sendto); // Clean start of string
 							$sendto = preg_replace('/[\s,]+$/', '', $sendto); // Clean end of string
 						}
-
+						echo "<script>console.log('".json_encode($sendto)."');</script>";
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
 							$action = '';
