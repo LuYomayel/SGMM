@@ -2503,13 +2503,13 @@ if ($action == 'create' && $usercancreate) {
 		print $form->editfieldkey("Date", 'date', '', $object, $editenable);
 		print '</td><td class="valuefield">';
 		if ($action == 'editdate') {
-			// print '<form name="setdate" action="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'" method="post">';
-			// print '<input type="hidden" name="token" value="'.newToken().'">';
-			// print '<input type="hidden" name="action" value="setdate">';
-			// print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
-			// print $form->selectDate($object->date, 'order_', '', '', '', "setdate");
-			// print '<input type="submit" class="button button-edit" value="'.$langs->trans('Modify').'">';
-			// print '</form>';
+			print '<form name="setdate" action="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'" method="post">';
+			print '<input type="hidden" name="token" value="'.newToken().'">';
+			print '<input type="hidden" name="action" value="setdate">';
+			print '<input type="hidden" name="backtopage" value="'.$backtopage.'">';
+			print $form->selectDate($object->date, 'order_', '', '', '', "setdate");
+			print '<input type="submit" class="button button-edit" value="'.$langs->trans('Modify').'">';
+			print '</form>';
 		} else {
 			print $object->date ? dol_print_date($object->date, 'day') : '&nbsp;';
 			if ($object->hasDelay() && empty($object->delivery_date)) {	// If there is a delivery date planned, warning should be on this date
@@ -2908,7 +2908,7 @@ if ($action == 'create' && $usercancreate) {
 				}
 				// Edit
 				if ($object->statut == Commande::STATUS_VALIDATED && $usercancreate) {
-					print dolGetButtonAction('', $langs->trans('Modify'), 'default', $_SERVER["PHP_SELF"].'?action=modif&amp;token='.newToken().'&amp;id='.$object->id, '');
+					// print dolGetButtonAction('', $langs->trans('Modify'), 'default', $_SERVER["PHP_SELF"].'?action=modif&amp;token='.newToken().'&amp;id='.$object->id, '');
 				}
 				// Create event
 				/*if (isModEnabled('agenda') && !empty($conf->global->MAIN_ADD_EVENT_ON_ELEMENT_CARD))
