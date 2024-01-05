@@ -627,20 +627,22 @@ class Notify
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
 							echo "<script>console.log('".json_encode($arraydefaultmessage)."');</script>";
 						}
+						// console log debug
+						$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
+						echo "<script>console.log('Estoy entrando aca tambien');</script>";
+						// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
+						$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso, sp.email,
+						spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
+						FROM llx_commande AS c
+						JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
+						JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
+						JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
+						WHERE c.ref = '".$object->ref."'";
+						// 583000
+						$result = $this->db->query($sql);
+						$emailUser = '';
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
-							// console log debug
-							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
-							echo "<script>console.log('Estoy entrando aca tambien');</script>";
-							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
-							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
-							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
-							FROM llx_commande AS c
-							JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
-							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
-							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
-							WHERE c.ref = '".$object->ref."'";
 
-							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
 									echo "<script>console.log('Estoy entrando aca');</script>";
@@ -657,6 +659,7 @@ class Notify
 									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
+									$emailUser = $row->email;
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
@@ -709,7 +712,8 @@ class Notify
 							$sendto = preg_replace('/^[\s,]+/', '', $sendto); // Clean start of string
 							$sendto = preg_replace('/[\s,]+$/', '', $sendto); // Clean end of string
 						}
-
+						echo "<script> console.log('emailuser: ', " . json_encode($emailUser) . "); </script>";
+						echo "<script> console.log('sendto: ', " . json_encode($sendto) . "); </script>";
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
 							$action = '';
