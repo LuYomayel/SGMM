@@ -642,6 +642,7 @@ class Notify
 
 							$result = $this->db->query($sql);
 							if ($result) {
+								echo "<script>console.log('hay result');</script>";
 								while ($row = $this->db->fetch_object($result)) {
 									echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
