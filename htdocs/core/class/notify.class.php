@@ -646,7 +646,7 @@ class Notify
 									echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
-									$substitutionarray['__CONTACT_LASTNAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
+									$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
 									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = !empty($row->firstname) ? $row->firstname : '';
 									$substitutionarray['__CONTACT_EMAIL_CUSTOMER__'] = !empty($row->email) ? $row->email : '';
 									$substitutionarray['__CONTACT_DNI_CUSTOMER__'] = !empty($row->dni) ? $row->dni : '';
@@ -657,7 +657,7 @@ class Notify
 									$substitutionarray['__CONTACT_ADDRESS_CUSTOMER__'] = !empty($row->address) ? $row->address : '';
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
-									$emailContact = $row->lastname . ' ' . $row->firstname . ' <' . $row->email . '>';
+									$emailContact = $row->lastname . ' ' . $r' <' . $row->email . '>';
 									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
