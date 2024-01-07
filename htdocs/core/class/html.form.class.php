@@ -3584,9 +3584,9 @@ class Form
 				if (!empty($objp->idprodfournprice) && ($objp->ref != $objp->ref_fourn)) {
 					$outvallabel .= ' (' . $objRefFourn . ')';
 				}
-				// if (isModEnabled('barcode') && !empty($objp->barcode)) {
-				// 	$outvallabel .= ' (' . $outbarcode . ')';
-				// }
+				if (isModEnabled('barcode') && !empty($objp->barcode)) {
+					$outvallabel .= ' (' . $outbarcode . ')';
+				}
 				$outvallabel .= ' - ' . dol_trunc($label, $maxlengtharticle);
 
 				// Units
