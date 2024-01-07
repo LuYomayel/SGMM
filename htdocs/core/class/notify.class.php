@@ -678,11 +678,11 @@ class Notify
 						// 	$filepdf = '';
 						// 	echo "<script> console.log('FILEPDF vacio: ', " . json_encode($filepdf) . "); </script>";
 						// } else {
-							$filepdf = $pdf_path;
-							$filename_list[] = $filepdf;
-							$mimetype_list[] = mime_content_type($filepdf);
-							$mimefilename_list[] = $ref.".pdf";
-							echo "<script> console.log('FILEPDF else: ', " . json_encode($filepdf) . "); </script>";
+						$filepdf = $pdf_path;
+						$filename_list[] = $filepdf;
+						$mimetype_list[] = mime_content_type($filepdf);
+						$mimefilename_list[] = $ref.".pdf";
+
 						// }
 
 						$labeltouse = !empty($labeltouse) ? $labeltouse : '';
@@ -705,6 +705,8 @@ class Notify
 						}
 						$sendto = $sendto . ', ' . $emailContact;
 						echo "<script> console.log('SENDTO: ', " . json_encode($filename_list) . "); </script>";
+						echo "<script> console.log('mimetype_list else: ', " . json_encode($mimetype_list) . "); </script>";
+						echo "<script> console.log('mimefilename_list else: ', " . json_encode($mimefilename_list) . "); </script>";
 
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
