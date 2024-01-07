@@ -631,6 +631,7 @@ class Notify
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 							// echo "<script>console.log('Estoy entrando aca tambien');</script>";
+							dol_syslog("Sending email: Subject - ".$object->rowid.", Message - ".$object->ref, LOG_ERR);
 							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
 							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
