@@ -124,7 +124,7 @@ if ($resql) {
 
 			dol_syslog("Process mailing with id ".$obj->rowid);
 			print "Process mailing with id ".$obj->rowid."\n";
-			echo "<script type='text/javascript'>console.log('".$obj->rowid."');</script>";
+			// echo "<script type='text/javascript'>console.log('".$obj->rowid."');</script>";
 			$emailing = new Mailing($db);
 			$emailing->fetch($obj->rowid);
 
@@ -185,7 +185,7 @@ if ($resql) {
 						$now = dol_now();
 
 						$obj = $db->fetch_object($resql2);
-						echo "<script type='text/javascript'>console.log('".$obj."');</script>";
+						// echo "<script type='text/javascript'>console.log('".$obj."');</script>";
 						// sendto en RFC2822
 						$sendto = str_replace(',', ' ', dolGetFirstLastname($obj->firstname, $obj->lastname)." <".$obj->email.">");
 
