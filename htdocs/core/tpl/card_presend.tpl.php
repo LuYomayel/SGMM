@@ -375,7 +375,7 @@ if ($action == 'presend') {
 
 			// echo "<script>console.log('".json_encode($contact)."');</script>";
 			// contact code
-			echo "<script>console.log('".json_encode($contact['code'])."');</script>";
+			// echo "<script>console.log('".json_encode($contact['code'])."');</script>";
 			// echo "<script>console.log('".json_encode($contactstatic)."');</script>";
 			// echo "<script>console.log('Lo de arriba deberia funcionar ');</script>";
 			// Complete $liste with the $contact

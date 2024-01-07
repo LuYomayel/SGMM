@@ -622,15 +622,15 @@ class Notify
 						if (!empty($labeltouse)) {
 							// console log debug
 							dol_syslog("Use template ".$labeltouse." for notification ".$notifcode." for object ".$object_type." with id ".$object->id, LOG_DEBUG);
-							echo "<script>console.log('".json_encode($template)."');</script>";
-							echo "<script>console.log('XD');</script>";
+							// echo "<script>console.log('".json_encode($template)."');</script>";
+							// echo "<script>console.log('XD');</script>";
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
-							echo "<script>console.log('".json_encode($arraydefaultmessage)."');</script>";
+							// echo "<script>console.log('".json_encode($arraydefaultmessage)."');</script>";
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
-							echo "<script>console.log('Estoy entrando aca tambien');</script>";
+							// echo "<script>console.log('Estoy entrando aca tambien');</script>";
 							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
 							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
@@ -642,7 +642,7 @@ class Notify
 							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
-									echo "<script>console.log('Estoy entrando aca');</script>";
+									// echo "<script>console.log('Estoy entrando aca');</script>";
 									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
 									$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
@@ -657,7 +657,7 @@ class Notify
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
 									// $emailContact = $row->lastname . ' <' . $row->email . '>';
-									echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
+									// echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
 
