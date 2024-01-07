@@ -643,8 +643,6 @@ class Notify
 							$result = $this->db->query($sql);
 							if ($result) {
 								while ($row = $this->db->fetch_object($result)) {
-									// echo "<script>console.log('Estoy entrando aca');</script>";
-									// Add the fetched data to the substitution array
 									$substitutionarray['__CONTACT_ROWID_CUSTOMER__'] = !empty($row->rowid) ? $row->rowid : '';
 									$substitutionarray['__CONTACT_NAME_CUSTOMER__'] = !empty($row->lastname) ? $row->lastname : '';
 									$substitutionarray['__CONTACT_FIRSTNAME_CUSTOMER__'] = !empty($row->firstname) ? $row->firstname : '';
@@ -661,15 +659,6 @@ class Notify
 									// echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
-
-
-							echo "<script> console.log('HOLA: ', " . json_encode($emailContact) . "); </script>";
-							// necesito hacer un fetch a la base de datos que me traiga los contactos de este pedido
-							// y luego hacer un for each para agregarlos al array de substituciones
-
-
-
-
 							complete_substitutions_array($substitutionarray, $outputlangs, $object);
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);
 							$message = make_substitutions($arraydefaultmessage->content, $substitutionarray, $outputlangs);
