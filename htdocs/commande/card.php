@@ -2003,7 +2003,7 @@ if ($action == 'create' && $usercancreate) {
 		$preselected = "custom"
 
 	}
-	echo "<script> console.log('".$preselected."'); </script>";
+
 	print img_picto('', 'pdf', 'class="pictofixedwidth"');
 	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
 	print "</td></tr>";
