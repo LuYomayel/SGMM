@@ -8496,7 +8496,7 @@ class Form
 					var data = ' . json_encode($formattedarrayresult) . ';
 
 					' . ($callurlonselect ? 'var saveRemoteData = ' . json_encode($array) . ';' : '') . '
-
+					console.log("Data: ", data);
 					$(".' . $htmlname . '").select2({
 						data: data,
 						language: select2arrayoflanguage,
