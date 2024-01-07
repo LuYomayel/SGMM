@@ -630,7 +630,7 @@ class Notify
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
 							// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
-							echo "<script>console.log('".json_encode($object->rowid)."');</script>";
+							echo "<script>console.log('".json_encode($object)."');</script>";
 							dol_syslog("Sending email: Subject - ".$object->rowid.", Message - ".$object->ref, LOG_ERR);
 							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
