@@ -308,7 +308,7 @@ if ($nolinesbefore) {
 					$(document).ready(function(){
 						// On first focus on a select2 combo, auto open the menu (this allow to use the keyboard only)
 						$(document).on('focus', '.select2-selection.select2-selection--single', function (e) {
-							//console.log('focus on a select2');
+							console.log('focus on a select222');
 							if ($(this).attr('aria-labelledby') == 'select2-idprodfournprice-container')
 							{
 								$('#idprodfournprice').select2('open');
