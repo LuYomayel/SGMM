@@ -1051,18 +1051,18 @@ class Product extends CommonObject
 		$this->net_measure = price2num($this->net_measure);
 		$this->net_measure_units = trim($this->net_measure_units);
 
-		// $this->weight = price2num($this->weight);
-		// $this->weight_units = trim($this->weight_units);
-		// $this->length = price2num($this->length);
-		// $this->length_units = trim($this->length_units);
-		// $this->width = price2num($this->width);
-		// $this->width_units = trim($this->width_units);
-		// $this->height = price2num($this->height);
-		// $this->height_units = trim($this->height_units);
-		// $this->surface = price2num($this->surface);
-		// $this->surface_units = trim($this->surface_units);
-		// $this->volume = price2num($this->volume);
-		// $this->volume_units = trim($this->volume_units);
+		$this->weight = price2num($this->weight);
+		$this->weight_units = trim($this->weight_units);
+		$this->length = price2num($this->length);
+		$this->length_units = trim($this->length_units);
+		$this->width = price2num($this->width);
+		$this->width_units = trim($this->width_units);
+		$this->height = price2num($this->height);
+		$this->height_units = trim($this->height_units);
+		$this->surface = price2num($this->surface);
+		$this->surface_units = trim($this->surface_units);
+		$this->volume = price2num($this->volume);
+		$this->volume_units = trim($this->volume_units);
 
 		// set unit not defined
 		if (is_numeric($this->length_units)) {
