@@ -488,7 +488,9 @@ function ajax_combobox($htmlname, $events = array(), $minLengthToAutocomplete = 
 					minimumInputLength: '.((int) $minLengthToAutocomplete).',
 					language: select2arrayoflanguage,
 					matcher: function (params, data) {
+						console.log("matcher: params.term="+params.term+" data.text="+data.text);
 						if ($.trim(params.term) === "") {
+
 							return data;
 						}
 						keywords = (params.term).split(" ");

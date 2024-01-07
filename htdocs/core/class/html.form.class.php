@@ -8476,7 +8476,7 @@ class Form
 			return '';
 		}
 
-		$out = 'HOLA<select type="text"'.($textfortitle? ' title="'.dol_escape_htmltag($textfortitle).'"' : '').' id="'.$htmlname.'" class="'.$htmlname.($morecss ? ' ' . $morecss : '').'"'.($moreparam ? ' '.$moreparam : '').' name="'.$htmlname.'"><option></option></select>';
+		$out = '<select type="text"'.($textfortitle? ' title="'.dol_escape_htmltag($textfortitle).'"' : '').' id="'.$htmlname.'" class="'.$htmlname.($morecss ? ' ' . $morecss : '').'"'.($moreparam ? ' '.$moreparam : '').' name="'.$htmlname.'"><option></option></select>';
 
 		$formattedarrayresult = array();
 
