@@ -8506,6 +8506,7 @@ class Form
 						escapeMarkup: function (markup) { return markup; }, 	// let our custom formatter work
 						minimumInputLength: ' . $minimumInputLength . ',
 						formatResult: function (result, container, query, escapeMarkup) {
+							console.log("RESULT TEXT : "+result.text);
 							return escapeMarkup(result.text);
 						},
 						matcher: function (params, data) {
