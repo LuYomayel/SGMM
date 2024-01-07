@@ -1997,13 +1997,6 @@ if ($action == 'create' && $usercancreate) {
 	include_once DOL_DOCUMENT_ROOT.'/core/modules/commande/modules_commande.php';
 	$liste = ModelePDFCommandes::liste_modeles($db);
 	$preselected = $conf->global->COMMANDE_ADDON_PDF;
-	if (empty($preselected) || !array_key_exists($preselected, $liste)) {
-		// Establecer un valor predeterminado si es necesario
-		// Por ejemplo, podrías elegir el primer modelo disponible de la lista
-		$preselected = "custom"
-
-	}
-
 	print img_picto('', 'pdf', 'class="pictofixedwidth"');
 	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
 	print "</td></tr>";
@@ -2921,7 +2914,7 @@ if ($action == 'create' && $usercancreate) {
 				// Edit
 				if ($object->statut == Commande::STATUS_VALIDATED && $usercancreate) {
 				// if (false) {
-					print dolGetButtonAction('', $langs->trans('Modify'), 'default', $_SERVER["PHP_SELF"].'?action=modif&amp;token='.newToken().'&amp;id='.$object->id, '', false);
+					print dolGetButtonAction('', $langs->trans('Modify'), 'default', $_SERVER["PHP_SELF"].'?action=modif&amp;token='.newToken().'&amp;id='.$object->id, '',false);
 				}
 				// Create event
 				/*if (isModEnabled('agenda') && !empty($conf->global->MAIN_ADD_EVENT_ON_ELEMENT_CARD))
