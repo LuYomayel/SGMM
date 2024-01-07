@@ -3043,6 +3043,7 @@ class Form
 			$outdesc_translated = $objp->description_translated;
 		}
 		$outbarcode = $objp->barcode;
+		$outcentrodecosto = $objp->centrodecostos;
 		$outorigin = $objp->fk_country;
 		$outpbq = empty($objp->price_by_qty_rowid) ? '' : $objp->price_by_qty_rowid;
 
@@ -3118,6 +3119,9 @@ class Form
 		// Esto muestra el barcode
 		if ($outbarcode) {
 			$opt .= ' (' . $outbarcode . ')';
+		}
+		if($outcentrodecosto){
+			$opt .= ' (' . $outcentrodecosto . ')';
 		}
 		$opt .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
