@@ -1996,7 +1996,7 @@ if ($action == 'create' && $usercancreate) {
 	print '<td>';
 	include_once DOL_DOCUMENT_ROOT.'/core/modules/commande/modules_commande.php';
 	$liste = ModelePDFCommandes::liste_modeles($db);
-	$preselected = $conf->global->COMMANDE_ADDON_PDF;
+	$preselected = array_keys($liste)[0];
 	if (empty($preselected) || !array_key_exists($preselected, $liste)) {
 		// Establecer un valor predeterminado si es necesario
 		// Por ejemplo, podrías elegir el primer modelo disponible de la lista
