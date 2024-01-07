@@ -2005,7 +2005,7 @@ if ($action == 'create' && $usercancreate) {
 	print img_picto('', 'pdf', 'class="pictofixedwidth"');
 	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
 	print "</td></tr>";
-
+	echo "<script> console.log('".$preselected."'); </script>";
 	// Multicurrency
 	if (isModEnabled("multicurrency")) {
 		print '<tr>';
