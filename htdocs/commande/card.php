@@ -2000,8 +2000,10 @@ if ($action == 'create' && $usercancreate) {
 	if (empty($preselected) || !array_key_exists($preselected, $liste)) {
 		// Establecer un valor predeterminado si es necesario
 		// Por ejemplo, podrías elegir el primer modelo disponible de la lista
-		$preselected = array_key_first($liste);
+		$preselected = "custom"
+
 	}
+	echo "<script> console.log('".$preselected."'); </script>";
 	print img_picto('', 'pdf', 'class="pictofixedwidth"');
 	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
 	print "</td></tr>";
