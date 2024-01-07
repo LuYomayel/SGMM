@@ -2961,7 +2961,7 @@ class Form
 					// "key" value of json key array is used by jQuery automatically as selected value
 					// "label" value of json key array is used by jQuery automatically as text for combo box
 					$out .= $opt;
-					echo "<script>console.log('".$opt."');</script>";
+
 					array_push($outarray, $optJson);
 				}
 
@@ -3003,7 +3003,7 @@ class Form
 	{
 		global $langs, $conf, $user;
 		global $hookmanager;
-
+		echo "<script>console.log('ROW: ', " . json_encode($objp) . "); </script>";
 		$outkey = '';
 		$outval = '';
 		$outref = '';
