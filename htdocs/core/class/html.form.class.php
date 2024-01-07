@@ -8476,7 +8476,7 @@ class Form
 			return '';
 		}
 
-		$out = '<select type="text"'.($textfortitle? ' title="'.dol_escape_htmltag($textfortitle).'"' : '').' id="'.$htmlname.'" class="'.$htmlname.($morecss ? ' ' . $morecss : '').'"'.($moreparam ? ' '.$moreparam : '').' name="'.$htmlname.'"><option></option></select>';
+		$out = 'HOLA<select type="text"'.($textfortitle? ' title="'.dol_escape_htmltag($textfortitle).'"' : '').' id="'.$htmlname.'" class="'.$htmlname.($morecss ? ' ' . $morecss : '').'"'.($moreparam ? ' '.$moreparam : '').' name="'.$htmlname.'"><option></option></select>';
 
 		$formattedarrayresult = array();
 
@@ -8506,7 +8506,6 @@ class Form
 						escapeMarkup: function (markup) { return markup; }, 	// let our custom formatter work
 						minimumInputLength: ' . $minimumInputLength . ',
 						formatResult: function (result, container, query, escapeMarkup) {
-							console.log("RESULT TEXT : "+result.text);
 							return escapeMarkup(result.text);
 						},
 						matcher: function (params, data) {
