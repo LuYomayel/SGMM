@@ -430,6 +430,8 @@ if (($action == 'send' || $action == 'relance') && !GETPOST('addfile') && !GETPO
 						$moreparam .= '&'.($paramname2 ? $paramname2 : 'mid').'='.$paramval2;
 					}
 					// Log the redirection
+
+					error_log('Moreparam: '.$moreparam);
 					error_log('Redirecting to: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : '').$moreparam);
 
 					header('Location: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : '').$moreparam);
