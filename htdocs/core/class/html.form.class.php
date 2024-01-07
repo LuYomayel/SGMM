@@ -2899,7 +2899,7 @@ class Form
 				$opt = '';
 				$optJson = array();
 				$objp = $this->db->fetch_object($result);
-				echo "<script>console.log('fetch object: ', " . json_encode($objp) . "); </script>";
+
 				if ((!empty($conf->global->PRODUIT_CUSTOMER_PRICES_BY_QTY) || !empty($conf->global->PRODUIT_CUSTOMER_PRICES_BY_QTY_MULTIPRICES)) && !empty($objp->price_by_qty) && $objp->price_by_qty == 1) { // Price by quantity will return many prices for the same product
 					$sql = "SELECT rowid, quantity, price, unitprice, remise_percent, remise, price_base_type";
 					$sql .= " FROM " . $this->db->prefix() . "product_price_by_qty";
@@ -3003,7 +3003,6 @@ class Form
 	{
 		global $langs, $conf, $user;
 		global $hookmanager;
-		echo "<script>console.log('ROW: ', " . json_encode($objp) . "); </script>";
 		$outkey = '';
 		$outval = '';
 		$outref = '';
