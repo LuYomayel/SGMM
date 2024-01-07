@@ -675,11 +675,13 @@ class Notify
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
 							// We can't add PDF as it is not generated yet.
 							$filepdf = '';
+							echo "<script> console.log('FILEPDF vacio: ', " . json_encode($filepdf) . "); </script>";
 						} else {
 							$filepdf = $pdf_path;
 							$filename_list[] = $filepdf;
 							$mimetype_list[] = mime_content_type($filepdf);
 							$mimefilename_list[] = $ref.".pdf";
+							echo "<script> console.log('FILEPDF else: ', " . json_encode($filepdf) . "); </script>";
 						}
 
 						$labeltouse = !empty($labeltouse) ? $labeltouse : '';
