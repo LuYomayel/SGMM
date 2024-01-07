@@ -7984,6 +7984,15 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				$substitutionarray['__PRODUCTS__'] = $productsTable;
 			}
 
+			// Array options
+			if(!empty($object->array_options)) {
+				$array_options = $object->array_options;
+				// echo "<script>console.log('".json_encode($array_options)."');</script>";
+				$substitutionarray['__AGENCIA__'] = $array_options['options_agencia'];
+				$substitutionarray['__NRO_SEGUIMIENTO__'] = $array_options['options_nrodeseguimiento'];
+			}
+
+
 			if (is_object($object) && ($object->element == 'adherent' || $object->element == 'member') && $object->id > 0) {
 				$birthday = (empty($object->birth) ? '' : dol_print_date($object->birth, 'day'));
 
