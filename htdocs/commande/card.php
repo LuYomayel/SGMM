@@ -1992,14 +1992,14 @@ if ($action == 'create' && $usercancreate) {
 	}
 
 	// Template to use by default
-	// print '<tr><td>'.$langs->trans('DefaultModel').'</td>';
-	// print '<td>';
-	// include_once DOL_DOCUMENT_ROOT.'/core/modules/commande/modules_commande.php';
-	// $liste = ModelePDFCommandes::liste_modeles($db);
-	// $preselected = $conf->global->COMMANDE_ADDON_PDF;
-	// print img_picto('', 'pdf', 'class="pictofixedwidth"');
-	// print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
-	// print "</td></tr>";
+	print '<tr><td>'.$langs->trans('DefaultModel').'</td>';
+	print '<td>';
+	include_once DOL_DOCUMENT_ROOT.'/core/modules/commande/modules_commande.php';
+	$liste = ModelePDFCommandes::liste_modeles($db);
+	$preselected = $conf->global->COMMANDE_ADDON_PDF;
+	print img_picto('', 'pdf', 'class="pictofixedwidth"');
+	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
+	print "</td></tr>";
 
 	// Multicurrency
 	if (isModEnabled("multicurrency")) {
@@ -2912,8 +2912,8 @@ if ($action == 'create' && $usercancreate) {
 					print dolGetButtonAction('', $langs->trans('Validate'), 'default', $_SERVER["PHP_SELF"].'?action=validate&amp;token='.newToken().'&amp;id='.$object->id, '');
 				}
 				// Edit
-				// if ($object->statut == Commande::STATUS_VALIDATED && $usercancreate) {
-				if (false) {
+				if ($object->statut == Commande::STATUS_VALIDATED && $usercancreate) {
+				// if (false) {
 					print dolGetButtonAction('', $langs->trans('Modify'), 'default', $_SERVER["PHP_SELF"].'?action=modif&amp;token='.newToken().'&amp;id='.$object->id, '');
 				}
 				// Create event
