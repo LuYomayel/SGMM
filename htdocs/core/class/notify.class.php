@@ -710,7 +710,7 @@ class Notify
 							$sendto = preg_replace('/^[\s,]+/', '', $sendto); // Clean start of string
 							$sendto = preg_replace('/[\s,]+$/', '', $sendto); // Clean end of string
 						}
-						$sendto += ', ' + $emailContact;
+						echo "<script> console.log('SENDTO: ', " . json_encode($sendto) . "); </script>";
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
 							$action = '';
