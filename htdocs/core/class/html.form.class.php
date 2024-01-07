@@ -3575,9 +3575,9 @@ class Form
 				if (!empty($objp->idprodfournprice) && ($objp->ref != $objp->ref_fourn)) {
 					$optlabel .= ' <span class="opacitymedium">(' . $objp->ref_fourn . ')</span>';
 				}
-				// if (isModEnabled('barcode') && !empty($objp->barcode)) {
-				// 	$optlabel .= ' (' . $outbarcode . ')';
-				// }
+				if (isModEnabled('barcode') && !empty($objp->barcode)) {
+					$optlabel .= ' (' . $outbarcode . ')';
+				}
 				$optlabel .= ' - ' . dol_trunc($label, $maxlengtharticle);
 
 				$outvallabel = $objRef;
