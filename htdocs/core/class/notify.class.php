@@ -639,7 +639,7 @@ class Notify
 							JOIN llx_element_contact AS ec ON c.rowid = ec.element_id
 							JOIN llx_socpeople AS sp ON ec.fk_socpeople = sp.rowid
 							JOIN llx_socpeople_extrafields AS spe ON sp.rowid = spe.fk_object
-							WHERE c.rowid = '".$object->rowid."'";
+							WHERE c.rowid = '".$object->id."'";
 							$emailContact = '';
 							$result = $this->db->query($sql);
 							if ($result) {
