@@ -3113,9 +3113,9 @@ class Form
 		if (!empty($objp->custref)) {
 			$opt .= ' (' . $objp->custref . ')';
 		}
-		if ($outbarcode) {
-			$opt .= ' (' . $outbarcode . ')';
-		}
+		// if ($outbarcode) {
+		// 	$opt .= ' (' . $outbarcode . ')';
+		// }
 		$opt .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
 			$opt .= ' (' . getCountry($outorigin, 1) . ')';
@@ -3129,9 +3129,9 @@ class Form
 			$objRef = preg_replace('/(' . preg_quote($filterkey, '/') . ')/i', '<strong>$1</strong>', $objRef, 1);
 		}
 		$outval .= $objRef;
-		if ($outbarcode) {
-			$outval .= ' (' . $outbarcode . ')';
-		}
+		// if ($outbarcode) {
+		// 	$outval .= ' (' . $outbarcode . ')';
+		// }
 		$outval .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
 			$outval .= ' (' . getCountry($outorigin, 1) . ')';
@@ -3514,7 +3514,7 @@ class Form
 				}
 
 				$outref = $objp->ref;
-				$outbarcode = $objp->barcode;
+				// $outbarcode = $objp->barcode;
 				$outqty = 1;
 				$outdiscount = 0;
 				$outtype = $objp->fk_product_type;
