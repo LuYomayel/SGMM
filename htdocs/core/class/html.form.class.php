@@ -3117,9 +3117,9 @@ class Form
 			$opt .= ' (' . $objp->custref . ')';
 		}
 		// Esto muestra el barcode
-		if ($outbarcode) {
-			$opt .= ' (' . $outbarcode . ')';
-		}
+		// if ($outbarcode) {
+		// 	$opt .= ' (' . $outbarcode . ')';
+		// }
 		if($outcentrodecosto){
 			$opt .= ' (' . $outcentrodecosto . ')';
 		}
