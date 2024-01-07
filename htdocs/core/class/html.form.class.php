@@ -3113,9 +3113,9 @@ class Form
 		if (!empty($objp->custref)) {
 			$opt .= ' (' . $objp->custref . ')';
 		}
-		// if ($outbarcode) {
-		// 	$opt .= ' (' . $outbarcode . ')';
-		// }
+		if ($outbarcode) {
+			$opt .= ' (' . $outbarcode . ')';
+		}
 		$opt .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
 			$opt .= ' (' . getCountry($outorigin, 1) . ')';
