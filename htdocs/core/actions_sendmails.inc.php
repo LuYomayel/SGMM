@@ -432,9 +432,9 @@ if (($action == 'send' || $action == 'relance') && !GETPOST('addfile') && !GETPO
 					// Log the redirection
 
 					error_log('Moreparam: '.$moreparam);
-					error_log('Redirecting to: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : ''));
+					error_log('Redirecting to: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : '').$moreparam);
 
-					header('Location: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : ''));
+					header('Location: '.$_SERVER["PHP_SELF"].'?'.($paramname ? $paramname : 'id').'='.(is_object($object) ? $object->id : '').$moreparam);
 					exit;
 				} else {
 					$langs->load("other");
