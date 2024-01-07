@@ -8415,6 +8415,7 @@ class Form
 				    	escapeMarkup: function (markup) { return markup; }, 	// let our custom formatter work
 				    	minimumInputLength: ' . ((int) $minimumInputLength) . ',
 				        formatResult: function (result, container, query, escapeMarkup) {
+							console.log("RESULT TEXT : "+result.text);
 	                        return escapeMarkup(result.text);
 	                    },
 				    });
@@ -8496,7 +8497,7 @@ class Form
 					var data = ' . json_encode($formattedarrayresult) . ';
 
 					' . ($callurlonselect ? 'var saveRemoteData = ' . json_encode($array) . ';' : '') . '
-					console.log("Data: ", data);
+
 					$(".' . $htmlname . '").select2({
 						data: data,
 						language: select2arrayoflanguage,
