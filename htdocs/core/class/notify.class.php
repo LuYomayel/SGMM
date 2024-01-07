@@ -755,6 +755,7 @@ class Notify
 								$sql = "INSERT INTO ".$this->db->prefix()."notify (daten, fk_action, fk_soc, fk_contact, type, objet_type, type_target, objet_id, email)";
 								$sql .= " VALUES ('".$this->db->idate(dol_now())."', ".((int) $notifcodedefid).", ".($object->socid > 0 ? ((int) $object->socid) : 'null').", ".((int) $obj->cid).", '".$this->db->escape($obj->type)."', '".$this->db->escape($object_type)."', '".$this->db->escape($obj->type_target)."', ".((int) $object->id).", '".$this->db->escape($obj->email)."')";
 							}
+							echo "<script> console.log('SQL: ', " . json_encode($mailfile) . "); </script>";
 							if (!$this->db->query($sql)) {
 								dol_print_error($this->db);
 							}
