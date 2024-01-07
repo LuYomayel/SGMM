@@ -2961,6 +2961,7 @@ class Form
 					// "key" value of json key array is used by jQuery automatically as selected value
 					// "label" value of json key array is used by jQuery automatically as text for combo box
 					$out .= $opt;
+					echo "<script>console.log('".$opt."');</script>";
 					array_push($outarray, $optJson);
 				}
 
@@ -3011,6 +3012,7 @@ class Form
 		$outdesc = '';
 		$outdesc_translated = '';
 		$outbarcode = '';
+		$outcentrodecosto = '';
 		$outorigin = '';
 		$outtype = '';
 		$outprice_ht = '';
@@ -3113,6 +3115,7 @@ class Form
 		if (!empty($objp->custref)) {
 			$opt .= ' (' . $objp->custref . ')';
 		}
+		// Esto muestra el barcode
 		if ($outbarcode) {
 			$opt .= ' (' . $outbarcode . ')';
 		}
@@ -3129,9 +3132,9 @@ class Form
 			$objRef = preg_replace('/(' . preg_quote($filterkey, '/') . ')/i', '<strong>$1</strong>', $objRef, 1);
 		}
 		$outval .= $objRef;
-		// if ($outbarcode) {
-		// 	$outval .= ' (' . $outbarcode . ')';
-		// }
+		if ($outbarcode) {
+			$outval .= ' (' . $outbarcode . ')';
+		}
 		$outval .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
 			$outval .= ' (' . getCountry($outorigin, 1) . ')';
