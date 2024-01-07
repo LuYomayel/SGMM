@@ -73,7 +73,7 @@ abstract class ModelePDFCommandes extends CommonDocGenerator
 
 		include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 		$list = getListOfModels($db, $type, $maxfilenamelength);
-
+		echo "<script> console.log('Liste de modeles : ".json_encode($list)."'); </script>";
 		return $list;
 	}
 }

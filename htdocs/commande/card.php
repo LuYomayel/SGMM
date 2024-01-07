@@ -1996,7 +1996,6 @@ if ($action == 'create' && $usercancreate) {
 	print '<td>';
 	include_once DOL_DOCUMENT_ROOT.'/core/modules/commande/modules_commande.php';
 	$liste = ModelePDFCommandes::liste_modeles($db);
-	echo "<script> console.log('Liste de modeles : ".json_encode($liste)."'); </script>";
 	$preselected = $conf->global->COMMANDE_ADDON_PDF;
 	print img_picto('', 'pdf', 'class="pictofixedwidth"');
 	print $form->selectarray('model', $liste, $preselected, 0, 0, 0, '', 0, 0, 0, '', 'maxwidth200 widthcentpercentminusx', 1);
