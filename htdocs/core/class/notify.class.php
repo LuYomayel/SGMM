@@ -656,6 +656,8 @@ class Notify
 									$substitutionarray['__CONTACT_TOWN_CUSTOMER__'] = !empty($row->town) ? $row->town : '';
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
 									$emailContact = $row->lastname . ' <' . $row->email . '>';
+									// Log the email
+									dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_INFO);
 									// echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
