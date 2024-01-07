@@ -2639,7 +2639,7 @@ class Form
 			}
 		}
 
-		$selectFields = " p.rowid, p.ref, p.label, p.description, p.barcode, p.fk_country, p.fk_product_type, p.price, p.price_ttc, p.price_base_type, p.tva_tx, p.default_vat_code, p.duration, p.fk_price_expression";
+		$selectFields = " p.rowid, p.ref, p.label, p.description, p.barcode, p.fk_country, p.fk_product_type, p.price, p.price_ttc, p.price_base_type, p.tva_tx, p.default_vat_code, p.duration, p.fk_price_expression, ef.centrodecostos";
 		if (count($warehouseStatusArray)) {
 			$selectFieldsGrouped = ", sum(" . $this->db->ifsql("e.statut IS NULL", "0", "ps.reel") . ") as stock"; // e.statut is null if there is no record in stock
 		} else {
