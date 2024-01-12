@@ -306,7 +306,8 @@ class CMailFile
 					dol_syslog("CMailFile1234::CMailfile: filename_list[$i]=".$filename_list[$i].")", LOG_WARNING);
 					dol_syslog("CMailFile1234::CMailfile: mimetype_list[$i]=".$mimetype_list[$i].")", LOG_WARNING);
 					dol_syslog("CMailFile1234::CMailfile: mimefilename_list[$i]=".$mimefilename_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: cid_list[$i]=".$cid_list[$i].")", LOG_WARNING);
+					echo "<script type='text/javascript'>console.log('CMailFile1234::CMailfile: cid_list[$i]=".$cid_list[$i].")');</script>";
+					dol_syslog("CMailFile1234::CMailfile: cid_list[$i]=".$cid_list.")", LOG_WARNING);
 				}
 			}
 		}
