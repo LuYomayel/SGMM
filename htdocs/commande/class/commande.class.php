@@ -964,7 +964,7 @@ class Commande extends CommonOrder
 		$sql .= ", multicurrency_code";
 		$sql .= ", multicurrency_tx";
 		$sql .= ")";
-		$sql .= " VALUES ('(PROV)', ".((int) $this->socid).", '".$this->db->idate($now)."', ".((int) $user->id);
+		$sql .= " VALUES ('PROV', ".((int) $this->socid).", '".$this->db->idate($now)."', ".((int) $user->id);
 		$sql .= ", ".($this->fk_project > 0 ? ((int) $this->fk_project) : "null");
 		$sql .= ", '".$this->db->idate($date)."'";
 		$sql .= ", ".($this->source >= 0 && $this->source != '' ? $this->db->escape($this->source) : 'null');
