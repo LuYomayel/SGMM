@@ -287,6 +287,8 @@ class CMailFile
 							} else {
 								$posindice = array_search($this->html_images[$i]['fullpath'], $filename_list);
 							}
+
+							echo "<script> console.log('html_images: ', " . json_encode($html_images) . "); </script>";
 							// We complete the array of cid_list
 							$cid_list[$posindice] = $this->html_images[$i]['cid'];
 						}
