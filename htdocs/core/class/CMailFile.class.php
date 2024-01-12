@@ -470,6 +470,7 @@ class CMailFile
 				foreach ($filename_list as $i => $val) {
 					$content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
+					dol_syslog("CMailFile::CMailfile: filename_list[$i]=".$filename_list[$i].", mimetype_list[$i]=".$mimetype_list[$i]." mimefilename_list[$i]=".$mimefilename_list[$i]." cid_list[$i]=".$cid_list[$i], LOG_ERR);
 				}
 			}
 
