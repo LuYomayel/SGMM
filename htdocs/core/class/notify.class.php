@@ -680,7 +680,9 @@ class Notify
 						// } else {
 						$filepdf = $pdf_path;
 						$filename_list[] = $filepdf;
-						$mimetype_list[] = mime_content_type($filepdf);
+						// $mimetype_list[] = mime_content_type($filepdf);
+						$mimetype_list[] = "application/pdf";
+
 						$mimefilename_list[] = $ref.".pdf";
 
 						// }
