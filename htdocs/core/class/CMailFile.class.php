@@ -468,9 +468,14 @@ class CMailFile
 
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
+					dol_syslog("CMailFile1234::CMailfile: filename_list[$i]=".$filename_list[$i].")", LOG_ERR);
+					dol_syslog("CMailFile1234::CMailfile: mimetype_list[$i]=".$mimetype_list[$i].")", LOG_ERR);
+					dol_syslog("CMailFile1234::CMailfile: mimefilename_list[$i]=".$mimefilename_list[$i].")", LOG_ERR);
+					dol_syslog("CMailFile1234::CMailfile: cid_list[$i]=".$cid_list[$i].")", LOG_ERR);
+
 					$content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
-					dol_syslog("CMailFile::CMailfile: filename_list[$i]=".$filename_list[$i].", mimetype_list[$i]=".$mimetype_list[$i]." mimefilename_list[$i]=".$mimefilename_list[$i]." cid_list[$i]=".$cid_list[$i], LOG_ERR);
+					// dol_syslog("CMailFile::CMailfile: filename_list[$i]=".$filename_list[$i].", mimetype_list[$i]=".$mimetype_list[$i]." mimefilename_list[$i]=".$mimefilename_list[$i]." cid_list[$i]=".$cid_list[$i], LOG_ERR);
 				}
 			}
 
