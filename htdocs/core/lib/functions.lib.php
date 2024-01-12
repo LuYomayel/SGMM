@@ -1983,7 +1983,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 		$showtitle = 0;
 	}
 
-	$out = "\n".'<!-- dol_fiche_head - dol_get_fiche_head 1234421 -->';
+	$out = "\n".'<!-- dol_fiche_head - dol_get_fiche_head -->';
 
 	if ((!empty($title) && $showtitle) || $morehtmlright || !empty($links)) {
 		$out .= '<div class="tabs'.($picto ? '' : ' nopaddingleft').'" data-role="controlgroup" data-type="horizontal">'."\n";
@@ -2019,23 +2019,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 			$maxkey = max($keys);
 		}
 	}
-	// Eliminar "Precios de venta" si el título es "Producto"
-    if ($title == 'Producto') {
-        foreach ($links as $key => $link) {
-            if ($link[1] == 'Precios de venta') {
-                unset($links[$key]);
-            }
-        }
-    }
-	?>
-	 <script>
-	 var links = <?php echo json_encode($links); ?>;
-	 var title = <?php echo json_encode($title); ?>;
-	 console.log("dol_get_fiche_head");
-	 console.log(links);
-	 console.log(title);
-	 </script>
-	<?php
+
 	// Show tabs
 	// if =0 we don't use the feature
 	if (empty($limittoshow)) {
@@ -7935,9 +7919,7 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				$substitutionarray['__RECEPTIONTRACKNUMURL__'] = 'Shipping tracking url';
 			}
 		} else {
-			// echo "<script> console.log('getCommonSubstitutionArray: start', " . json_encode($object) . "); </script>";
 			$substitutionarray['__ID__'] = $object->id;
-			// $substitutionarray['__ID__'] = 'HOLAAA';
 			$substitutionarray['__REF__'] = $object->ref;
 			$substitutionarray['__NEWREF__'] = $object->newref;
 			$substitutionarray['__LABEL__'] = (isset($object->label) ? $object->label : (isset($object->title) ? $object->title : null));
