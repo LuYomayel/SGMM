@@ -620,17 +620,12 @@ class Notify
 						$template = $notifcode.'_TEMPLATE';
 						$labeltouse = getDolGlobalString($template);
 						if (!empty($labeltouse)) {
-							// console log debug
-							dol_syslog("Use template ".$labeltouse." for notification ".$notifcode." for object ".$object_type." with id ".$object->id, LOG_DEBUG);
-							// echo "<script>console.log('".json_encode($template)."');</script>";
-							// echo "<script>console.log('XD');</script>";
 							$arraydefaultmessage = $formmail->getEMailTemplate($this->db, $object_type.'_send', $user, $outputlangs, 0, 1, $labeltouse);
-							// echo "<script>console.log('".json_encode($arraydefaultmessage)."');</script>";
 						}
 						if (!empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0) {
-							// console log debug
+// console log debug
 							$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
-							// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
+// SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso from llx_socpeople as
 							$sql = "SELECT sp.rowid, sp.lastname, sp.firstname, sp.email, sp.zip, sp.address, sp.town, sp.phone_perso,
 							spe.dni, spe.nombrefantasia, spe.marca, spe.lugardeentrega
 							FROM llx_commande AS c
@@ -672,20 +667,15 @@ class Notify
 
 						$ref = dol_sanitizeFileName($newref);
 						$pdf_path = $dir_output."/".$ref.".pdf";
-						echo "<script> console.log('PDF_PATH: ', " . json_encode($pdf_path) . "); </script>";
-						// if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
-						// 	// We can't add PDF as it is not generated yet.
-						// 	$filepdf = '';
-						// 	echo "<script> console.log('FILEPDF vacio: ', " . json_encode($filepdf) . "); </script>";
-						// } else {
-						$filepdf = $pdf_path;
-						$filename_list[] = $filepdf;
-						// $mimetype_list[] = mime_content_type($filepdf);
-						$mimetype_list[] = "application/pdf";
-
-						$mimefilename_list[] = $ref.".pdf";
-
-						// }
+						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
+							// We can't add PDF as it is not generated yet.
+							$filepdf = '';
+						} else {
+							$filepdf = $pdf_path;
+							$filename_list[] = $filepdf;
+							$mimetype_list[] = mime_content_type($filepdf);
+							$mimefilename_list[] = $ref.".pdf";
+						}
 
 						$labeltouse = !empty($labeltouse) ? $labeltouse : '';
 
@@ -706,9 +696,6 @@ class Notify
 							$sendto = preg_replace('/[\s,]+$/', '', $sendto); // Clean end of string
 						}
 						$sendto = $sendto . ', ' . $emailContact;
-						echo "<script> console.log('SENDTO: ', " . json_encode($filename_list) . "); </script>";
-						echo "<script> console.log('mimetype_list else: ', " . json_encode($mimetype_list) . "); </script>";
-						echo "<script> console.log('mimefilename_list else: ', " . json_encode($mimefilename_list) . "); </script>";
 
 						$parameters = array('notifcode'=>$notifcode, 'sendto'=>$sendto, 'replyto'=>$replyto, 'file'=>$filename_list, 'mimefile'=>$mimetype_list, 'filename'=>$mimefilename_list, 'outputlangs'=>$outputlangs, 'labeltouse'=>$labeltouse);
 						if (!isset($action)) {
@@ -757,7 +744,6 @@ class Notify
 								$sql = "INSERT INTO ".$this->db->prefix()."notify (daten, fk_action, fk_soc, fk_contact, type, objet_type, type_target, objet_id, email)";
 								$sql .= " VALUES ('".$this->db->idate(dol_now())."', ".((int) $notifcodedefid).", ".($object->socid > 0 ? ((int) $object->socid) : 'null').", ".((int) $obj->cid).", '".$this->db->escape($obj->type)."', '".$this->db->escape($object_type)."', '".$this->db->escape($obj->type_target)."', ".((int) $object->id).", '".$this->db->escape($obj->email)."')";
 							}
-							echo "<script> console.log('SQL: ', " . json_encode($mailfile) . "); </script>";
 							if (!$this->db->query($sql)) {
 								dol_print_error($this->db);
 							}

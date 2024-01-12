@@ -287,8 +287,6 @@ class CMailFile
 							} else {
 								$posindice = array_search($this->html_images[$i]['fullpath'], $filename_list);
 							}
-
-							echo "<script> console.log('html_images: ', " . json_encode($html_images) . "); </script>";
 							// We complete the array of cid_list
 							$cid_list[$posindice] = $this->html_images[$i]['cid'];
 						}
@@ -305,11 +303,7 @@ class CMailFile
 			foreach ($filename_list as $i => $val) {
 				if ($filename_list[$i]) {
 					$this->atleastonefile = 1;
-					dol_syslog("CMailFile1234::CMailfile: filename_list[$i]=".$filename_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: mimetype_list[$i]=".$mimetype_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: mimefilename_list[$i]=".$mimefilename_list[$i].")", LOG_WARNING);
-					echo "<script> console.log('cid_list: ', " . json_encode($cid_list) . "); </script>";
-					dol_syslog("CMailFile1234::CMailfile: cid_list[$i]=".$cid_list.")", LOG_WARNING);
+					dol_syslog("CMailFile::CMailfile: filename_list[$i]=".$filename_list[$i].", mimetype_list[$i]=".$mimetype_list[$i]." mimefilename_list[$i]=".$mimefilename_list[$i]." cid_list[$i]=".$cid_list[$i], LOG_DEBUG);
 				}
 			}
 		}
@@ -474,14 +468,8 @@ class CMailFile
 
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
-					dol_syslog("CMailFile1234::CMailfile: filename_list[$i]=".$filename_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: mimetype_list[$i]=".$mimetype_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: mimefilename_list[$i]=".$mimefilename_list[$i].")", LOG_WARNING);
-					dol_syslog("CMailFile1234::CMailfile: cid_list[$i]=".$cid_list[$i].")", LOG_WARNING);
-
 					$content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
-					// dol_syslog("CMailFile::CMailfile: filename_list[$i]=".$filename_list[$i].", mimetype_list[$i]=".$mimetype_list[$i]." mimefilename_list[$i]=".$mimefilename_list[$i]." cid_list[$i]=".$cid_list[$i], LOG_ERR);
 				}
 			}
 
