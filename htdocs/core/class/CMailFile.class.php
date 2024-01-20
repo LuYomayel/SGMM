@@ -295,7 +295,7 @@ class CMailFile
 				}
 			}
 		}
-		//var_dump($filename_list);
+		// var_dump($filename_list);
 		//var_dump($cid_list);exit;
 
 		// Set atleastoneimage if there is at least one file (into $filename_list array)
@@ -466,6 +466,7 @@ class CMailFile
 				}
 			}
 
+			var_dump($filename_list);
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
 					$content = file_get_contents($filename_list[$i]);

@@ -728,7 +728,7 @@ class Notify
 								$message .= $hookmanager->resArray['message'];
 							}
 						}
-						echo "<br> FILENAME LIST: $filename_list <br>";
+						echo "<br> FILENAME LIST: $filename_list[0] <br>";
 						$mailfile = new CMailFile(
 							$subject,
 							$sendto,
