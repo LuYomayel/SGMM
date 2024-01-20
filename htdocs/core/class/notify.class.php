@@ -665,8 +665,10 @@ class Notify
 							$message .= $mesg;
 						}
 						dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_DEBUG);
+						echo "<br> NEW REF: $newref <br>";
 						$ref = dol_sanitizeFileName($newref);
 						$pdf_path = $dir_output."/".$ref.".pdf";
+						echo "<br> REF: $ref <br>";
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
 							// We can't add PDF as it is not generated yet.
 							$variable = dol_is_file($pdf_path) ? 'true' : 'false';
