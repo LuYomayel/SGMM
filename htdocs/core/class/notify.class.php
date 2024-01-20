@@ -674,7 +674,8 @@ class Notify
 							echo "<br> PDF PATH 123 : $pdf_path - $variable <br>";
 							$filepdf = $pdf_path;
 							$filename_list[] = $filepdf;
-							$mimetype_list[] = mime_content_type($filepdf);
+							// $mimetype_list[] = mime_content_type($filepdf);
+							$mimetype_list[] = 'application/pdf';
 							$mimefilename_list[] = $ref.".pdf";
 							echo "<br> mimetype_list: $mimetype_list[0] <br>";
 							echo "<br> mimefilename_list: $mimefilename_list[0] <br>";
