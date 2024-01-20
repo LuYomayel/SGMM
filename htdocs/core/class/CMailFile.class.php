@@ -478,6 +478,8 @@ class CMailFile
 
 				}
 			}else{
+				echo "filename_list: $filename_list<br>";
+
 				echo "no attachment<br>";
 			}
 
