@@ -669,8 +669,16 @@ class Notify
 						$pdf_path = $dir_output."/".$ref.".pdf";
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
 							// We can't add PDF as it is not generated yet.
-							echo "<br> PDF PATH 123 : $pdf_path <br>";
-							$filepdf = '';
+							$variable = dol_is_file($pdf_path);
+							// echo "<br> DOL IS FILE: !dol_is_file($pdf_path)"
+							echo "<br> PDF PATH 123 : $pdf_path - $variable <br>";
+							$filepdf = $pdf_path;
+							$filename_list[] = $filepdf;
+							$mimetype_list[] = mime_content_type($filepdf);
+							$mimefilename_list[] = $ref.".pdf";
+							echo "<br> mimetype_list: $mimetype_list <br>";
+							echo "<br> mimefilename_list: $mimefilename_list <br>";
+
 						} else {
 							echo "<br> PDF PATH: $pdf_path <br>";
 							$filepdf = $pdf_path;
