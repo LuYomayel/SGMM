@@ -664,7 +664,7 @@ class Notify
 							$message .= "\n";
 							$message .= $mesg;
 						}
-						dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_INFO);
+						dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_WARNING);
 						$ref = dol_sanitizeFileName($newref);
 						$pdf_path = $dir_output."/".$ref.".pdf";
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
