@@ -475,6 +475,7 @@ class CMailFile
 					// $content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					echo "filename_list: $filename_list[0]<br>";
+					echo "normalizedFilename: $normalizedFilename<br>";
 					// echo "setAttachment($content)<br>";
 					echo "mimefilename_list setAttachment($mimefilename_list[$i])<br>";
 					echo "mimetype_list setAttachment($mimetype_list[$i])<br>";
