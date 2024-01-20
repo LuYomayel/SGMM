@@ -479,7 +479,6 @@ class CMailFile
 					if (!empty($matches)) {
 						// El texto entre paréntesis estará en $matches[1]
 						$provId = $matches[1];
-						echo "provId: $provId<br>";
 						$newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
 						$mimefilename = "($provId).pdf";
 						if (file_exists($newNormalizedFilename)) {
