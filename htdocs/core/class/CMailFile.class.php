@@ -483,10 +483,12 @@ class CMailFile
 					}
 					$filename = $filename_list[$i];
 					// $normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
-					$newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
+
+					//Descomentar esto quye anda
+					// $newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
 
 
-					$mimefilename = "($provId).pdf";
+					// $mimefilename = "($provId).pdf";
 					if (file_exists($newNormalizedFilename)) {
 						$content = file_get_contents($newNormalizedFilename);
 					} else {
@@ -495,11 +497,13 @@ class CMailFile
 					}
 
 					// $content = file_get_contents($filename_list[$i]);
-					$smtps->setAttachment($content, $mimefilename, $mimetype_list[$i], $cid_list[$i]);
+					//Esto tambien andaba
+					// $smtps->setAttachment($content, $mimefilename, $mimetype_list[$i], $cid_list[$i]);
+					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					echo "filename_list: $filename_list[0]<br>";
 					echo "newNormalizedFilename: $newNormalizedFilename<br>";
 					// echo "setAttachment($content)<br>";
-					echo "mimefilename_list setAttachment($mimefilename)<br>";
+					echo "mimefilename_list setAttachment($mimefilename_list[$i])<br>";
 					echo "mimetype_list setAttachment($mimetype_list[$i])<br>";
 					echo "cid_list setAttachment($cid_list[$i])<br>";
 
