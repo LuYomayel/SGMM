@@ -1808,7 +1808,7 @@ if ($action == 'create' && $usercancreate) {
 
 	print '<table class="border centpercent">';
 
-	// Reference
+	// Reference input referencia
 	print '<tr><td class="titlefieldcreate fieldrequired">'.$langs->trans('Ref').'</td><td>'.$langs->trans("Draft").'</td></tr>';
 
 	// Reference client

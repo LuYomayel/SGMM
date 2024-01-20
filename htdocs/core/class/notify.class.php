@@ -651,7 +651,7 @@ class Notify
 									$substitutionarray['__CONTACT_PHONE_PERSON_CUSTOMER__'] = !empty($row->phone_perso) ? $row->phone_perso : '';
 									$emailContact = $row->lastname . ' <' . $row->email . '>';
 									// Log the email
-									dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_INFO);
+
 									// echo "<script>console.log('ROW: ', " . json_encode($row) . "); </script>";
 								}
 							}
@@ -664,7 +664,7 @@ class Notify
 							$message .= "\n";
 							$message .= $mesg;
 						}
-
+						dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_INFO);
 						$ref = dol_sanitizeFileName($newref);
 						$pdf_path = $dir_output."/".$ref.".pdf";
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
