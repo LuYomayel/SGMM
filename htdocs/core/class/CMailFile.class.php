@@ -469,7 +469,10 @@ class CMailFile
 			var_dump($filename_list);
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
-					$content = file_get_contents($filename_list[$i]);
+					$filename = $filename_list[$i];
+					$normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
+					$content = file_get_contents($normalizedFilename);
+					// $content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					echo "filename_list: $filename_list[0]<br>";
 					// echo "setAttachment($content)<br>";
