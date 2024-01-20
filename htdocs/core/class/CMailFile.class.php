@@ -472,9 +472,9 @@ class CMailFile
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					echo "filename_list: $filename_list<br>";
 					// echo "setAttachment($content)<br>";
-					echo "setAttachment($mimefilename_list[$i])<br>";
-					echo "setAttachment($mimetype_list[$i])<br>";
-					echo "setAttachment($cid_list[$i])<br>";
+					echo "mimefilename_list setAttachment($mimefilename_list[$i])<br>";
+					echo "mimetype_list setAttachment($mimetype_list[$i])<br>";
+					echo "cid_list setAttachment($cid_list[$i])<br>";
 
 				}
 			}else{
