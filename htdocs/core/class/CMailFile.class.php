@@ -466,7 +466,7 @@ class CMailFile
 				}
 			}
 
-			var_dump($filename_list);
+			// var_dump($filename_list);
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
 					// Supongamos que obtienes la ruta del archivo de $filename_list
@@ -480,41 +480,22 @@ class CMailFile
 						// El texto entre paréntesis estará en $matches[1]
 						$provId = $matches[1];
 						echo "provId: $provId<br>";
+						$newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
+						$mimefilename = "($provId).pdf";
+						if (file_exists($newNormalizedFilename)) {
+							$content = file_get_contents($newNormalizedFilename);
+						} else {
+							error_log("El archivo no existe: " . $newNormalizedFilename);
+							// Manejar la situación, por ejemplo, continuar con el siguiente archivo o mostrar un mensaje de error.
+						}
+						$smtps->setAttachment($content, $mimefilename, $mimetype_list[$i], $cid_list[$i]);
+					}else{
+						$filename = $filename_list[$i];
+						$content = file_get_contents($filename);
+						$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					}
-					$filename = $filename_list[$i];
-					// $normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
-
-					//Descomentar esto quye anda
-					// $newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
-					$newNormalizedFilename = $filename_list[$i];
-
-					// $mimefilename = "($provId).pdf";
-					if (file_exists($newNormalizedFilename)) {
-						$content = file_get_contents($newNormalizedFilename);
-					} else {
-						error_log("El archivo no existe: " . $newNormalizedFilename);
-						// Manejar la situación, por ejemplo, continuar con el siguiente archivo o mostrar un mensaje de error.
-					}
-
-					// $content = file_get_contents($filename_list[$i]);
-					//Esto tambien andaba
-					// $smtps->setAttachment($content, $mimefilename, $mimetype_list[$i], $cid_list[$i]);
-					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
-					echo "filename_list: $filename_list[0]<br>";
-					echo "newNormalizedFilename: $newNormalizedFilename<br>";
-					// echo "setAttachment($content)<br>";
-					echo "mimefilename_list setAttachment($mimefilename_list[$i])<br>";
-					echo "mimetype_list setAttachment($mimetype_list[$i])<br>";
-					echo "cid_list setAttachment($cid_list[$i])<br>";
 
 				}
-			}else{
-				// $content = file_get_contents($filename_list[0]);
-				// echo "filename_list: $filename_list<br>";
-				// echo "content: $content<br>";
-				// echo "mimefilename_list: $mimefilename_list[0]<br>";
-				// echo "mimetype_list: $mimetype_list[0]<br>";
-				echo "no attachment<br>";
 			}
 
 			$smtps->setCC($this->addr_cc);

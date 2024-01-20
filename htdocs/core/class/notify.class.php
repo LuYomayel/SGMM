@@ -671,7 +671,7 @@ class Notify
 						echo "<br> REF: $ref <br>";
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
 							// We can't add PDF as it is not generated yet.
-							$pdf_path = '/var/www/html/dolibarr/documents/commande/'.$ref.'/'.$ref.'.pdf';
+							// $pdf_path = '/var/www/html/dolibarr/documents/commande/'.$ref.'/'.$ref.'.pdf';
 							$variable = dol_is_file($pdf_path) ? 'true' : 'false';
 							// echo "<br> DOL IS FILE: !dol_is_file($pdf_path)"
 							echo "<br> PDF PATH 123 : $pdf_path - $variable <br>";
