@@ -1502,10 +1502,10 @@ class pdf_custom extends ModelePDFCommandes
 			$title .= $outputlangsbis->transnoentities($titlekey);
 		}
 		$title .= ' '.$outputlangs->convToOutputCharset($object->ref);
-		if ($object->statut == $object::STATUS_DRAFT) {
-			$pdf->SetTextColor(128, 0, 0);
-			$title .= ' - '.$outputlangs->transnoentities("NotValidated");
-		}
+		// if ($object->statut == $object::STATUS_DRAFT) {
+		// 	$pdf->SetTextColor(128, 0, 0);
+		// 	$title .= ' - '.$outputlangs->transnoentities("NotValidated");
+		// }
 
 		$pdf->MultiCell($w, 3, $title, '', 'R');
 
