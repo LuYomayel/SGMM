@@ -2309,7 +2309,7 @@ if ($action == 'create' && $usercancreate) {
 			}
 
 			if (!$error) {
-				// echo '<script>console.log("TEngo este comento "' . json_encode($formquestion) . ');</script>';
+				echo '<script>console.log("TEngo este comento ", ' . json_encode($formquestion) . ');</script>';
 				$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('ValidateOrder'), $text, 'confirm_validate', $formquestion, 0, 1, 220);
 			}
 		}
