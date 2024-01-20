@@ -477,6 +477,8 @@ class CMailFile
 					echo "setAttachment($cid_list[$i])<br>";
 
 				}
+			}else{
+				echo "no attachment<br>";
 			}
 
 			$smtps->setCC($this->addr_cc);
