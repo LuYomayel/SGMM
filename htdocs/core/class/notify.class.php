@@ -689,6 +689,8 @@ class Notify
 						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_WARNING);
 						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_INFO);
 						dol_syslog("File path: ".$pdf_path.", Message: ".$message);
+						dol_syslog("La concha puta de tu madre");
+						dol_syslog("La concha puta de tu madre", LOG_INFO);
 						// echo "<script>console.log('File path: ".$pdf_path.", Message: ".$message."');</script>";
 						// ...
 
