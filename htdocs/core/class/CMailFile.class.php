@@ -470,19 +470,19 @@ class CMailFile
 				foreach ($filename_list as $i => $val) {
 					$content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
-
-					echo "setAttachment($content)<br>";
+					echo "filename_list: $filename_list<br>";
+					// echo "setAttachment($content)<br>";
 					echo "setAttachment($mimefilename_list[$i])<br>";
 					echo "setAttachment($mimetype_list[$i])<br>";
 					echo "setAttachment($cid_list[$i])<br>";
 
 				}
 			}else{
-				$content = file_get_contents($filename_list[0]);
-				echo "filename_list: $filename_list<br>";
-				echo "content: $content<br>";
-				echo "mimefilename_list: $mimefilename_list[0]<br>";
-				echo "mimetype_list: $mimetype_list[0]<br>";
+				// $content = file_get_contents($filename_list[0]);
+				// echo "filename_list: $filename_list<br>";
+				// echo "content: $content<br>";
+				// echo "mimefilename_list: $mimefilename_list[0]<br>";
+				// echo "mimetype_list: $mimetype_list[0]<br>";
 				echo "no attachment<br>";
 			}
 
