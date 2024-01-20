@@ -665,26 +665,19 @@ class Notify
 							$message .= $mesg;
 						}
 						dol_syslog("Sending email: Subject - ".$emailContact.", Message - ".$message, LOG_DEBUG);
-						echo "<br> NEW REF: $newref <br>";
+
 						$ref = dol_sanitizeFileName($newref);
 						$pdf_path = $dir_output."/".$ref.".pdf";
-						echo "<br> REF: $ref <br>";
+
 						if (!dol_is_file($pdf_path)||(is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0 && !$arraydefaultmessage->joinfiles)) {
 							// We can't add PDF as it is not generated yet.
-							// $pdf_path = '/var/www/html/dolibarr/documents/commande/'.$ref.'/'.$ref.'.pdf';
-							$variable = dol_is_file($pdf_path) ? 'true' : 'false';
-							// echo "<br> DOL IS FILE: !dol_is_file($pdf_path)"
-							echo "<br> PDF PATH 123 : $pdf_path - $variable <br>";
 							$filepdf = $pdf_path;
 							$filename_list[] = $filepdf;
 							// $mimetype_list[] = mime_content_type($filepdf);
 							$mimetype_list[] = 'application/pdf';
 							$mimefilename_list[] = $ref.".pdf";
-							echo "<br> mimetype_list: $mimetype_list[0] <br>";
-							echo "<br> mimefilename_list: $mimefilename_list[0] <br>";
 
 						} else {
-							echo "<br> PDF PATH: $pdf_path <br>";
 							$filepdf = $pdf_path;
 							$filename_list[] = $filepdf;
 							$mimetype_list[] = mime_content_type($filepdf);
@@ -731,7 +724,6 @@ class Notify
 								$message .= $hookmanager->resArray['message'];
 							}
 						}
-						echo "<br> FILENAME LIST: $filename_list[0] <br>";
 						$mailfile = new CMailFile(
 							$subject,
 							$sendto,
