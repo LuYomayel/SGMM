@@ -673,7 +673,7 @@ class Notify
 							// We can't add PDF as it is not generated yet.
 							$variable = dol_is_file($pdf_path) ? 'true' : 'false';
 							// echo "<br> DOL IS FILE: !dol_is_file($pdf_path)"
-							$pdf_path = '/var/www/html/dolibarr/documents/commande/'.$ref.'/'.$ref.'.pdf'
+							$pdf_path = '/var/www/html/dolibarr/documents/commande/'.$ref.'/'.$ref.'.pdf';
 							echo "<br> PDF PATH 123 : $pdf_path - $variable <br>";
 							$filepdf = $pdf_path;
 							$filename_list[] = $filepdf;
