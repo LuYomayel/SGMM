@@ -899,20 +899,20 @@ if (empty($reshook)) {
 				$tmpprodvat = price2num(preg_replace('/\s*\(.*\)/', '', $prod->tva_tx));
 
 				// Set unit price to use
-				if (!empty($price_ht) || $price_ht === '0') {
-					$pu_ht = price2num($price_ht, 'MU');
-					$pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
-				} elseif (!empty($price_ttc) || $price_ttc === '0') {
-					$pu_ttc = price2num($price_ttc, 'MU');
-					$pu_ht = price2num($pu_ttc / (1 + ($tmpvat / 100)), 'MU');
-				} elseif ($tmpvat != $tmpprodvat) {
-					// Is this still used ?
-					if ($price_base_type != 'HT') {
-						$pu_ht = price2num($pu_ttc / (1 + ($tmpvat / 100)), 'MU');
-					} else {
-						$pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
-					}
-				}
+				// if (!empty($price_ht) || $price_ht === '0') {
+				// 	$pu_ht = price2num($price_ht, 'MU');
+				// 	$pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
+				// } elseif (!empty($price_ttc) || $price_ttc === '0') {
+				// 	$pu_ttc = price2num($price_ttc, 'MU');
+				// 	$pu_ht = price2num($pu_ttc / (1 + ($tmpvat / 100)), 'MU');
+				// } elseif ($tmpvat != $tmpprodvat) {
+				// 	// Is this still used ?
+				// 	// if ($price_base_type != 'HT') {
+				// 	// 	$pu_ht = price2num($pu_ttc / (1 + ($tmpvat / 100)), 'MU');
+				// 	// } else {
+				// 	// 	$pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
+				// 	// }
+				// }
 
 				$desc = '';
 
