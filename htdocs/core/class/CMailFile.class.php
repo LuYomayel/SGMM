@@ -478,8 +478,11 @@ class CMailFile
 
 				}
 			}else{
+				$content = file_get_contents($filename_list[0]);
 				echo "filename_list: $filename_list<br>";
-
+				echo "content: $content<br>";
+				echo "mimefilename_list: $mimefilename_list[0]<br>";
+				echo "mimetype_list: $mimetype_list[0]<br>";
 				echo "no attachment<br>";
 			}
 
