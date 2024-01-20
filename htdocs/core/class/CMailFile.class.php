@@ -482,8 +482,10 @@ class CMailFile
 						echo "provId: $provId<br>";
 					}
 					$filename = $filename_list[$i];
-					$normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
-					$content = file_get_contents($normalizedFilename);
+					// $normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
+					$newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/\\($provId\\)/\\($provId\\).pdf";
+
+					$content = file_get_contents($newNormalizedFilename);
 					// $content = file_get_contents($filename_list[$i]);
 					$smtps->setAttachment($content, $mimefilename_list[$i], $mimetype_list[$i], $cid_list[$i]);
 					echo "filename_list: $filename_list[0]<br>";
