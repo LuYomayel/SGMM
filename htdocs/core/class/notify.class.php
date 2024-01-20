@@ -678,6 +678,19 @@ class Notify
 						}
 
 						$labeltouse = !empty($labeltouse) ? $labeltouse : '';
+						// I need to do a dolibarr log about file path and the message of the mail
+						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_DEBUG);
+						// ...
+
+						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_DEBUG);
+						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_WARNING);
+						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_ERR);
+						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_DEBUG);
+						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_WARNING);
+						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_ERR);
+
+						// ...
+
 
 						// Replace keyword __SUPERVISOREMAIL__
 						if (preg_match('/__SUPERVISOREMAIL__/', $sendto)) {
