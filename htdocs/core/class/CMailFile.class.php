@@ -486,7 +486,7 @@ class CMailFile
 
 					//Descomentar esto quye anda
 					// $newNormalizedFilename = "/var/www/html/dolibarr/documents/commande/($provId)/($provId).pdf";
-
+					$newNormalizedFilename = $filename_list[$i];
 
 					// $mimefilename = "($provId).pdf";
 					if (file_exists($newNormalizedFilename)) {
