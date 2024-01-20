@@ -140,11 +140,12 @@ class mod_syslog_file extends LogHandler implements LogHandlerInterface
 		global $conf, $dolibarr_main_prod;
 
 		if (!empty($conf->global->MAIN_SYSLOG_DISABLE_FILE)) {
+			echo "<script> console.log('MAIN_SYSLOG_DISABLE_FILE is set to 1'); </script>"
 			return; // Global option to disable output of this handler
 		}
 
 		$logfile = $this->getFilename($suffixinfilename);
-
+		echo "<script> console.log('logfile is set to $logfile'); </script>"
 		// Test constant SYSLOG_FILE_NO_ERROR (should stay a constant defined with define('SYSLOG_FILE_NO_ERROR',1);
 		if (defined('SYSLOG_FILE_NO_ERROR')) {
 			$filefd = @fopen($logfile, 'a+');
