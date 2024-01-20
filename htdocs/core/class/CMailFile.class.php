@@ -469,6 +469,18 @@ class CMailFile
 			var_dump($filename_list);
 			if (!empty($this->atleastonefile)) {
 				foreach ($filename_list as $i => $val) {
+					// Supongamos que obtienes la ruta del archivo de $filename_list
+					$filePath = $filename_list[$i];
+
+					// Utiliza una expresión regular para extraer la parte entre paréntesis
+					preg_match('/\((.*?)\)/', $filePath, $matches);
+
+					// Verifica si se encontró algo entre paréntesis
+					if (!empty($matches)) {
+						// El texto entre paréntesis estará en $matches[1]
+						$provId = $matches[1];
+						echo "provId: $provId<br>";
+					}
 					$filename = $filename_list[$i];
 					$normalizedFilename = str_replace(['(', ')'], ['\(', '\)'], $filename);
 					$content = file_get_contents($normalizedFilename);
