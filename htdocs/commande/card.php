@@ -2518,7 +2518,7 @@ if ($action == 'create' && $usercancreate) {
 		}
 		print '</td>';
 		print '</tr>';
-
+		dol_syslog("card.php: date: ".$object->date);
 		// Delivery date planed
 		print '<tr><td>';
 		$editenable = $usercancreate;
