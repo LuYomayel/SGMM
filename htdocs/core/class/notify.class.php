@@ -684,11 +684,11 @@ class Notify
 
 						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_DEBUG);
 						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_WARNING);
-						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_ERR);
+						dol_syslog("Sending email: Subject - ".$subject.", Message - ".$message, LOG_INFO);
 						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_DEBUG);
 						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_WARNING);
-						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_ERR);
-						echo "<script>console.log('File path: ".$pdf_path.", Message: ".$message."');</script>";
+						dol_syslog("File path: ".$pdf_path.", Message: ".$message, LOG_INFO);
+						// echo "<script>console.log('File path: ".$pdf_path.", Message: ".$message."');</script>";
 						// ...
 
 
