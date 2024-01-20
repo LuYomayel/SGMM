@@ -1020,9 +1020,9 @@ if (empty($reshook)) {
 			$localtax2_tx = get_localtax($tva_tx, 2, $object->thirdparty);
 
 			$info_bits = 0;
-			if ($tva_npr) {
-				$info_bits |= 0x01;
-			}
+			// if ($tva_npr) {
+			// 	$info_bits |= 0x01;
+			// }
 
 			$desc = dol_htmlcleanlastbr($desc);
 
