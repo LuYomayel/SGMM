@@ -1625,7 +1625,7 @@ while ($i < $imaxinloop) {
 
 		// Ref supplier
 		if (!empty($arrayfields['pfp.ref_fourn']['checked'])) {
-			print '<td class="tdoverflowmax400">';
+			print '<td class="tdoverflowmax200">';
 			print $product_static->getNomUrl(1);
 			print "</td>\n";
 			if (!$i) {
@@ -1651,7 +1651,7 @@ while ($i < $imaxinloop) {
 
 		// Label
 		if (!empty($arrayfields['p.label']['checked'])) {
-			print '<td class="tdoverflowmax200" title="'.dol_escape_htmltag($product_static->label).'">'.$product_static->label.'</td>';
+			print '<td class="tdoverflowmax550" title="'.dol_escape_htmltag($product_static->label).'">'.$product_static->label.'</td>';
 			if (!$i) {
 				$totalarray['nbfield']++;
 			}
