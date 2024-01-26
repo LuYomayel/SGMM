@@ -2639,7 +2639,7 @@ class Form
 			}
 		}
 
-		$selectFields = " p.rowid, p.ref, p.label, p.description, p.barcode, p.fk_country, p.fk_product_type, p.price, p.price_ttc, p.price_base_type, p.tva_tx, p.default_vat_code, p.duration, p.fk_price_expression, ef.centrodecostos";
+		$selectFields = " p.rowid, p.ref, p.label, p.description, p.barcode, p.fk_country, p.fk_product_type, p.price, p.price_ttc, p.price_base_type, p.tva_tx, p.default_vat_code, p.duration, p.fk_price_expression, ef.centrodecostos, ef.marca";
 		if (count($warehouseStatusArray)) {
 			$selectFieldsGrouped = ", sum(" . $this->db->ifsql("e.statut IS NULL", "0", "ps.reel") . ") as stock"; // e.statut is null if there is no record in stock
 		} else {
@@ -3012,6 +3012,7 @@ class Form
 		$outdesc_translated = '';
 		$outbarcode = '';
 		$outcentrodecosto = '';
+		$outmarca = '';
 		$outorigin = '';
 		$outtype = '';
 		$outprice_ht = '';
@@ -3043,6 +3044,7 @@ class Form
 		}
 		$outbarcode = $objp->barcode;
 		$outcentrodecosto = $objp->centrodecostos;
+		$outmarca = $objp->marca;
 		$outorigin = $objp->fk_country;
 		$outpbq = empty($objp->price_by_qty_rowid) ? '' : $objp->price_by_qty_rowid;
 
@@ -3121,6 +3123,9 @@ class Form
 		// }
 		if($outcentrodecosto){
 			$opt .= ' (' . $outcentrodecosto . ')';
+		}
+		if($outmarca){
+			$opt .= ' (' . $outmarca . ')';
 		}
 		$opt .= ' - ' . dol_trunc($label, $maxlengtharticle);
 		if ($outorigin && !empty($conf->global->PRODUCT_SHOW_ORIGIN_IN_COMBO)) {
@@ -3415,7 +3420,7 @@ class Form
 		$sql = "SELECT p.rowid, p.ref, p.label, p.price, p.duration, p.fk_product_type, p.stock, p.tva_tx as tva_tx_sale, p.default_vat_code as default_vat_code_sale,";
 		$sql .= " pfp.ref_fourn, pfp.rowid as idprodfournprice, pfp.price as fprice, pfp.quantity, pfp.remise_percent, pfp.remise, pfp.unitprice,";
 		$sql .= " pfp.fk_supplier_price_expression, pfp.fk_product, pfp.tva_tx, pfp.default_vat_code, pfp.fk_soc, s.nom as name,";
-		$sql .= " pfp.supplier_reputation, pe.centrodecostos";
+		$sql .= " pfp.supplier_reputation, pe.centrodecostos, pe.marca";
 		// if we use supplier description of the products
 		if (!empty($conf->global->PRODUIT_FOURN_TEXTS)) {
 			$sql .= ", pfp.desc_fourn as description";
