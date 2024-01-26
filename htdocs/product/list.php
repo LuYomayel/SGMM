@@ -1625,7 +1625,7 @@ while ($i < $imaxinloop) {
 
 		// Ref supplier
 		if (!empty($arrayfields['pfp.ref_fourn']['checked'])) {
-			print '<td class="tdoverflowmax200">';
+			print '<td class="tdoverflowmax400">';
 			print $product_static->getNomUrl(1);
 			print "</td>\n";
 			if (!$i) {
