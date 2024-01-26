@@ -1224,7 +1224,7 @@ include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_input.tpl.php';
 $parameters = array('arrayfields'=>$arrayfields);
 $reshook = $hookmanager->executeHooks('printFieldListOption', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
 print $hookmanager->resPrint;
-echo '<script> console.log("'.$arrayfields.'"); </script>';
+echo '<script> console.log('.json_encode($arrayfields).'); </script>';
 // Date creation
 if (!empty($arrayfields['p.datec']['checked'])) {
 	print '<td class="liste_titre">';
